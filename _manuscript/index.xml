@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+  <front>
+    <article-meta>
+      <title-group>
+        <article-title>MicrogliaTRAP</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">0000-0001-5920-2190</contrib-id>
+          <name>
+            <surname>Evgenii O. Tretiakov</surname>
+            <given-names>PhD</given-names>
+          </name>
+          <string-name>Evgenii O. Tretiakov, PhD</string-name>
+          <email>evgenii.tretiakov@meduniwien.ac.at</email>
+          <xref ref-type="aff" rid="aff-1">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1">
+        <institution-wrap>
+          <institution>Department of Molecular Neurosciences, Center for Brain
+Research, Medical University of Vienna, Vienna A-1090,
+Austria</institution>
+        </institution-wrap>
+      </aff>
+      <history/>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="trem2-expression-analysis-across-hypothalamic-regions">
+      <title>TREM2 Expression Analysis Across Hypothalamic Regions</title>
+      <sec id="methods">
+        <title>Methods</title>
+        <p>TREM2 expression was analyzed across different hypothalamic
+    regions using single-nucleus RNA sequencing data. Following quality
+    control and normalization, we performed integrated analysis of
+    multiple datasets
+    (<xref alt="Figure 1" rid="fig-integrated-analysis">Figure 1</xref>).</p>
+        <preformat>WARNING: saving figure to file figures/umap_integrated_datasets.pdfWARNING: saving figure to file figures/umap_integrated_clusters.pdfWARNING: saving figure to file figures/umap_integrated_regions.pdf</preformat>
+        <fig id="fig-integrated-analysis">
+          <caption>
+            <p>Figure 1: Analysis of batch-corrected microglial data.
+      (A) UMAP visualization after integration shows reduced batch
+      effects. (B) Refined clustering based on integrated data reveals
+      distinct microglial subpopulations. (C) Distribution of cells by
+      hypothalamic region demonstrates regional heterogeneity of
+      microglia.</p>
+          </caption>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-integrated-analysis-output-2.png"/>
+        </fig>
+        <p>Initial clustering revealed distinct microglial populations
+    across hypothalamic regions, which were further refined through
+    batch correction and integration of multiple datasets.</p>
+      </sec>
+      <sec id="results">
+        <title>Results</title>
+        <sec id="regional-expression-patterns">
+          <title>Regional Expression Patterns</title>
+          <p>Analysis of TREM2 expression revealed significant heterogeneity
+      across hypothalamic regions (F = 302.35, p = 2.58e-4).
+      <xref alt="Figure 2" rid="fig-trem2-region">Figure 2</xref> shows
+      the distribution of TREM2 expression across different regions.</p>
+          <fig id="fig-trem2-region">
+            <caption>
+              <p>Figure 2: TREM2 expression levels across different
+        hypothalamic regions. Box plots show the median, quartiles, and
+        distribution of TREM2 expression in each anatomically distinct
+        region. Whiskers extend to 1.5 times the interquartile
+        range.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-region-output-1.png"/>
+          </fig>
+          <p>The highest TREM2 expression was observed in the SCN (mean =
+      0.436 ± 0.689), followed by the PVN (0.296 ± 0.799). In contrast,
+      the MBH showed the lowest expression (-1.376 ± 0.604), followed by
+      the MnPO (-1.241 ± 0.057).</p>
+        </sec>
+        <sec id="cluster-specific-expression">
+          <title>Cluster-Specific Expression</title>
+          <p>TREM2 expression varied significantly across microglial
+      clusters
+      (<xref alt="Figure 3" rid="fig-trem2-clusters">Figure 3</xref>),
+      suggesting functional heterogeneity within the microglial
+      population.</p>
+          <fig id="fig-trem2-clusters">
+            <caption>
+              <p>Figure 3: Distribution of TREM2 expression across
+        identified microglial clusters. Violin plots demonstrate the
+        full distribution of expression levels within each cluster, with
+        embedded box plots showing median and quartile
+        values.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-clusters-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="spatial-distribution">
+          <title>Spatial Distribution</title>
+          <p>UMAP visualization of TREM2 expression
+      (<xref alt="Figure 4" rid="fig-trem2-umap">Figure 4</xref>)
+      revealed distinct spatial patterns, indicating regional
+      specialization of TREM2-expressing microglia.</p>
+          <fig id="fig-trem2-umap">
+            <caption>
+              <p>Figure 4: UMAP visualization of TREM2 expression
+        across all microglia. Color intensity represents TREM2
+        expression level, showing the spatial distribution of
+        TREM2-expressing cells in the reduced dimensional
+        space.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-umap-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="gene-co-expression-analysis">
+          <title>Gene Co-expression Analysis</title>
+          <p>To understand the regulatory network associated with TREM2, we
+      analyzed its correlation with other microglial markers
+      (<xref alt="Figure 5" rid="fig-trem2-correlations">Figure 5</xref>).</p>
+          <fig id="fig-trem2-correlations">
+            <caption>
+              <p>Figure 5: Correlation analysis between TREM2 and
+        other microglial marker genes. Bar plot shows Pearson
+        correlation coefficients, ordered by strength of correlation.
+        Positive values indicate positive correlation, while negative
+        values indicate inverse relationships.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-correlations-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="regional-and-cluster-specific-patterns">
+          <title>Regional and Cluster-Specific Patterns</title>
+          <p>The heatmap analysis
+      (<xref alt="Figure 6" rid="fig-trem2-cluster-enrichment-heatmap">Figure 6</xref>)
+      revealed distinct patterns of TREM2 expression across both regions
+      and clusters.</p>
+          <fig id="fig-trem2-cluster-enrichment-heatmap">
+            <caption>
+              <p>Figure 6: Regional and cluster-specific TREM2
+        expression patterns. Heatmap shows mean TREM2 expression levels
+        across different microglial clusters (rows) and hypothalamic
+        regions (columns). Color intensity represents expression level,
+        with darker colors indicating higher expression.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-cluster-enrichment-heatmap-output-2.png"/>
+          </fig>
+        </sec>
+        <sec id="molecular-interactions">
+          <title>Molecular Interactions</title>
+          <p>The co-expression network analysis
+      (<xref alt="Figure 7" rid="fig-trem2-coexpression-network">Figure 7</xref>)
+      identified key molecular interactions of TREM2 with other
+      genes.</p>
+          <fig id="fig-trem2-coexpression-network">
+            <caption>
+              <p>Figure 7: TREM2 co-expression network in
+        hypothalamic microglia. Nodes represent genes, with TREM2 as the
+        central hub. Edge weights represent the absolute Pearson
+        correlation coefficient between gene pairs. Only correlations
+        above 0.3 are shown.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-coexpression-network-output-2.png"/>
+          </fig>
+          <preformat>
+Network Statistics:
+Number of co-expressed genes: 23
+Number of connections: 23
+
+Network Metrics:
+Network density: 0.083
+Average clustering coefficient: 0.000</preformat>
+        </sec>
+      </sec>
+      <sec id="statistical-analysis">
+        <title>Statistical Analysis</title>
+        <p>Statistical comparison across regions
+    (<xref alt="Figure 8" rid="fig-trem2-regional-stats">Figure 8</xref>)
+    revealed three distinct TREM2 expression domains:</p>
+        <fig id="fig-trem2-regional-stats">
+          <caption>
+            <p>Figure 8: Statistical comparison of TREM2 expression
+      across hypothalamic regions. Box plots show the distribution of
+      TREM2 expression levels in each region. Significance bars indicate
+      the top 5 most significant pairwise comparisons (FDR-corrected
+      p-values). Cohen’s d effect sizes are shown for each comparison,
+      quantifying the magnitude of expression differences between
+      regions.</p>
+          </caption>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-regional-stats-output-1.png"/>
+        </fig>
+        <list list-type="order">
+          <list-item>
+            <p>High expression domain: SCN, PVN, VMHvl (means &gt; 0.1)</p>
+          </list-item>
+          <list-item>
+            <p>Intermediate expression domain: POA, VPH, Arc (means between
+        -0.3 and 0.1)</p>
+          </list-item>
+          <list-item>
+            <p>Low expression domain: MBH, MnPO, VMH (means &lt; -0.9)</p>
+          </list-item>
+        </list>
+        <p>The most significant differences were observed between: - MBH and
+    SCN (Cohen’s d = -2.67, p-adj &lt; 1e-300) - SCN and VMH (Cohen’s d
+    = 1.94, p-adj &lt; 1e-300) - MBH and PVN (Cohen’s d = -2.31, p-adj =
+    7.73e-158)</p>
+      </sec>
+      <sec id="interpretation">
+        <title>Interpretation</title>
+        <p>The observed regional heterogeneity in TREM2 expression suggests
+    region-specific roles for microglial TREM2 signaling. The high
+    expression in SCN and PVN, regions crucial for circadian rhythm and
+    neuroendocrine function, indicates potential involvement of TREM2 in
+    these processes. The co-expression analysis reveals potential
+    molecular mechanisms through which TREM2 might influence microglial
+    function in different hypothalamic regions.</p>
+        <p>These findings provide a comprehensive map of TREM2 expression
+    across hypothalamic regions and suggest potential region-specific
+    functions of TREM2-expressing microglia in the hypothalamus.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+</back>
+  <sub-article article-type="notebook" id="nb-4-nb-1">
+    <front-stub>
+      <title-group>
+        <article-title>Comprehensive analysis of hypothalamic microglia across
+multiple datasets</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tretiakov</surname>
+            <given-names>Evgenii O.</given-names>
+          </name>
+          <string-name>Evgenii O. Tretiakov</string-name>
+        </contrib>
+      </contrib-group>
+    </front-stub>
+    <body>
+      <sec id="setup-nb-1" specific-use="notebook-content">
+        <preformat>#| label: setup
+#| include: false
+# Set random seeds for reproducibility
+import random
+import numpy as np
+import scanpy as sc
+
+random.seed(42)
+np.random.seed(42)
+sc.settings.seed = 42
+
+# Other imports
+import os
+import pandas as pd
+from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+import statsmodels.stats.multitest as mt</preformat>
+      </sec>
+      <sec id="load-data-nb-1" specific-use="notebook-content">
+        <preformat>#| label: load-data
+# Microglia markers based on literature
+microglia_markers = [
+    "Aif1", "Itgam", "Cx3cr1", "P2ry12", "Tmem119",
+    "Hexb", "Csf1r", "Trem2", "C1qa", "C1qb", "C1qc",
+    "Cd68", "Ptprc", "Fcrls", "Cd14", "Tgfbr1", "Sall1",
+    "Olfml3", "Siglech", "Gpr34", "Mafb", "Cd33", "Trem2"
+]
+
+# Create dataset mapping
+dataset_info = {
+    'PRJNA1018579': {'name': 'Guo2024_POA', 'region': 'POA'},
+    'PRJNA971261': {'name': 'Jovanovic2022_DMH', 'region': 'DMH'},
+    'PRJNA872019': {'name': 'Tang2023_DMH_SCN', 'region': 'DMH_SCN'},  # Taking first region
+    'PRJNA847050': {'name': 'lutomska2022_Arc', 'region': 'Arc'},
+    'PRJNA815819': {'name': 'pool2022_MnPO', 'region': 'MnPO'},
+    'PRJNA798401': {'name': 'liu2022_VMHvl', 'region': 'VMHvl'},
+    'PRJNA779749': {'name': 'hajdarovic2022_Hypoth', 'region': 'Hypoth'},
+    'PRJNA723345': {'name': 'rupp2021_MBH', 'region': 'MBH'},
+    'PRJNA722418': {'name': 'affinati2021_VMH', 'region': 'VMH'},
+    'PRJNA705596': {'name': 'morris2021_SCN', 'region': 'SCN'},
+    'PRJNA679294': {'name': 'lopez2021_PVN', 'region': 'PVN'},
+    'PRJNA626601': {'name': 'Bentsen2020_MBH', 'region': 'MBH'},  # Taking first region
+    'PRJNA611624': {'name': 'mickelsen2020_VPH', 'region': 'VPH'},
+    'PRJNA604055': {'name': 'deng2020_Arc', 'region': 'Arc'},
+    'PRJNA548917': {'name': 'romanov2020_Hypoth', 'region': 'Hypoth-dev'},
+    'PRJNA548532': {'name': 'wen2020_SCN', 'region': 'SCN'},
+    'PRJNA547712': {'name': 'kim2020_Hypoth', 'region': 'Hypoth-dev'},
+    'PRJNA515063': {'name': 'mickelsen2019_LHA', 'region': 'LHA'},
+    'PRJNA453138': {'name': 'moffitt2018_POA', 'region': 'POA'},
+    'PRJNA438862': {'name': 'zeisel2018_Hypoth', 'region': 'Hypoth-brain'}
+}
+
+# Function to load and preprocess dataset
+def load_dataset(file_path):
+    adata = sc.read_h5ad(file_path)
+    project = Path(file_path).stem.split('-')[0]
+    
+    # Add dataset name and region information
+    if project in dataset_info:
+        adata.obs['dataset'] = dataset_info[project]['name']
+        adata.obs['region'] = dataset_info[project]['region']
+    else:
+        adata.obs['dataset'] = project
+        adata.obs['region'] = 'Unknown'
+    
+    return adata
+
+# Load all datasets
+data_dir = Path("/home/etretiakov/src/MicrogliaTRAP/data/")
+datasets = []
+for file in data_dir.glob("*-whole.h5ad"):
+    print(f"Loading {file.name}")
+    datasets.append(load_dataset(file))
+
+# Concatenate all datasets
+adata_combined = datasets[0].concatenate(
+    datasets[1:],
+    join='outer',
+    batch_key='dataset'
+)
+
+print(f"Combined dataset shape: {adata_combined.shape}")</preformat>
+        <boxed-text>
+          <preformat>Loading PRJNA847050-whole.h5ad
+Loading PRJNA815819-whole.h5ad
+Loading PRJNA798401-whole.h5ad
+Loading PRJNA723345-whole.h5ad
+Loading PRJNA722418-whole.h5ad
+Loading PRJNA705596-whole.h5ad
+Loading PRJNA679294-whole.h5ad
+Loading PRJNA611624-whole.h5ad
+Loading PRJNA604055-whole.h5ad
+Loading PRJNA548532-whole.h5ad
+Loading PRJNA515063-whole.h5ad
+Loading PRJNA453138-whole.h5ad</preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_21742/4024288810.py:56: FutureWarning:
+
+Use anndata.concat instead of AnnData.concatenate, AnnData.concatenate is deprecated and will be removed in the future. See the tutorial for concat at: https://anndata.readthedocs.io/en/latest/concatenation.html
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>Combined dataset shape: (271739, 27597)</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="filter-microglia-nb-1" specific-use="notebook-content">
+        <preformat>#| label: filter-microglia
+def identify_microglia(adata):
+    """Identify microglia based on marker expression and annotation"""
+    # Filter markers present in the dataset
+    available_markers = [m for m in microglia_markers if m in adata.var_names]
+    
+    # Calculate marker score
+    marker_expr = adata[:, available_markers].X.toarray()
+    marker_score = np.sum(marker_expr &gt; 0, axis=1) / len(available_markers)
+    
+    # Identify cells with high marker expression
+    high_marker_expr = marker_score &gt;= 0.3  # At least 30% of markers expressed
+    
+    # Combined with existing annotation if available
+    is_microglia = (
+        high_marker_expr |
+        adata.obs['ora_celltype'].isin(['Microglia'])
+    )
+    
+    return is_microglia
+
+# Filter for microglia
+is_microglia = identify_microglia(adata_combined)
+adata_microglia = adata_combined[is_microglia].copy()
+
+print(f"Number of identified microglia: {adata_microglia.n_obs}")</preformat>
+        <boxed-text>
+          <preformat>Number of identified microglia: 12352</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="preprocess-microglia-nb-1" specific-use="notebook-content">
+        <preformat>#| label: preprocess-microglia
+#| code-summary: Normalize and process microglial expression data
+# Normalize and process
+sc.pp.normalize_total(adata_microglia)
+sc.pp.log1p(adata_microglia)
+sc.pp.highly_variable_genes(
+    adata_microglia,
+    n_top_genes=2000,
+    batch_key='dataset'
+)
+
+# Run PCA
+sc.pp.scale(adata_microglia)
+sc.tl.pca(adata_microglia)</preformat>
+      </sec>
+      <sec id="cell-fig-initial-clustering-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-initial-clustering
+#| fig-cap: Initial clustering analysis of hypothalamic microglia. (A) UMAP visualization colored by dataset origin shows batch effects before integration. (B) Initial Leiden clustering reveals potential microglial subpopulations. Colors represent distinct clusters identified by the algorithm.
+# Run UMAP and clustering
+sc.pp.neighbors(adata_microglia)
+sc.tl.umap(adata_microglia)
+sc.tl.leiden(adata_microglia)
+
+# Plot results
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+sc.pl.umap(adata_microglia, color='dataset', ax=ax1, show=False, title='Dataset Distribution')
+sc.pl.umap(adata_microglia, color='leiden', ax=ax2, show=False, title='Initial Clustering')
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-initial-clustering-nb-1">
+            <caption>
+              <p>Initial clustering analysis of hypothalamic microglia.
+    (A) UMAP visualization colored by dataset origin shows batch effects
+    before integration. (B) Initial Leiden clustering reveals potential
+    microglial subpopulations. Colors represent distinct clusters
+    identified by the algorithm.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-initial-clustering-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-marker-expression-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-marker-expression
+#| fig-cap: Expression patterns of canonical microglial markers across identified clusters. UMAP visualizations showing the distribution of key microglial marker genes, revealing heterogeneous expression patterns across the population before integration.
+# Plot marker genes
+sc.pl.umap(
+    adata_microglia,
+    color=microglia_markers,
+    frameon=False,
+    save='_init_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_init_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-marker-expression-nb-1">
+            <caption>
+              <p>Expression patterns of canonical microglial markers
+    across identified clusters. UMAP visualizations showing the
+    distribution of key microglial marker genes, revealing heterogeneous
+    expression patterns across the population before
+    integration.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-marker-expression-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="integrate-datasets-nb-1" specific-use="notebook-content">
+        <preformat>#| label: integrate-datasets
+#| code-summary: Perform integration
+# Harmony integration
+import harmonypy
+
+sc.external.pp.harmony_integrate(
+    adata_microglia,
+    'dataset',
+    max_iter_harmony=20
+)
+
+# Recompute UMAP on integrated data
+sc.pp.neighbors(adata_microglia, use_rep='X_pca_harmony')
+sc.tl.umap(adata_microglia)
+sc.tl.leiden(adata_microglia, key_added='leiden_integrated')</preformat>
+        <boxed-text>
+          <preformat>2025-02-05 15:59:09,829 - harmonypy - INFO - Computing initial centroids with sklearn.KMeans...
+2025-02-05 15:59:26,803 - harmonypy - INFO - sklearn.KMeans initialization complete.
+2025-02-05 15:59:27,288 - harmonypy - INFO - Iteration 1 of 20
+2025-02-05 16:00:25,091 - harmonypy - INFO - Iteration 2 of 20
+2025-02-05 16:01:21,187 - harmonypy - INFO - Iteration 3 of 20
+2025-02-05 16:02:16,291 - harmonypy - INFO - Iteration 4 of 20
+2025-02-05 16:03:09,491 - harmonypy - INFO - Iteration 5 of 20
+2025-02-05 16:04:06,691 - harmonypy - INFO - Iteration 6 of 20
+2025-02-05 16:04:51,588 - harmonypy - INFO - Iteration 7 of 20
+2025-02-05 16:05:48,191 - harmonypy - INFO - Iteration 8 of 20
+2025-02-05 16:06:40,887 - harmonypy - INFO - Iteration 9 of 20
+2025-02-05 16:07:23,191 - harmonypy - INFO - Iteration 10 of 20
+2025-02-05 16:08:21,287 - harmonypy - INFO - Iteration 11 of 20
+2025-02-05 16:08:57,490 - harmonypy - INFO - Converged after 11 iterations</preformat>
+        </boxed-text>
+      </sec>
+      <sec specific-use="notebook-content">
+        <preformat>#| label: fig-integrated-analysis
+#| fig-cap: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia.
+# Create three-panel plot
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+
+# Dataset distribution after integration
+sc.pl.umap(
+    adata_microglia,
+    color='dataset',
+    ax=ax1,
+    show=True,
+    title='Integrated Datasets',
+    save='_integrated_datasets.pdf'
+)
+
+# Integrated clustering
+sc.pl.umap(
+    adata_microglia,
+    color='leiden_integrated',
+    ax=ax2,
+    show=True,
+    title='Integrated Clusters',
+    save='_integrated_clusters.pdf'
+)
+
+# Regional distribution
+sc.pl.umap(
+    adata_microglia,
+    color='region',
+    ax=ax3,
+    show=True,
+    title='Regional Distribution',
+    save='_integrated_regions.pdf'
+)
+
+plt.tight_layout()
+plt.show()</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_datasets.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_clusters.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_regions.pdf</preformat>
+        </boxed-text>
+        <fig id="fig-integrated-analysis-nb-1">
+          <boxed-text>
+            <fig id="fig-integrated-analysis-1-nb-1">
+              <caption>
+                <p>Analysis of batch-corrected microglial data. (A) UMAP
+      visualization after integration shows reduced batch effects. (B)
+      Refined clustering based on integrated data reveals distinct
+      microglial subpopulations. (C) Distribution of cells by
+      hypothalamic region demonstrates regional heterogeneity of
+      microglia.</p>
+              </caption>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-integrated-analysis-output-2.png"/>
+            </fig>
+          </boxed-text>
+          <fig id="fig-integrated-analysis-2-nb-1">
+            <preformat>&lt;Figure size 672x480 with 0 Axes&gt;</preformat>
+          </fig>
+          <fig id="fig-integrated-analysis-3-nb-1">
+            <preformat>&lt;Figure size 672x480 with 0 Axes&gt;</preformat>
+          </fig>
+          <fig id="fig-integrated-analysis-4-nb-1">
+            <preformat>&lt;Figure size 672x480 with 0 Axes&gt;</preformat>
+          </fig>
+        </fig>
+      </sec>
+      <sec id="cell-fig-cluster-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-cluster-markers
+#| fig-cap: Differential expression analysis of integrated clusters. Plot shows the top 25 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene.
+# Find markers for each cluster
+sc.tl.rank_genes_groups(
+    adata_microglia,
+    'leiden_integrated',
+    method='wilcoxon',
+    use_raw=False
+)
+
+# Plot top markers
+sc.pl.rank_genes_groups(
+    adata_microglia,
+    n_genes=25,
+    sharey=False,
+    save='_quant_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:429: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:431: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:434: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:444: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: RuntimeWarning:
+
+invalid value encountered in log2
+
+/opt/conda/lib/python3.12/site-packages/scanpy/tools/_rank_genes_groups.py:455: PerformanceWarning:
+
+DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/rank_genes_groups_leiden_integrated_quant_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-cluster-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis of integrated clusters.
+    Plot shows the top 25 differentially expressed genes per cluster
+    identified using Wilcoxon rank-sum test. Genes are ordered by
+    average log fold change, and expression values are z-scored per
+    gene.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-cluster-markers-output-3.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-heatmap-cluster-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-heatmap-cluster-markers
+#| fig-cap: Differential expression analysis of integrated clusters. Heatmap shows the top 25 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene.
+# Calculate dendrogram first
+sc.tl.dendrogram(adata_microglia, groupby='leiden_integrated')
+
+
+# Plot top markers
+sc.pl.rank_genes_groups_heatmap(
+    adata_microglia,
+    n_genes=25,
+    show_gene_labels=True,
+    figsize=(28, 12)
+)</preformat>
+        <boxed-text>
+          <fig id="fig-heatmap-cluster-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis of integrated clusters.
+    Heatmap shows the top 25 differentially expressed genes per cluster
+    identified using Wilcoxon rank-sum test. Genes are ordered by
+    average log fold change, and expression values are z-scored per
+    gene.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-heatmap-cluster-markers-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-refined-marker-expression-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-refined-marker-expression
+#| fig-cap: Expression patterns of canonical microglial markers across refined clusters. UMAP visualizations showing the distribution of key microglial marker genes, revealing heterogeneous expression patterns across hypothalamic regions
+# Plot marker genes
+sc.pl.umap(
+    adata_microglia,
+    color=microglia_markers,
+    frameon=False,
+    save='_integrated_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-refined-marker-expression-nb-1">
+            <caption>
+              <p>Expression patterns of canonical microglial markers
+    across refined clusters. UMAP visualizations showing the
+    distribution of key microglial marker genes, revealing heterogeneous
+    expression patterns across hypothalamic regions</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-refined-marker-expression-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="save-results-nb-1" specific-use="notebook-content">
+        <preformat>#| label: save-results
+# Create output directories
+output_dir = Path("output")
+output_dir.mkdir(exist_ok=True)
+
+# Save processed data
+adata_microglia.write(
+    output_dir / "microglia_integrated.h5ad",
+    compression="gzip"
+)
+
+# Save cluster annotations
+pd.DataFrame(adata_microglia.obs).to_csv(
+    output_dir / "microglia_metadata.csv"
+)</preformat>
+      </sec>
+      <sec specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-analysis
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Analysis of Trem2 expression across regions
+def analyze_trem2(adata):
+    # Get Trem2 expression
+    trem2_expr = pd.DataFrame({
+        'Trem2': adata[:, 'Trem2'].X.toarray().flatten(),
+        'Region': adata.obs['region'],
+        'Dataset': adata.obs['dataset'],
+        'Cluster': adata.obs['leiden_integrated']
+    })
+    
+    # Create figure with multiple panels
+    fig = plt.figure(figsize=(15, 10))
+    
+    # 1. Boxplot of Trem2 expression by region
+    plt.subplot(2, 2, 1)
+    sns.boxplot(data=trem2_expr, x='Region', y='Trem2')
+    plt.xticks(rotation=45, ha='right')
+    plt.title('Trem2 Expression by Region')
+    
+    # 2. Violin plot of Trem2 expression by cluster
+    plt.subplot(2, 2, 2)
+    sns.violinplot(data=trem2_expr, x='Cluster', y='Trem2')
+    plt.xticks(rotation=45)
+    plt.title('Trem2 Expression by Microglial Cluster')
+    
+    # 3. UMAP colored by Trem2 expression
+    plt.subplot(2, 2, 3)
+    sc.pl.umap(adata, color='Trem2', show=True)
+    plt.title('UMAP: Trem2 Expression')
+    
+    # 4. Correlation with other microglial markers
+    plt.subplot(2, 2, 4)
+    marker_correlations = []
+    for marker in microglia_markers:
+        if marker != 'Trem2' and marker in adata.var_names:
+            correlation = np.corrcoef(
+                adata[:, 'Trem2'].X.toarray().flatten(),
+                adata[:, marker].X.toarray().flatten()
+            )[0,1]
+            marker_correlations.append((marker, correlation))
+    
+    marker_correlations = pd.DataFrame(marker_correlations, columns=['Marker', 'Correlation'])
+    marker_correlations = marker_correlations.sort_values('Correlation', ascending=True)
+    
+    sns.barplot(data=marker_correlations, x='Correlation', y='Marker')
+    plt.title('Correlation of Trem2 with Other Markers')
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / 'trem2_analysis.pdf')
+    plt.close()
+    
+    return trem2_expr, marker_correlations
+
+trem2_data, trem2_correlations = analyze_trem2(adata_microglia)</preformat>
+        <fig id="fig-trem2-analysis-nb-1">
+          <boxed-text>
+            <fig id="fig-trem2-analysis-1-nb-1">
+              <graphic id="fig-trem2-analysis-1-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-analysis-output-1.png"/>
+            </fig>
+          </boxed-text>
+          <boxed-text>
+            <fig id="fig-trem2-analysis-2-nb-1">
+              <graphic id="fig-trem2-analysis-2-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-analysis-output-2.png"/>
+            </fig>
+          </boxed-text>
+        </fig>
+      </sec>
+      <sec id="cell-fig-trem2-region-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-region
+#| fig-cap: TREM2 expression levels across different hypothalamic regions. Box plots show the median, quartiles, and distribution of TREM2 expression in each anatomically distinct region. Whiskers extend to 1.5 times the interquartile range.
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=trem2_data, x='Region', y='Trem2')
+plt.xticks(rotation=45, ha='right')
+plt.xlabel('Hypothalamic Region')
+plt.ylabel('TREM2 Expression Level')
+plt.title('Regional Distribution of TREM2 Expression')
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-region-nb-1">
+            <caption>
+              <p>TREM2 expression levels across different hypothalamic
+    regions. Box plots show the median, quartiles, and distribution of
+    TREM2 expression in each anatomically distinct region. Whiskers
+    extend to 1.5 times the interquartile range.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-region-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-clusters-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-clusters
+#| fig-cap: Distribution of TREM2 expression across identified microglial clusters. Violin plots demonstrate the full distribution of expression levels within each cluster, with embedded box plots showing median and quartile values.
+plt.figure(figsize=(10, 6))
+sns.violinplot(data=trem2_data, x='Cluster', y='Trem2')
+plt.xticks(rotation=45)
+plt.xlabel('Microglial Cluster')
+plt.ylabel('TREM2 Expression Level')
+plt.title('TREM2 Expression in Microglial Subpopulations')
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-clusters-nb-1">
+            <caption>
+              <p>Distribution of TREM2 expression across identified
+    microglial clusters. Violin plots demonstrate the full distribution
+    of expression levels within each cluster, with embedded box plots
+    showing median and quartile values.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-clusters-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-umap
+#| fig-cap: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space.
+plt.figure(figsize=(8, 8))
+sc.pl.umap(adata_microglia, color='Trem2', show=True, title='TREM2 Expression in UMAP Space')
+plt.tight_layout()</preformat>
+        <fig id="fig-trem2-umap-nb-1">
+          <fig id="fig-trem2-umap-1-nb-1">
+            <caption>
+              <p>UMAP visualization of TREM2 expression across all
+    microglia. Color intensity represents TREM2 expression level,
+    showing the spatial distribution of TREM2-expressing cells in the
+    reduced dimensional space.</p>
+            </caption>
+            <preformat>&lt;Figure size 768x768 with 0 Axes&gt;</preformat>
+          </fig>
+          <boxed-text>
+            <fig id="fig-trem2-umap-2-nb-1">
+              <graphic id="fig-trem2-umap-2-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-umap-output-2.png"/>
+            </fig>
+          </boxed-text>
+          <fig id="fig-trem2-umap-3-nb-1">
+            <preformat>&lt;Figure size 672x480 with 0 Axes&gt;</preformat>
+          </fig>
+        </fig>
+      </sec>
+      <sec id="cell-fig-trem2-correlations-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-correlations
+#| fig-cap: Correlation analysis between TREM2 and other microglial marker genes. Bar plot shows Pearson correlation coefficients, ordered by strength of correlation. Positive values indicate positive correlation, while negative values indicate inverse relationships.
+plt.figure(figsize=(10, 8))
+sns.barplot(data=trem2_correlations, x='Correlation', y='Marker')
+plt.title('TREM2 Correlation with Microglial Markers')
+plt.xlabel('Pearson Correlation Coefficient')
+plt.ylabel('Marker Gene')
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-correlations-nb-1">
+            <caption>
+              <p>Correlation analysis between TREM2 and other microglial
+    marker genes. Bar plot shows Pearson correlation coefficients,
+    ordered by strength of correlation. Positive values indicate
+    positive correlation, while negative values indicate inverse
+    relationships.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-correlations-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="trem2-statistics-nb-1" specific-use="notebook-content">
+        <preformat>#| label: trem2-statistics
+#| output: false
+from scipy import stats
+import statsmodels.stats.multitest as mt
+
+def trem2_statistics(trem2_data):
+    # 1. One-way ANOVA for regional differences
+    regions_list = [group['Trem2'].values for name, group in trem2_data.groupby('Region')]
+    
+    # Check if we have enough groups for ANOVA
+    if len(regions_list) &lt; 2:
+        print("Warning: Not enough regions for ANOVA")
+        f_stat, p_val = np.nan, np.nan
+    else:
+        f_stat, p_val = stats.f_oneway(*regions_list)
+    
+    # 2. Pairwise t-tests between regions
+    unique_regions = sorted(trem2_data['Region'].unique())
+    pairwise_tests = []
+    
+    for i in range(len(unique_regions)):
+        for j in range(i+1, len(unique_regions)):
+            reg1 = unique_regions[i]
+            reg2 = unique_regions[j]
+            
+            data1 = trem2_data[trem2_data['Region'] == reg1]['Trem2']
+            data2 = trem2_data[trem2_data['Region'] == reg2]['Trem2']
+            
+            # Only perform test if both groups have data
+            if len(data1) &gt; 0 and len(data2) &gt; 0:
+                t_stat, p_val = stats.ttest_ind(data1, data2)
+                
+                # Calculate effect size (Cohen's d)
+                pooled_std = np.sqrt(
+                    ((len(data1) - 1) * data1.std()**2 + 
+                     (len(data2) - 1) * data2.std()**2) / 
+                    (len(data1) + len(data2) - 2)
+                )
+                cohens_d = (data1.mean() - data2.mean()) / pooled_std
+                
+                pairwise_tests.append({
+                    'Region1': reg1,
+                    'Region2': reg2,
+                    'Mean1': data1.mean(),
+                    'Mean2': data2.mean(),
+                    'N1': len(data1),
+                    'N2': len(data2),
+                    't_statistic': t_stat,
+                    'p_value': p_val,
+                    'cohens_d': cohens_d
+                })
+    
+    # Apply Benjamini-Hochberg correction to p-values
+    if pairwise_tests:
+        pairwise_df = pd.DataFrame(pairwise_tests)
+        _, p_adjusted, _, _ = mt.multipletests(
+            pairwise_df['p_value'].values,
+            method='fdr_bh'
+        )
+        pairwise_df['p_value_adj'] = p_adjusted
+        
+        # Sort by adjusted p-value
+        pairwise_df = pairwise_df.sort_values('p_value_adj')
+    else:
+        pairwise_df = pd.DataFrame()
+    
+    # Create results dictionary
+    stats_results = {
+        'anova': {'f_statistic': f_stat, 'p_value': p_val},
+        'pairwise_tests': pairwise_df
+    }
+    
+    # Save results with more detailed formatting
+    with open(output_dir / 'trem2_statistics.txt', 'w') as f:
+        f.write('TREM2 Expression Analysis Across Hypothalamic Regions\n')
+        f.write('='*50 + '\n\n')
+        
+        f.write('1. One-way ANOVA results:\n')
+        f.write('-'*30 + '\n')
+        f.write(f'F-statistic: {f_stat:.4f}\n')
+        f.write(f'p-value: {p_val:.4e}\n\n')
+        
+        f.write('2. Regional Expression Summary:\n')
+        f.write('-'*30 + '\n')
+        summary_stats = trem2_data.groupby('Region')['Trem2'].agg(['count', 'mean', 'std'])
+        f.write(summary_stats.to_string() + '\n\n')
+        
+        f.write('3. Pairwise Comparisons:\n')
+        f.write('-'*30 + '\n')
+        if not pairwise_df.empty:
+            # Format floating point numbers
+            formatted_df = pairwise_df.copy()
+            float_cols = ['Mean1', 'Mean2', 't_statistic', 'p_value', 'p_value_adj', 'cohens_d']
+            for col in float_cols:
+                formatted_df[col] = formatted_df[col].map('{:.4e}'.format)
+            f.write(formatted_df.to_string())
+    
+    return stats_results
+
+# Run the analysis
+trem2_stats = trem2_statistics(trem2_data)</preformat>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_21742/3657118994.py:6: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+
+/tmp/ipykernel_21742/3657118994.py:83: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  </preformat>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-regional-stats-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-regional-stats
+#| fig-cap: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen's d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions.
+# Create visualization of the statistical results
+plt.figure(figsize=(12, 8))
+sns.boxplot(data=trem2_data, x='Region', y='Trem2')
+plt.xticks(rotation=45, ha='right')
+plt.xlabel('Hypothalamic Region')
+plt.ylabel('TREM2 Expression Level')
+plt.title('Regional TREM2 Expression with Statistical Comparisons')
+
+# Add significance annotations for top significant comparisons
+if not trem2_stats['pairwise_tests'].empty:
+    max_y = trem2_data['Trem2'].max()
+    y_pos = max_y * 1.1
+    
+    # Get top 5 most significant comparisons
+    top_comparisons = trem2_stats['pairwise_tests'].head(5)
+    
+    # Get ordered list of regions for proper indexing
+    region_order = pd.Categorical(trem2_data['Region']).categories
+    
+    for idx, row in top_comparisons.iterrows():
+        try:
+            # Find indices in the ordered region list
+            x1 = np.where([r == row['Region1'] for r in region_order])[0][0]
+            x2 = np.where([r == row['Region2'] for r in region_order])[0][0]
+            
+            plt.plot([x1, x2], [y_pos, y_pos], 'k-', linewidth=1)
+            plt.text((x1 + x2) / 2, y_pos * 1.05,
+                    f"p={row['p_value_adj']:.1e}\nd={row['cohens_d']:.2f}",
+                    ha='center', va='bottom')
+            y_pos += max_y * 0.1
+        except IndexError:
+            continue
+
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-regional-stats-nb-1">
+            <caption>
+              <p>Statistical comparison of TREM2 expression across
+    hypothalamic regions. Box plots show the distribution of TREM2
+    expression levels in each region. Significance bars indicate the top
+    5 most significant pairwise comparisons (FDR-corrected p-values).
+    Cohen’s d effect sizes are shown for each comparison, quantifying
+    the magnitude of expression differences between
+    regions.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-regional-stats-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-cluster-enrichment-heatmap-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-cluster-enrichment-heatmap
+#| fig-cap: Regional and cluster-specific TREM2 expression patterns. Heatmap shows mean TREM2 expression levels across different microglial clusters (rows) and hypothalamic regions (columns). Color intensity represents expression level, with darker colors indicating higher expression.
+def analyze_trem2_clusters(adata):
+    cluster_means = pd.DataFrame({
+        'Trem2_mean': adata[:, 'Trem2'].X.toarray().flatten(),
+        'Cluster': adata.obs['leiden_integrated'],
+        'Region': adata.obs['region']
+    }).groupby(['Cluster', 'Region'])['Trem2_mean'].mean().reset_index()
+    
+    pivot_table = cluster_means.pivot(
+        index='Cluster',
+        columns='Region',
+        values='Trem2_mean'
+    )
+    
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(pivot_table, cmap='viridis', annot=True, fmt='.2f', 
+                cbar_kws={'label': 'Mean TREM2 Expression'})
+    plt.title('TREM2 Expression Across Microglial Clusters and Regions')
+    plt.xlabel('Hypothalamic Region')
+    plt.ylabel('Microglial Cluster')
+    plt.tight_layout()
+    
+    return cluster_means
+
+trem2_cluster_data = analyze_trem2_clusters(adata_microglia)</preformat>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_21742/1971043812.py:6: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-trem2-cluster-enrichment-heatmap-nb-1">
+            <caption>
+              <p>Regional and cluster-specific TREM2 expression patterns.
+    Heatmap shows mean TREM2 expression levels across different
+    microglial clusters (rows) and hypothalamic regions (columns). Color
+    intensity represents expression level, with darker colors indicating
+    higher expression.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-cluster-enrichment-heatmap-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-coexpression-network-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-coexpression-network
+#| fig-cap: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown.
+import networkx as nx
+import matplotlib.pyplot as plt
+import scipy.sparse
+import numpy as np
+import pandas as pd
+
+def create_trem2_network(adata, correlation_threshold=0.5):
+    """
+    Create and visualize a TREM2-centered gene co-expression network.
+    
+    Parameters:
+    -----------
+    adata : AnnData
+        Annotated data matrix containing gene expression data
+    correlation_threshold : float
+        Minimum absolute correlation coefficient to include in the network
+        
+    Returns:
+    --------
+    G : networkx.Graph
+        Network graph object containing the co-expression relationships
+    """
+    # Verify Trem2 is in the dataset
+    if 'Trem2' not in adata.var_names:
+        raise ValueError("Trem2 gene not found in the dataset")
+    
+    try:
+        # Get expression matrix - handle both sparse and dense formats
+        if scipy.sparse.issparse(adata.X):
+            expr_matrix = adata.X.toarray()
+        else:
+            expr_matrix = np.array(adata.X)
+        
+        # Verify matrix is not empty and contains valid values
+        if expr_matrix.size == 0 or np.all(np.isnan(expr_matrix)):
+            raise ValueError("Expression matrix is empty or contains invalid values")
+        
+        # Calculate correlation matrix for genes
+        correlation_matrix = pd.DataFrame(
+            np.corrcoef(expr_matrix.T),
+            index=adata.var_names,
+            columns=adata.var_names
+        )
+        
+        # Create network
+        G = nx.Graph()
+        
+        # Add edges for genes correlated with Trem2
+        trem2_correlations = correlation_matrix['Trem2'].abs()
+        
+        # Filter and add edges
+        for gene in trem2_correlations.index:
+            if gene != 'Trem2' and trem2_correlations[gene] &gt; correlation_threshold:
+                G.add_edge('Trem2', gene, weight=float(trem2_correlations[gene]))
+        
+        # Check if network is empty
+        if len(G.nodes()) &lt; 2:
+            print("Warning: No genes pass correlation threshold")
+            return G
+        
+        # Calculate node sizes based on degree centrality
+        degree_centrality = nx.degree_centrality(G)
+        node_sizes = [3000 * (degree_centrality[node] + 0.1) for node in G.nodes()]
+        
+        # Calculate edge weights for visualization
+        edge_weights = [G[u][v]['weight'] * 2 for u, v in G.edges()]
+        
+        # Create color map based on correlation with TREM2
+        node_colors = ['#ff7f0e' if node == 'Trem2' else '#1f77b4' for node in G.nodes()]
+        
+        # Create new figure
+        plt.figure(figsize=(12, 12))
+        
+        # Calculate layout
+        pos = nx.spring_layout(G, k=1, iterations=50, seed=42)
+        
+        # Draw network components
+        nx.draw_networkx_edges(
+            G, pos,
+            width=edge_weights,
+            alpha=0.5,
+            edge_color='gray'
+        )
+        
+        nx.draw_networkx_nodes(
+            G, pos,
+            node_size=node_sizes,
+            node_color=node_colors,
+            alpha=0.7
+        )
+        
+        nx.draw_networkx_labels(
+            G, pos,
+            font_size=10,
+            font_weight='bold',
+            font_color='black'
+        )
+        
+        plt.title('TREM2 Co-expression Network', 
+                 pad=20, size=14, weight='bold')
+        
+        # Add legend with explicit handles
+        legend_elements = [
+            plt.Line2D([0], [0], marker='o', color='w', 
+                      markerfacecolor='#ff7f0e', label='TREM2', markersize=10),
+            plt.Line2D([0], [0], marker='o', color='w', 
+                      markerfacecolor='#1f77b4', label='Co-expressed genes', markersize=10)
+        ]
+        plt.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 1.15))
+        
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()
+        
+        # Save figure
+        plt.savefig(output_dir / 'trem2_network.pdf', bbox_inches='tight', dpi=300)
+        plt.close()
+        
+        return G
+        
+    except Exception as e:
+        print(f"Error in network creation: {str(e)}")
+        return None
+
+# Create network with improved error handling
+try:
+    trem2_network = create_trem2_network(adata_microglia)
+    
+    if trem2_network is not None:
+        print("\nNetwork Statistics:")
+        print(f"Number of co-expressed genes: {len(trem2_network.nodes()) - 1}")
+        print(f"Number of connections: {len(trem2_network.edges())}")
+        
+        # Calculate and print additional network metrics
+        print("\nNetwork Metrics:")
+        print(f"Network density: {nx.density(trem2_network):.3f}")
+        print(f"Average clustering coefficient: {nx.average_clustering(trem2_network):.3f}")
+        
+except Exception as e:
+    print(f"Failed to create network: {str(e)}")</preformat>
+        <boxed-text>
+          <preformat>/opt/conda/lib/python3.12/site-packages/numpy/lib/function_base.py:2897: RuntimeWarning:
+
+invalid value encountered in divide
+
+/opt/conda/lib/python3.12/site-packages/numpy/lib/function_base.py:2898: RuntimeWarning:
+
+invalid value encountered in divide
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-trem2-coexpression-network-nb-1">
+            <caption>
+              <p>TREM2 co-expression network in hypothalamic microglia.
+    Nodes represent genes, with TREM2 as the central hub. Edge weights
+    represent the absolute Pearson correlation coefficient between gene
+    pairs. Only correlations above 0.3 are shown.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-coexpression-network-output-2.png"/>
+          </fig>
+        </boxed-text>
+        <boxed-text>
+          <preformat>
+Network Statistics:
+Number of co-expressed genes: 23
+Number of connections: 23
+
+Network Metrics:
+Network density: 0.083
+Average clustering coefficient: 0.000</preformat>
+        </boxed-text>
+      </sec>
+    </body>
+    <back>
+</back>
+  </sub-article>
+</article>

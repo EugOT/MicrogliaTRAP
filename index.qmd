@@ -1,0 +1,81 @@
+---
+title: MicrogliaTRAP
+authors:
+  - name: Evgenii O. Tretiakov, PhD
+    affiliation:
+      - Department of Molecular Neurosciences, Center for Brain Research, Medical University of Vienna, Vienna A-1090, Austria
+    orcid: 0000-0001-5920-2190
+    email: evgenii.tretiakov@meduniwien.ac.at
+bibliography: references.bib
+---
+
+## TREM2 Expression Analysis Across Hypothalamic Regions
+
+### Methods
+
+TREM2 expression was analyzed across different hypothalamic regions using single-nucleus RNA sequencing data. Following quality control and normalization, we performed integrated analysis of multiple datasets (@fig-integrated-analysis).
+
+{{< embed notebooks/eda.qmd#fig-integrated-analysis >}}
+
+Initial clustering revealed distinct microglial populations across hypothalamic regions, which were further refined through batch correction and integration of multiple datasets.
+
+### Results
+
+#### Regional Expression Patterns
+
+Analysis of TREM2 expression revealed significant heterogeneity across hypothalamic regions (F = 302.35, p = 2.58e-4). @fig-trem2-region shows the distribution of TREM2 expression across different regions.
+
+{{< embed notebooks/eda.qmd#fig-trem2-region >}}
+
+The highest TREM2 expression was observed in the SCN (mean = 0.436 ± 0.689), followed by the PVN (0.296 ± 0.799). In contrast, the MBH showed the lowest expression (-1.376 ± 0.604), followed by the MnPO (-1.241 ± 0.057).
+
+#### Cluster-Specific Expression
+
+TREM2 expression varied significantly across microglial clusters (@fig-trem2-clusters), suggesting functional heterogeneity within the microglial population.
+
+{{< embed notebooks/eda.qmd#fig-trem2-clusters >}}
+
+#### Spatial Distribution
+
+UMAP visualization of TREM2 expression (@fig-trem2-umap) revealed distinct spatial patterns, indicating regional specialization of TREM2-expressing microglia.
+
+{{< embed notebooks/eda.qmd#fig-trem2-umap >}}
+
+#### Gene Co-expression Analysis
+
+To understand the regulatory network associated with TREM2, we analyzed its correlation with other microglial markers (@fig-trem2-correlations).
+
+{{< embed notebooks/eda.qmd#fig-trem2-correlations >}}
+
+#### Regional and Cluster-Specific Patterns
+
+The heatmap analysis (@fig-trem2-cluster-enrichment-heatmap) revealed distinct patterns of TREM2 expression across both regions and clusters.
+
+{{< embed notebooks/eda.qmd#fig-trem2-cluster-enrichment-heatmap >}}
+
+#### Molecular Interactions
+
+The co-expression network analysis (@fig-trem2-coexpression-network) identified key molecular interactions of TREM2 with other genes.
+
+{{< embed notebooks/eda.qmd#fig-trem2-coexpression-network >}}
+
+### Statistical Analysis
+
+Statistical comparison across regions (@fig-trem2-regional-stats) revealed three distinct TREM2 expression domains:
+
+{{< embed notebooks/eda.qmd#fig-trem2-regional-stats >}}
+
+1. High expression domain: SCN, PVN, VMHvl (means > 0.1)
+2. Intermediate expression domain: POA, VPH, Arc (means between -0.3 and 0.1)
+3. Low expression domain: MBH, MnPO, VMH (means < -0.9)
+
+The most significant differences were observed between:
+- MBH and SCN (Cohen's d = -2.67, p-adj < 1e-300)
+- SCN and VMH (Cohen's d = 1.94, p-adj < 1e-300)
+- MBH and PVN (Cohen's d = -2.31, p-adj = 7.73e-158)
+
+### Interpretation
+
+The observed regional heterogeneity in TREM2 expression suggests region-specific roles for microglial TREM2 signaling. The high expression in SCN and PVN, regions crucial for circadian rhythm and neuroendocrine function, indicates potential involvement of TREM2 in these processes. The co-expression analysis reveals potential molecular mechanisms through which TREM2 might influence microglial function in different hypothalamic regions.
+
+These findings provide a comprehensive map of TREM2 expression across hypothalamic regions and suggest potential region-specific functions of TREM2-expressing microglia in the hypothalamus.

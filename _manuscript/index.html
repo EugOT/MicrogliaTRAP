@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MicrogliaTRAP</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a1ff8711b79ae3724c050874b28d9907.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+
+<meta name="citation_title" content="MicrogliaTRAP">
+<meta name="citation_author" content="Evgenii O. Tretiakov, PhD">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Cross-species analysis defines the conservation of anatomically segregated VMH neuron populations;,citation_abstract=The ventromedial hypothalamic nucleus (VMH) controls diverse behaviors and physiologic functions, suggesting the existence of multiple VMH neural subtypes with distinct functions. Combing translating ribosome affinity purification with RNA-sequencing (TRAP-seq) data with single-nucleus RNA-sequencing (snRNA-seq) data, we identified 24 mouse VMH neuron clusters. Further analysis, including snRNA-seq data from macaque tissue, defined a more tractable VMH parceling scheme consisting of six major genetically and anatomically differentiated VMH neuron classes with good cross-species conservation. In addition to two major ventrolateral classes, we identified three distinct classes of dorsomedial VMH neurons. Consistent with previously suggested unique roles for leptin receptor (Lepr)-expressing VMH neurons, Lepr expression marked a single dorsomedial class. We also identified a class of glutamatergic VMH neurons that resides in the tuberal region, anterolateral to the neuroanatomical core of the VMH. This atlas of conserved VMH neuron populations provides an unbiased starting point for the analysis of VMH circuitry and function.;,citation_author=Alison H. Affinati;,citation_author=Paul V. Sabatini;,citation_author=Cadence True;,citation_author=Abigail J. Tomlinson;,citation_author=Melissa Kirigiti;,citation_author=Sarah R. Lindsley;,citation_author=Chien Li;,citation_author=David P. Olson;,citation_author=Paul Kievit;,citation_author=Martin G. Myers;,citation_author=Alan C. Rupp;,citation_publication_date=2021-05;,citation_cover_date=2021-05;,citation_year=2021;,citation_doi=10.7554/eLife.69065;,citation_issn=2050-084X;,citation_pmid=34018926;,citation_volume=10;,citation_language=en-US;,citation_journal_title=eLife;">
+<meta name="citation_reference" content="citation_title=SCENIC: Single-cell regulatory network inference and clustering;,citation_abstract=SCENIC enables simultaneous regulatory network inference and robust cell clustering from single-cell RNA-seq data.;,citation_author=Sara Aibar;,citation_author=Carmen Bravo González-Blas;,citation_author=Thomas Moerman;,citation_author=Vân Anh Huynh-Thu;,citation_author=Hana Imrichova;,citation_author=Gert Hulselmans;,citation_author=Florian Rambow;,citation_author=Jean-Christophe Marine;,citation_author=Pierre Geurts;,citation_author=Jan Aerts;,citation_author=Joost Oord;,citation_author=Zeynep Kalender Atak;,citation_author=Jasper Wouters;,citation_author=Stein Aerts;,citation_publication_date=2017-11;,citation_cover_date=2017-11;,citation_year=2017;,citation_issue=11;,citation_doi=10.1038/nmeth.4463;,citation_issn=1548-7105;,citation_pmid=28991892;,citation_volume=14;,citation_language=en-US;,citation_journal_title=Nature Methods;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Hypothalamic CNTF volume transmission shapes cortical noradrenergic excitability upon acute stress;,citation_abstract=Abstract Stress-induced cortical alertness is maintained by a heightened excitability of noradrenergic neurons innervating, notably, the prefrontal cortex. However, neither the signaling axis linking hypothalamic activation to delayed and lasting noradrenergic excitability nor the molecular cascade gating noradrenaline synthesis is defined. Here, we show that hypothalamic corticotropin-releasing hormone-releasing neurons innervate ependymal cells of the 3rd ventricle to induce ciliary neurotrophic factor (CNTF) release for transport through the brain’s aqueductal system. CNTF binding to its cognate receptors on norepinephrinergic neurons in the locus coeruleus then initiates sequential phosphorylation of extracellular signal-regulated kinase 1 and tyrosine hydroxylase with the Ca2+-sensor secretagogin ensuring activity dependence in both rodent and human brains. Both CNTF and secretagogin ablation occlude stress-induced cortical norepinephrine synthesis, ensuing neuronal excitation and behavioral stereotypes. Cumulatively, we identify a multimodal pathway that is rate-limited by CNTF volume transmission and poised to directly convert hypothalamic activation into long-lasting cortical excitability following acute stress.;,citation_author=Alán Alpár;,citation_author=Péter Zahola;,citation_author=János Hanics;,citation_author=Zsófia Hevesi;,citation_author=Solomiia Korchynska;,citation_author=Marco Benevento;,citation_author=Christian Pifl;,citation_author=Gergely Zachar;,citation_author=Jessica Perugini;,citation_author=Ilenia Severi;,citation_author=Patrick Leitgeb;,citation_author=Joanne Bakker;,citation_author=Andras G Miklosi;,citation_author=Evgenii Tretiakov;,citation_author=Erik Keimpema;,citation_author=Gloria Arque;,citation_author=Ramon O Tasan;,citation_author=Günther Sperk;,citation_author=Katarzyna Malenczyk;,citation_author=Zoltán Máté;,citation_author=Ferenc Erdélyi;,citation_author=Gábor Szabó;,citation_author=Gert Lubec;,citation_author=Miklós Palkovits;,citation_author=Antonio Giordano;,citation_author=Tomas GM Hökfelt;,citation_author=Roman A Romanov;,citation_author=Tamas L Horvath;,citation_author=Tibor Harkany;,citation_publication_date=2018-11;,citation_cover_date=2018-11;,citation_year=2018;,citation_issue=21;,citation_doi=10.15252/embj.2018100087;,citation_issn=0261-4189;,citation_volume=37;,citation_journal_title=The EMBO Journal;,citation_publisher=John Wiley &amp;amp;amp; Sons, Ltd;">
+<meta name="citation_reference" content="citation_title=decoupleR: Ensemble of computational methods to infer biological activities from omics data;,citation_abstract=Abstract Summary Many methods allow us to extract biological activities from omics data using information from prior knowledge resources, reducing the dimensionality for increased statistical power and better interpretability. Here, we present decoupleR, a Bioconductor and Python package containing computational methods to extract these activities within a unified framework. decoupleR allows us to flexibly run any method with a given resource, including methods that leverage mode of regulation and weights of interactions, which are not present in other frameworks. Moreover, it leverages OmniPath, a meta-resource comprising over 100 databases of prior knowledge. Using decoupleR, we evaluated the performance of methods on transcriptomic and phospho-proteomic perturbation experiments. Our findings suggest that simple linear models and the consensus score across top methods perform better than other methods at predicting perturbed regulators. Availability and implementation decoupleR’s open-source code is available in Bioconductor (https://www.bioconductor.org/packages/release/bioc/html/decoupleR.html) for R and in GitHub (https://github.com/saezlab/decoupler-py) for Python. The code to reproduce the results is in GitHub (https://github.com/saezlab/decoupleR_manuscript) and the data in Zenodo (https://zenodo.org/record/5645208). Supplementary information Supplementary data are available at Bioinformatics Advances online.;,citation_author=Pau Badia-i-Mompel;,citation_author=Jesús Vélez Santiago;,citation_author=Jana Braunger;,citation_author=Celina Geiss;,citation_author=Daniel Dimitrov;,citation_author=Sophia Müller-Dott;,citation_author=Petr Taus;,citation_author=Aurelien Dugourd;,citation_author=Christian H Holland;,citation_author=Ricardo O Ramirez Flores;,citation_author=Julio Saez-Rodriguez;,citation_editor=Marieke Lydia Kuijjer;,citation_publication_date=2022-01;,citation_cover_date=2022-01;,citation_year=2022;,citation_issue=1;,citation_doi=10.1093/bioadv/vbac016;,citation_issn=2635-0041;,citation_volume=2;,citation_language=en-US;,citation_journal_title=Bioinformatics Advances;">
+<meta name="citation_reference" content="citation_title=Creating and Sharing Reproducible Research Code the Workflowr Way;,citation_author=John Blischak;,citation_author=Peter Carbonetto;,citation_author=Matthew Stephens;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_doi=10.12688/f1000research.20843.1;,citation_journal_title=F1000research;">
+<meta name="citation_reference" content="citation_title=LIBSVM: A library for support vector machines;,citation_abstract=LIBSVM is a library for Support Vector Machines (SVMs). We have been actively developing this package since the year 2000. The goal is to help users to easily apply SVM to their applications. LIBSVM has gained wide popularity in machine learning and many other areas. In this article, we present all implementation details of LIBSVM. Issues such as solving SVM optimization problems theoretical convergence multiclass classification probability estimates and parameter selection are discussed in detail.;,citation_author=Chih-Chung Chang;,citation_author=Chih-Jen Lin;,citation_publication_date=2011-05;,citation_cover_date=2011-05;,citation_year=2011;,citation_issue=3;,citation_doi=10.1145/1961189.1961199;,citation_issn=2157-6904;,citation_volume=2;,citation_journal_title=ACM Transactions on Intelligent Systems and Technology;">
+<meta name="citation_reference" content="citation_title=XGBoost: A Scalable Tree Boosting System;,citation_abstract=Tree boosting is a highly effective and widely used machine learning method. In this paper, we describe a scalable end-to-end tree boosting system called XGBoost, which is used widely by data scientists to achieve state-of-the-art results on many machine learning challenges. We propose a novel sparsity-aware algorithm for sparse data and weighted quantile sketch for approximate tree learning. More importantly, we provide insights on cache access patterns, data compression and sharding to build a scalable tree boosting system. By combining these insights, XGBoost scales beyond billions of examples using far fewer resources than existing systems.;,citation_author=Tianqi Chen;,citation_author=Carlos Guestrin;,citation_publication_date=2016-08;,citation_cover_date=2016-08;,citation_year=2016;,citation_doi=10.1145/2939672.2939785;,citation_isbn=978-1-4503-4232-2;,citation_conference_title=Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining;,citation_conference=Association for Computing Machinery;,citation_series_title=KDD ’16;">
+<meta name="citation_reference" content="citation_title=The Matthews correlation coefficient (MCC) is more reliable than balanced accuracy, bookmaker informedness, and markedness in two-class confusion matrix evaluation;,citation_abstract=Evaluating binary classifications is a pivotal task in statistics and machine learning, because it can influence decisions in multiple areas, including for example prognosis or therapies of patients in critical conditions. The scientific community has not agreed on a general-purpose statistical indicator for evaluating two-class confusion matrices (having true positives, true negatives, false positives, and false negatives) yet, even if advantages of the Matthews correlation coefficient (MCC) over accuracy and F1 score have already been shown.In this manuscript, we reaffirm that MCC is a robust metric that summarizes the classifier performance in a single value, if positive and negative cases are of equal importance. We compare MCC to other metrics which value positive and negative cases equally: balanced accuracy (BA), bookmaker informedness (BM), and markedness (MK). We explain the mathematical relationships between MCC and these indicators, then show some use cases and a bioinformatics scenario where these metrics disagree and where MCC generates a more informative response.Additionally, we describe three exceptions where BM can be more appropriate: analyzing classifications where dataset prevalence is unrepresentative, comparing classifiers on different datasets, and assessing the random guessing level of a classifier. Except in these cases, we believe that MCC is the most informative among the single metrics discussed, and suggest it as standard measure for scientists of all fields. A Matthews correlation coefficient close to +1, in fact, means having high values for all the other confusion matrix metrics. The same cannot be said for balanced accuracy, markedness, bookmaker informedness, accuracy and F1 score.;,citation_author=Davide Chicco;,citation_author=Niklas Tötsch;,citation_author=Giuseppe Jurman;,citation_publication_date=2021-02;,citation_cover_date=2021-02;,citation_year=2021;,citation_issue=1;,citation_doi=10.1186/s13040-021-00244-z;,citation_issn=1756-0381;,citation_pmid=33541410;,citation_volume=14;,citation_language=en-US;,citation_journal_title=BioData Mining;">
+<meta name="citation_reference" content="citation_title=Statistical significance of variables driving systematic variation in high-dimensional data.;,citation_abstract=MOTIVATION: There are a number of well-established methods such as principal component analysis (PCA) for automatically capturing systematic variation due to latent variables in large-scale genomic data. PCA and related methods may directly provide a quantitative characterization of a complex biological variable that is otherwise difficult to precisely define or model. An unsolved problem in this context is how to systematically identify the genomic variables that are drivers of systematic variation captured by PCA. Principal components (PCs) (and other estimates of systematic variation) are directly constructed from the genomic variables themselves, making measures of statistical significance artificially inflated when using conventional methods due to over-fitting. RESULTS: We introduce a new approach called the jackstraw that allows one to accurately identify genomic variables that are statistically significantly associated with any subset or linear combination of PCs. The proposed method can greatly simplify complex significance testing problems encountered in genomics and can be used to identify the genomic variables significantly associated with latent variables. Using simulation, we demonstrate that our method attains accurate measures of statistical significance over a range of relevant scenarios. We consider yeast cell-cycle gene expression data, and show that the proposed method can be used to straightforwardly identify genes that are cell-cycle regulated with an accurate measure of statistical significance. We also analyze gene expression data from post-trauma patients, allowing the gene expression data to provide a molecularly driven phenotype. Using our method, we find a greater enrichment for inflammatory-related gene sets compared to the original analysis that uses a clinically defined, although likely imprecise, phenotype. The proposed method provides a useful bridge between large-scale quantifications of systematic variation and gene-level significance analyses. AVAILABILITY AND IMPLEMENTATION: An R software package, called jackstraw, is available in CRAN. CONTACT: jstorey@princeton.edu.;,citation_author=Neo Christopher Chung;,citation_author=John D. Storey;,citation_publication_date=2015-02;,citation_cover_date=2015-02;,citation_year=2015;,citation_issue=4;,citation_doi=10.1093/bioinformatics/btu674;,citation_issn=1367-4811 1367-4803;,citation_pmid=25336500;,citation_volume=31;,citation_language=en-US;,citation_journal_title=Bioinformatics (Oxford, England);">
+<meta name="citation_reference" content="citation_title=UpSetR: An R package for the visualization of intersecting sets and their properties;,citation_author=Jake R Conway;,citation_author=Alexander Lex;,citation_author=Nils Gehlenborg;,citation_editor=John Hancock;,citation_publication_date=2017-09;,citation_cover_date=2017-09;,citation_year=2017;,citation_issue=18;,citation_doi=10.1093/bioinformatics/btx364;,citation_issn=1367-4803, 1460-2059;,citation_volume=33;,citation_language=en-US;,citation_journal_title=Bioinformatics;">
+<meta name="citation_reference" content="citation_title=Clustering with UMAP: Why and how connectivity matters;,citation_author=Ayush Dalmia;,citation_author=Suzanna Sia;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://arxiv.org/abs/2108.05525;">
+<meta name="citation_reference" content="citation_title=Single-Nucleus RNA Sequencing of the Hypothalamic Arcuate Nucleus of C57BL/6J Mice After Prolonged Diet-Induced Obesity.;,citation_abstract=Prolonged obesity is associated with blunted feeding and thermogenic autonomic responses to leptin, but cardiovascular responses to leptin are maintained. This state of selective leptin resistance is, therefore, proposed to contribute to the pathogenesis and maintenance of obesity-associated hypertension. Cells of the arcuate nucleus of the hypothalamus detect leptin, and although the cellular and molecular mechanisms remain unclear, altered arcuate nucleus biology is hypothesized to contribute to selective leptin resistance. Male C57BL/6J mice were fed a high-fat diet (HFD) or chow from 8 to 18 weeks of age, as this paradigm models selective leptin resistance. Nuclei were then isolated from arcuate nucleus for single-nucleus RNA sequencing. HFD caused expected gains in adiposity and circulating leptin. Twenty-three unique cell-type clusters were identified, and Ingenuity Pathway Analysis was used to explore changes in gene expression patterns due to chronic HFD within each cluster. Notably, gene expression signatures related to leptin signaling exhibited suppression predominantly in neurons identified as the Agouti-related peptide (Agrp) subtype. Ingenuity Pathway Analysis results were also consistent with alterations in CREB (cAMP response element-binding protein) signaling in Agrp neurons after HFD, and reduced phosphorylated CREB was confirmed in arcuate nucleus after prolonged HFD by capillary electrophoresis-based Western blotting. These findings support the concept that prolonged HFD-induced obesity is associated with selective changes in Agrp neuron biology, possibly secondary to altered CREB signaling.;,citation_author=Guorui Deng;,citation_author=Lisa L. Morselli;,citation_author=Valerie A. Wagner;,citation_author=Kirthikaa Balapattabi;,citation_author=Sarah A. Sapouckey;,citation_author=Kevin L. Knudtson;,citation_author=Kamal Rahmouni;,citation_author=Huxing Cui;,citation_author=Curt D. Sigmund;,citation_author=Anne E. Kwitek;,citation_author=Justin L. Grobe;,citation_publication_date=2020-08;,citation_cover_date=2020-08;,citation_year=2020;,citation_issue=2;,citation_doi=10.1161/HYPERTENSIONAHA.120.15137;,citation_issn=1524-4563 0194-911X;,citation_pmid=32507042;,citation_volume=76;,citation_language=en-US;,citation_journal_title=Hypertension (Dallas, Tex. : 1979);">
+<meta name="citation_reference" content="citation_title=Comparison of methods and resources for cell-cell communication inference from single-cell RNA-Seq data.;,citation_abstract=The growing availability of single-cell data, especially transcriptomics, has sparked an increased interest in the inference of cell-cell communication. Many computational tools were developed for this purpose. Each of them consists of a resource of intercellular interactions prior knowledge and a method to predict potential cell-cell communication events. Yet the impact of the choice of resource and method on the resulting predictions is largely unknown. To shed light on this, we systematically compare 16 cell-cell communication inference resources and 7 methods, plus the consensus between the methods’ predictions. Among the resources, we find few unique interactions, a varying degree of overlap, and an uneven coverage of specific pathways and tissue-enriched proteins. We then examine all possible combinations of methods and resources and show that both strongly influence the predicted intercellular interactions. Finally, we assess the agreement of cell-cell communication methods with spatial colocalisation, cytokine activities, and receptor protein abundance and find that predictions are generally coherent with those data modalities. To facilitate the use of the methods and resources described in this work, we provide LIANA, a LIgand-receptor ANalysis frAmework as an open-source interface to all the resources and methods.;,citation_author=Daniel Dimitrov;,citation_author=Dénes Türei;,citation_author=Martin Garrido-Rodriguez;,citation_author=Paul L. Burmedi;,citation_author=James S. Nagai;,citation_author=Charlotte Boys;,citation_author=Ricardo O. Ramirez Flores;,citation_author=Hyojin Kim;,citation_author=Bence Szalai;,citation_author=Ivan G. Costa;,citation_author=Alberto Valdeolivas;,citation_author=Aurélien Dugourd;,citation_author=Julio Saez-Rodriguez;,citation_publication_date=2022-06;,citation_cover_date=2022-06;,citation_year=2022;,citation_issue=1;,citation_doi=10.1038/s41467-022-30755-0;,citation_issn=2041-1723;,citation_pmid=35680885;,citation_volume=13;,citation_language=en-US;,citation_journal_title=Nature communications;">
+<meta name="citation_reference" content="citation_title=CellPhoneDB: Inferring cell-cell communication from combined expression of multi-subunit ligand-receptor complexes.;,citation_abstract=Cell-cell communication mediated by ligand-receptor complexes is critical to coordinating diverse biological processes, such as development, differentiation and inflammation. To investigate how the context-dependent crosstalk of different cell types enables physiological processes to proceed, we developed CellPhoneDB, a novel repository of ligands, receptors and their interactions. In contrast to other repositories, our database takes into account the subunit architecture of both ligands and receptors, representing heteromeric complexes accurately. We integrated our resource with a statistical framework that predicts enriched cellular interactions between two cell types from single-cell transcriptomics data. Here, we outline the structure and content of our repository, provide procedures for inferring cell-cell communication networks from single-cell RNA sequencing data and present a practical step-by-step guide to help implement the protocol. CellPhoneDB v.2.0 is an updated version of our resource that incorporates additional functionalities to enable users to introduce new interacting molecules and reduces the time and resources needed to interrogate large datasets. CellPhoneDB v.2.0 is publicly available, both as code and as a user-friendly web interface; it can be used by both experts and researchers with little experience in computational genomics. In our protocol, we demonstrate how to evaluate meaningful biological interactions with CellPhoneDB v.2.0 using published datasets. This protocol typically takes ~2 h to complete, from installation to statistical analysis and visualization, for a dataset of ~10 GB, 10,000 cells and 19 cell types, and using five threads.;,citation_author=Mirjana Efremova;,citation_author=Miquel Vento-Tormo;,citation_author=Sarah A. Teichmann;,citation_author=Roser Vento-Tormo;,citation_publication_date=2020-04;,citation_cover_date=2020-04;,citation_year=2020;,citation_issue=4;,citation_doi=10.1038/s41596-020-0292-x;,citation_issn=1750-2799;,citation_pmid=32103204;,citation_volume=15;,citation_language=en-US;,citation_journal_title=Nature protocols;">
+<meta name="citation_reference" content="citation_title=Accurate quantification of single-nucleus and single-cell RNA-seq transcripts;,citation_abstract=Abstract The presence of both nascent and mature mRNA molecules in single-cell RNA-seq data leads to ambiguity in the notion of a “count matrix”. Underlying this ambiguity, is the challenging problem of separately quantifying nascent and mature mRNAs. We address this problem by relating k -mer assignment to read assignment in the context of different classes of molecules, and describe a unified approach to quantifying both single-cell and single-nucleus RNA-seq.;,citation_author=Kristján Eldjárn Hjörleifsson;,citation_author=Delaney K. Sullivan;,citation_author=Guillaume Holley;,citation_author=Páll Melsted;,citation_author=Lior Pachter;,citation_publication_date=2022-12;,citation_cover_date=2022-12;,citation_year=2022;,citation_doi=10.1101/2022.12.02.518832;,citation_language=en-US;,citation_publisher=Bioinformatics;">
+<meta name="citation_reference" content="citation_title=MAST: A flexible statistical framework for assessing transcriptional changes and characterizing heterogeneity in single-cell RNA sequencing data.;,citation_abstract=Single-cell transcriptomics reveals gene expression heterogeneity but suffers from stochastic dropout and characteristic bimodal expression distributions in which expression is either strongly non-zero or non-detectable. We propose a two-part, generalized linear model for such bimodal data that parameterizes both of these features. We argue that the cellular detection rate, the fraction of genes expressed in a cell, should be adjusted for as a source of nuisance variation. Our model provides gene set enrichment analysis tailored to single-cell data. It provides insights into how networks of co-expressed genes evolve across an experimental treatment. MAST is available at https://github.com/RGLab/MAST .;,citation_author=Greg Finak;,citation_author=Andrew McDavid;,citation_author=Masanao Yajima;,citation_author=Jingyuan Deng;,citation_author=Vivian Gersuk;,citation_author=Alex K. Shalek;,citation_author=Chloe K. Slichter;,citation_author=Hannah W. Miller;,citation_author=M. Juliana McElrath;,citation_author=Martin Prlic;,citation_author=Peter S. Linsley;,citation_author=Raphael Gottardo;,citation_publication_date=2015-12;,citation_cover_date=2015-12;,citation_year=2015;,citation_doi=10.1186/s13059-015-0844-5;,citation_issn=1474-760X 1474-7596;,citation_pmid=26653891;,citation_volume=16;,citation_language=en-US;,citation_journal_title=Genome biology;">
+<meta name="citation_reference" content="citation_title=Statistical Methods for Research Workers;,citation_author=R. A. Fisher;,citation_editor=Samuel Kotz;,citation_editor=Norman L. Johnson;,citation_publication_date=1992;,citation_cover_date=1992;,citation_year=1992;,citation_doi=10.1007/978-1-4612-4380-9_6;,citation_isbn=978-0-387-94039-7 978-1-4612-4380-9;,citation_inbook_title=Breakthroughs in Statistics;">
+<meta name="citation_reference" content="citation_title=Unsupervised removal of systematic background noise from droplet-based single-cell experiments using CellBender;,citation_abstract=Droplet-based single-cell assays, including single-cell RNA sequencing (scRNA-seq), single-nucleus RNA sequencing (snRNA-seq) and cellular indexing of transcriptomes and epitopes by sequencing (CITE-seq), generate considerable background noise counts, the hallmark of which is nonzero counts in cell-free droplets and off-target gene expression in unexpected cell types. Such systematic background noise can lead to batch effects and spurious differential gene expression results. Here we develop a deep generative model based on the phenomenology of noise generation in droplet-based assays. The proposed model accurately distinguishes cell-containing droplets from cell-free droplets, learns the background noise profile and provides noise-free quantification in an end-to-end fashion. We implement this approach in the scalable and robust open-source software package CellBender. Analysis of simulated data demonstrates that CellBender operates near the theoretically optimal denoising limit. Extensive evaluations using real datasets and experimental benchmarks highlight enhanced concordance between droplet-based single-cell data and established gene expression patterns, while the learned background noise profile provides evidence of degraded or uncaptured cell types.;,citation_author=Stephen J. Fleming;,citation_author=Mark D. Chaffin;,citation_author=Alessandro Arduini;,citation_author=Amer-Denis Akkad;,citation_author=Eric Banks;,citation_author=John C. Marioni;,citation_author=Anthony A. Philippakis;,citation_author=Patrick T. Ellinor;,citation_author=Mehrtash Babadi;,citation_publication_date=2023-09;,citation_cover_date=2023-09;,citation_year=2023;,citation_issue=9;,citation_doi=10.1038/s41592-023-01943-7;,citation_issn=1548-7105;,citation_pmid=37550580;,citation_volume=20;,citation_language=en-US;,citation_journal_title=Nature Methods;">
+<meta name="citation_reference" content="citation_title=RNA velocity unraveled;,citation_abstract=We perform a thorough analysis of RNA velocity methods, with a view towards understanding the suitability of the various assumptions underlying popular implementations. In addition to providing a self-contained exposition of the underlying mathematics, we undertake simulations and perform controlled experiments on biological datasets to assess workflow sensitivity to parameter choices and underlying biology. Finally, we argue for a more rigorous approach to RNA velocity, and present a framework for Markovian analysis that points to directions for improvement and mitigation of current problems.;,citation_author=Gennady Gorin;,citation_author=Meichen Fang;,citation_author=Tara Chari;,citation_author=Lior Pachter;,citation_publication_date=2022-09;,citation_cover_date=2022-09;,citation_year=2022;,citation_issue=9;,citation_doi=10.1371/journal.pcbi.1010492;,citation_issn=1553-7358;,citation_pmid=36094956;,citation_volume=18;,citation_language=en-US;,citation_journal_title=PLoS computational biology;">
+<meta name="citation_reference" content="citation_title=FlexMix Version 2: Finite Mixtures with Concomitant Variables and Varying and Constant Parameters;,citation_abstract=flexmix provides infrastructure for flexible fitting of finite mixture models in R using the expectation-maximization (EM) algorithm or one of its variants. The functionality of the package was enhanced. Now concomitant variable models as well as varying and constant parameters for the component specific generalized linear regression models can be fitted. The application of the package is demonstrated on several examples, the implementation described and examples given to illustrate how new drivers for the component specific models and the concomitant variable models can be defined.;,citation_author=Bettina Grün;,citation_author=Friedrich Leisch;,citation_publication_date=2008-10;,citation_cover_date=2008-10;,citation_year=2008;,citation_doi=10.18637/jss.v028.i04;,citation_issn=1548-7660;,citation_volume=28;,citation_language=en-US;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Gene selectionfor cancer classification using support vector machines;,citation_author=Isabelle Guyon;,citation_author=Jason Weston;,citation_author=Stephen Barnhill;,citation_author=Vladimir Vapnik;,citation_publication_date=2002;,citation_cover_date=2002;,citation_year=2002;,citation_issue=1/3;,citation_doi=10.1023/A:1012487302797;,citation_issn=08856125;,citation_volume=46;,citation_journal_title=Machine Learning;">
+<meta name="citation_reference" content="citation_title=Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression;,citation_abstract=Abstract Single-cell RNA-seq (scRNA-seq) data exhibits significant cell-to-cell variation due to technical factors, including the number of molecules detected in each cell, which can confound biological heterogeneity with technical effects. To address this, we present a modeling framework for the normalization and variance stabilization of molecular count data from scRNA-seq experiments. We propose that the Pearson residuals from “regularized negative binomial regression,” where cellular sequencing depth is utilized as a covariate in a generalized linear model, successfully remove the influence of technical characteristics from downstream analyses while preserving biological heterogeneity. Importantly, we show that an unconstrained negative binomial model may overfit scRNA-seq data, and overcome this by pooling information across genes with similar abundances to obtain stable parameter estimates. Our procedure omits the need for heuristic steps including pseudocount addition or log-transformation and improves common downstream analytical tasks such as variable gene selection, dimensional reduction, and differential expression. Our approach can be applied to any UMI-based scRNA-seq dataset and is freely available as part of the R package , with a direct interface to our single-cell toolkit .;,citation_author=Christoph Hafemeister;,citation_author=Rahul Satija;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=1;,citation_doi=10.1186/s13059-019-1874-1;,citation_issn=1474-760X;,citation_pmid=31870423;,citation_volume=20;,citation_language=en-US;,citation_journal_title=Genome Biology;">
+<meta name="citation_reference" content="citation_title=Single-cell analysis of the aging female mouse hypothalamus;,citation_abstract=Alterations in metabolism, sleep patterns, body composition and hormone status are all key features of aging. While the hypothalamus is a well-conserved brain region that controls these homeostatic and survival-related behaviors, little is known about the intrinsic features of hypothalamic aging. Here, we perform single-nuclei RNA sequencing of 40,064 hypothalamic nuclei from young and aged female mice. We identify cell type-specific signatures of aging in neuronal subtypes as well as astrocytes and microglia. We uncover changes in cell types critical for metabolic regulation and body composition and in an area of the hypothalamus linked to cognition. Our analysis also reveals an unexpected female-specific feature of hypothalamic aging: the master regulator of X inactivation, Xist, is elevated with age, particularly in hypothalamic neurons. Moreover, using machine learning, we show that levels of X chromosome genes and Xist itself, can accurately predict cellular age. This study identifies critical cell-specific changes of the aging hypothalamus in mammals and uncovers a potential marker of neuronal aging in females.;,citation_author=Kaitlyn H. Hajdarovic;,citation_author=Doudou Yu;,citation_author=Lexi-Amber Hassell;,citation_author=Shane A. Evans;,citation_author=Sarah Packer;,citation_author=Nicola Neretti;,citation_author=Ashley E. Webb;,citation_publication_date=2022-07;,citation_cover_date=2022-07;,citation_year=2022;,citation_issue=7;,citation_doi=10.1038/s43587-022-00246-4;,citation_issn=2662-8465;,citation_pmid=36285248;,citation_volume=2;,citation_language=en-US;,citation_journal_title=Nature Aging;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Integrated analysis of multimodal single-cell data.;,citation_abstract=The simultaneous measurement of multiple modalities represents an exciting frontier for single-cell genomics and necessitates computational methods that can define cellular states based on multimodal data. Here, we introduce &amp;amp;amp;quot;weighted-nearest neighbor&amp;quot; analysis, an unsupervised framework to learn the relative utility of each data type in each cell, enabling an integrative analysis of multiple modalities. We apply our procedure to a CITE-seq dataset of 211,000 human peripheral blood mononuclear cells (PBMCs) with panels extending to 228 antibodies to construct a multimodal reference atlas of the circulating immune system. Multimodal analysis substantially improves our ability to resolve cell states, allowing us to identify and validate previously unreported lymphoid subpopulations. Moreover, we demonstrate how to leverage this reference to rapidly map new datasets and to interpret immune responses to vaccination and coronavirus disease 2019 (COVID-19). Our approach represents a broadly applicable strategy to analyze single-cell multimodal datasets and to look beyond the transcriptome toward a unified and multimodal definition of cellular identity.;,citation_author=Yuhan Hao;,citation_author=Stephanie Hao;,citation_author=Erica Andersen-Nissen;,citation_author=William M. 3rd Mauck;,citation_author=Shiwei Zheng;,citation_author=Andrew Butler;,citation_author=Maddie J. Lee;,citation_author=Aaron J. Wilk;,citation_author=Charlotte Darby;,citation_author=Michael Zager;,citation_author=Paul Hoffman;,citation_author=Marlon Stoeckius;,citation_author=Efthymia Papalexi;,citation_author=Eleni P. Mimitou;,citation_author=Jaison Jain;,citation_author=Avi Srivastava;,citation_author=Tim Stuart;,citation_author=Lamar M. Fleming;,citation_author=Bertrand Yeung;,citation_author=Angela J. Rogers;,citation_author=Juliana M. McElrath;,citation_author=Catherine A. Blish;,citation_author=Raphael Gottardo;,citation_author=Peter Smibert;,citation_author=Rahul Satija;,citation_publication_date=2021-05;,citation_cover_date=2021-05;,citation_year=2021;,citation_doi=10.1016/j.cell.2021.04.048;,citation_issn=1097-4172 0092-8674;,citation_pmid=34062119;,citation_language=en-US;,citation_journal_title=Cell;">
+<meta name="citation_reference" content="citation_title=Generalized Additive Models;,citation_abstract=This chapter discusses the innovations of additional flexible methods for modeling an individual term in an additive model. It focuses on how we fit additive models. A general and efficient algorithm for fitting a generalized additive model consists of a hierarchy of three modules: scatterplot smoothers, backfitting algorithm, and local-scoring algorithm. These three steps are a rather natural and intuitive generalization of the usual linear model algorithms, and that is how they were originally conceived. The algorithm for fitting a gam is exactly analogous to the algorithm for glms. The chapter presents the S functions for fitting and understanding generalized additive models. In some cases, especially for generalized linear or additive models, adding residuals to a plot is unhelpful because they can distort the scale dramatically. Any interesting features in the functions get lost because of a few large residuals, even though they may carry a very small weight.;,citation_author=Trevor J. Hastie;,citation_publication_date=1992;,citation_cover_date=1992;,citation_year=1992;,citation_isbn=978-0-203-73853-5;,citation_inbook_title=Statistical Models in S;">
+<meta name="citation_reference" content="citation_title=Alevin-fry unlocks rapid, accurate and memory-frugal quantification of single-cell RNA-seq data;,citation_abstract=The rapid growth of high-throughput single-cell and single-nucleus RNA-sequencing (scRNA-seq and snRNA-seq) technologies has produced a wealth of data over the past few years. The size, volume and distinctive characteristics of these data necessitate the development of new computational methods to accurately and efficiently quantify sc/snRNA-seq data into count matrices that constitute the input to downstream analyses. We introduce the alevin-fry framework for quantifying sc/snRNA-seq data. In addition to being faster and more memory frugal than other accurate quantification approaches, alevin-fry ameliorates the memory scalability and false-positive expression issues that are exhibited by other lightweight tools. We demonstrate how alevin-fry can be effectively used to quantify sc/snRNA-seq data, and also how the spliced and unspliced molecule quantification required as input for RNA velocity analyses can be seamlessly extracted from the same preprocessed data used to generate normal gene expression count matrices.;,citation_author=Dongze He;,citation_author=Mohsen Zakeri;,citation_author=Hirak Sarkar;,citation_author=Charlotte Soneson;,citation_author=Avi Srivastava;,citation_author=Rob Patro;,citation_publication_date=2022-03;,citation_cover_date=2022-03;,citation_year=2022;,citation_issue=3;,citation_doi=10.1038/s41592-022-01408-3;,citation_issn=1548-7105;,citation_pmid=35277707;,citation_volume=19;,citation_language=en-US;,citation_journal_title=Nature Methods;">
+<meta name="citation_reference" content="citation_title=Understanding and evaluating ambiguity in single-cell and single-nucleus RNA-sequencing;,citation_abstract=Recently, a new modification has been proposed by Hjörleifsson and Sullivan et al . to the model used to classify the splicing status of reads (as spliced (mature), unspliced (nascent), or ambiguous) in single-cell and single-nucleus RNA-seq data. Here, we evaluate both the theoretical basis and practical implementation of the proposed method. The proposed method is highly-conservative, and therefore, unlikely to mischaracterize reads as spliced (mature) or unspliced (nascent) when they are not. However, we find that it leaves a large fraction of reads classified as ambiguous, and, in practice, allocates these ambiguous reads in an all-or-nothing manner, and differently between single-cell and single-nucleus RNA-seq data. Further, as implemented in practice, the ambiguous classification is implicit and based on the index against which the reads are mapped, which leads to several drawbacks compared to methods that consider both spliced (mature) and unspliced (nascent) mapping targets simultaneously  for example, the ability to use confidently assigned reads to rescue ambiguous reads based on shared UMIs and gene targets. Nonetheless, we show that these conservative assignment rules can be obtained directly in existing approaches simply by altering the set of targets that are indexed. To this end, we introduce the spliceu reference and show that its use with alevin-fry recapitulates the more conservative proposed classification. We also observe that, on experimental data, and under the proposed allocation rules for ambiguous UMIs, the difference between the proposed classification scheme and existing conventions appears much smaller than previously reported. We demonstrate the use of the new piscem index for mapping simultaneously against spliced (mature) and unspliced (nascent) targets, allowing classification against the full nascent and mature transcriptome in human or mouse in $&amp;amp;amp;lt;$3GB of memory. Finally, we discuss the potential of incorporating probabilistic evidence into the inference of splicing status, and suggest that it may provide benefits beyond what can be obtained from discrete classification of UMIs as splicing-ambiguous.;,citation_author=Dongze He;,citation_author=Charlotte Soneson;,citation_author=Rob Patro;,citation_publication_date=2023-01;,citation_cover_date=2023-01;,citation_year=2023;,citation_doi=10.1101/2023.01.04.522742;,citation_language=en-US;,citation_publisher=Bioinformatics;">
+<meta name="citation_reference" content="citation_title=miQC: An Adaptive Probabilistic Framework for Quality Control of Single-Cell RNA-sequencing Data;,citation_author=Ariel A. Hippen;,citation_author=Matías M. Falco;,citation_author=Lukas M. Weber;,citation_author=Erdoğan Pekcan Erkan;,citation_author=Kaiyang Zhang;,citation_author=Jennifer A. Doherty;,citation_author=Anna Vähärautio;,citation_author=Casey S. Greene;,citation_author=Stephanie C. Hicks;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_doi=10.1371/journal.pcbi.1009290;,citation_journal_title=Plos Computational Biology;">
+<meta name="citation_reference" content="citation_title=Moving beyond P values: Data analysis with estimation graphics;,citation_author=Joses Ho;,citation_author=Tayfun Tumkaya;,citation_author=Sameer Aryal;,citation_author=Hyungwon Choi;,citation_author=Adam Claridge-Chang;,citation_publication_date=2019-07;,citation_cover_date=2019-07;,citation_year=2019;,citation_issue=7;,citation_doi=10.1038/s41592-019-0470-3;,citation_issn=1548-7105;,citation_pmid=31217592;,citation_volume=16;,citation_language=en-US;,citation_journal_title=Nature Methods;">
+<meta name="citation_reference" content="citation_title=Predicting Cell-to-Cell Communication Networks Using NATMI;,citation_author=Rui Hou;,citation_author=Elena Denisenko;,citation_author=Huan Ting Ong;,citation_author=Jordan A. Ramilowski;,citation_author=Alistair R. R. Forrest;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_doi=10.1038/s41467-020-18873-z;,citation_journal_title=Nature Communications;">
+<meta name="citation_reference" content="citation_title=Inference and analysis of cell-cell communication using CellChat;,citation_abstract=Understanding global communications among cells requires accurate representation of cell-cell signaling links and effective systems-level analyses of those links. We construct a database of interactions among ligands, receptors and their cofactors that accurately represent known heteromeric molecular complexes. We then develop CellChat, a tool that is able to quantitatively infer and analyze intercellular communication networks from single-cell RNA-sequencing (scRNA-seq) data. CellChat predicts major signaling inputs and outputs for cells and how those cells and signals coordinate for functions using network analysis and pattern recognition approaches. Through manifold learning and quantitative contrasts, CellChat classifies signaling pathways and delineates conserved and context-specific pathways across different datasets. Applying CellChat to mouse and human skin datasets shows its ability to extract complex signaling patterns. Our versatile and easy-to-use toolkit CellChat and a web-based Explorer (http://www.cellchat.org/) will help discover novel intercellular communications and build cell-cell communication atlases in diverse tissues.;,citation_author=Suoqin Jin;,citation_author=Christian F. Guerrero-Juarez;,citation_author=Lihua Zhang;,citation_author=Ivan Chang;,citation_author=Raul Ramos;,citation_author=Chen-Hsiang Kuan;,citation_author=Peggy Myung;,citation_author=Maksim V. Plikus;,citation_author=Qing Nie;,citation_publication_date=2021-02;,citation_cover_date=2021-02;,citation_year=2021;,citation_issue=1;,citation_doi=10/gh4bb8;,citation_issn=2041-1723;,citation_volume=12;,citation_language=en-US;,citation_journal_title=Nature Communications;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=The cellular and molecular landscape of hypothalamic patterning and differentiation from embryonic to late postnatal development;,citation_abstract=The hypothalamus is a central regulator of many innate behaviors essential for survival, but the molecular mechanisms controlling hypothalamic patterning and cell fate specification are poorly understood. To identify genes that control hypothalamic development, we have used single-cell RNA sequencing (scRNA-Seq) to profile mouse hypothalamic gene expression across 12 developmental time points between embryonic day 10 and postnatal day 45. This identified genes that delineated clear developmental trajectories for all major hypothalamic cell types, and readily distinguished major regional subdivisions of the developing hypothalamus. By using our developmental dataset, we were able to rapidly annotate previously unidentified clusters from existing scRNA-Seq datasets collected during development and to identify the developmental origins of major neuronal populations of the ventromedial hypothalamus. We further show that our approach can rapidly and comprehensively characterize mutants that have altered hypothalamic patterning, identifying Nkx2.1 as a negative regulator of prethalamic identity. These data serve as a resource for further studies of hypothalamic development, physiology, and dysfunction.;,citation_author=Dong Won Kim;,citation_author=Parris Whitney Washington;,citation_author=Zoe Qianyi Wang;,citation_author=Sonia Hao Lin;,citation_author=Changyu Sun;,citation_author=Basma Taleb Ismail;,citation_author=Hong Wang;,citation_author=Lizhi Jiang;,citation_author=Seth Blackshaw;,citation_publication_date=2020-08;,citation_cover_date=2020-08;,citation_year=2020;,citation_issue=1;,citation_doi=10/ghdps6;,citation_issn=2041-1723;,citation_pmid=32868762;,citation_volume=11;,citation_language=en-US;,citation_journal_title=Nature Communications;">
+<meta name="citation_reference" content="citation_title=Robust rank aggregation for gene list integration and meta-analysis.;,citation_abstract=MOTIVATION: The continued progress in developing technological platforms, availability of many published experimental datasets, as well as different statistical methods to analyze those data have allowed approaching the same research question using various methods simultaneously. To get the best out of all these alternatives, we need to integrate their results in an unbiased manner. Prioritized gene lists are a common result presentation method in genomic data analysis applications. Thus, the rank aggregation methods can become a useful and general solution for the integration task. RESULTS: Standard rank aggregation methods are often ill-suited for biological settings where the gene lists are inherently noisy. As a remedy, we propose a novel robust rank aggregation (RRA) method. Our method detects genes that are ranked consistently better than expected under null hypothesis of uncorrelated inputs and assigns a significance score for each gene. The underlying probabilistic model makes the algorithm parameter free and robust to outliers, noise and errors. Significance scores also provide a rigorous way to keep only the statistically relevant genes in the final list. These properties make our approach robust and compelling for many settings. AVAILABILITY: All the methods are implemented as a GNU R package RobustRankAggreg, freely available at the Comprehensive R Archive Network http://cran.r-project.org/.;,citation_author=Raivo Kolde;,citation_author=Sven Laur;,citation_author=Priit Adler;,citation_author=Jaak Vilo;,citation_publication_date=2012-02;,citation_cover_date=2012-02;,citation_year=2012;,citation_issue=4;,citation_doi=10.1093/bioinformatics/btr709;,citation_issn=1367-4811 1367-4803;,citation_pmid=22247279;,citation_volume=28;,citation_language=en-US;,citation_journal_title=Bioinformatics (Oxford, England);">
+<meta name="citation_reference" content="citation_title=Fast, sensitive and accurate integration of single-cell data with Harmony;,citation_abstract=The emerging diversity of single-cell RNA-seq datasets allows for the full transcriptional characterization of cell types across a wide variety of biological and clinical conditions. However, it is challenging to analyze them together, particularly when datasets are assayed with different technologies, because biological and technical differences are interspersed. We present Harmony (https://github.com/immunogenomics/harmony), an algorithm that projects cells into a shared embedding in which cells group by cell type rather than dataset-specific conditions. Harmony simultaneously accounts for multiple experimental and biological factors. In six analyses, we demonstrate the superior performance of Harmony to previously published algorithms while requiring fewer computational resources. Harmony enables the integration of ~106 cells on a personal computer. We apply Harmony to peripheral blood mononuclear cells from datasets with large experimental differences, five studies of pancreatic islet cells, mouse embryogenesis datasets and the integration of scRNA-seq with spatial transcriptomics data.;,citation_author=Ilya Korsunsky;,citation_author=Nghia Millard;,citation_author=Jean Fan;,citation_author=Kamil Slowikowski;,citation_author=Fan Zhang;,citation_author=Kevin Wei;,citation_author=Yuriy Baglaenko;,citation_author=Michael Brenner;,citation_author=Po-Ru Loh;,citation_author=Soumya Raychaudhuri;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=12;,citation_doi=10/dfcg;,citation_issn=1548-7105;,citation_pmid=31740819;,citation_volume=16;,citation_language=en-US;,citation_journal_title=Nature Methods;">
+<meta name="citation_reference" content="citation_title=Estimating mutual information;,citation_abstract=We present two classes of improved estimators for mutual information M(X,Y), from samples of random points distributed according to some joint probability density $\mu$(x,y). In contrast to conventional estimators based on binnings, they are based on entropy estimates from k-nearest neighbor distances. This means that they are data efficient (with k=1 we resolve structures down to the smallest possible scales), adaptive (the resolution is higher where data are more numerous), and have minimal bias. Indeed, the bias of the underlying entropy estimates is mainly due to nonuniformity of the density at the smallest resolved scale, giving typically systematic errors which scale as functions of k/N for N points. Numerically, we find that both families become exact for independent distributions, i.e. the estimator ^M(X,Y) vanishes (up to statistical fluctuations) if $\mu$(x,y)=$\mu$(x)$\mu$(y). This holds for all tested marginal distributions and for all dimensions of x and y. In addition, we give estimators for redundancies between more than two random variables. We compare our algorithms in detail with existing algorithms. Finally, we demonstrate the usefulness of our estimators for assessing the actual independence of components obtained from independent component analysis (ICA), for improving ICA, and for estimating the reliability of blind source separation., This article appears in the following collections:;,citation_author=Alexander Kraskov;,citation_author=Harald Stögbauer;,citation_author=Peter Grassberger;,citation_publication_date=2004-06;,citation_cover_date=2004-06;,citation_year=2004;,citation_issue=6;,citation_doi=10.1103/PhysRevE.69.066138;,citation_volume=69;,citation_journal_title=Physical Review E;,citation_publisher=American Physical Society;">
+<meta name="citation_reference" content="citation_title=Quantification and statistical modeling of Chromium-based single-nucleus RNA-sequencing data;,citation_abstract=ABSTRACT In complex tissues containing cells that are difficult to dissociate, single-nucleus RNA-sequencing (snRNA-seq) has become the preferred experimental technology over single-cell RNA-sequencing (scRNA-seq) to measure gene expression. To accurately model these data in downstream analyses, previous work has shown that droplet-based scRNA-seq data are not zero-inflated, but whether droplet-based snRNA-seq data follow the same probability distributions has not been systematically evaluated. Using pseudo-negative control data from nuclei in mouse cortex sequenced with the 10x Genomics Chromium system, we found that snRNA-seq data follow a negative binomial distribution, suggesting that parametric statistical models applied to scRNA-seq are transferable to snRNA-seq. Furthermore, we found that the quantification choices in adapting quantification mapping strategies from scRNA-seq to snRNA-seq can play a significant role in downstream analyses and biological interpretation. In particular, reference transcriptomes that do not include intronic regions result in significantly smaller library sizes and incongruous cell type classifications. We also confirmed the presence of a gene length bias in snRNA-seq data, which we show is present in both exonic and intronic reads, and investigate potential causes for the bias.;,citation_author=Albert Kuo;,citation_author=Kasper D. Hansen;,citation_author=Stephanie C. Hicks;,citation_publication_date=2022-05;,citation_cover_date=2022-05;,citation_year=2022;,citation_doi=10.1101/2022.05.20.492835;,citation_language=en-US;,citation_publisher=Genomics;">
+<meta name="citation_reference" content="citation_title=Molecular architecture of the developing mouse brain;,citation_abstract=The mammalian brain develops through a complex interplay of spatial cues generated by diffusible morphogens, cell-cell interactions and intrinsic genetic programs that result in probably more than a thousand distinct cell types. A complete understanding of this process requires a systematic characterization of cell states over the entire spatiotemporal range of brain development. The ability of single-cell RNA sequencing and spatial transcriptomics to reveal the molecular heterogeneity of complex tissues has therefore been particularly powerful in the nervous system. Previous studies have explored development in specific brain regions1-8, the whole adult brain9 and even entire embryos10. Here we report a comprehensive single-cell transcriptomic atlas of the embryonic mouse brain between gastrulation and birth. We identified almost eight hundred cellular states that describe a developmental program for the functional elements of the brain and its enclosing membranes, including the early neuroepithelium, region-specific secondary organizers, and both neurogenic and gliogenic progenitors. We also used in situ mRNA sequencing to map the spatial expression patterns of key developmental genes. Integrating the in situ data with our single-cell clusters revealed the precise spatial organization of neural progenitors during the patterning of the nervous system.;,citation_author=Gioele La Manno;,citation_author=Kimberly Siletti;,citation_author=Alessandro Furlan;,citation_author=Daniel Gyllborg;,citation_author=Elin Vinsland;,citation_author=Alejandro Mossi Albiach;,citation_author=Christoffer Mattsson Langseth;,citation_author=Irina Khven;,citation_author=Alex R. Lederer;,citation_author=Lisa M. Dratva;,citation_author=Anna Johnsson;,citation_author=Mats Nilsson;,citation_author=Peter Lönnerberg;,citation_author=Sten Linnarsson;,citation_publication_date=2021-08;,citation_cover_date=2021-08;,citation_year=2021;,citation_issue=7870;,citation_doi=10.1038/s41586-021-03775-x;,citation_issn=1476-4687;,citation_pmid=34321664;,citation_volume=596;,citation_language=en-US;,citation_journal_title=Nature;">
+<meta name="citation_reference" content="citation_title=Analytic Pearson residuals for normalization of single-cell RNA-seq UMI data.;,citation_abstract=BACKGROUND: Standard preprocessing of single-cell RNA-seq UMI data includes normalization by sequencing depth to remove this technical variability, and nonlinear transformation to stabilize the variance across genes with different expression levels. Instead, two recent papers propose to use statistical count models for these tasks: Hafemeister and Satija (Genome Biol 20:296, 2019) recommend using Pearson residuals from negative binomial regression, while Townes et al. (Genome Biol 20:295, 2019) recommend fitting a generalized PCA model. Here, we investigate the connection between these approaches theoretically and empirically, and compare their effects on downstream processing. RESULTS: We show that the model of Hafemeister and Satija produces noisy parameter estimates because it is overspecified, which is why the original paper employs post hoc smoothing. When specified more parsimoniously, it has a simple analytic solution equivalent to the rank-one Poisson GLM-PCA of Townes et al. Further, our analysis indicates that per-gene overdispersion estimates in Hafemeister and Satija are biased, and that the data are in fact consistent with the overdispersion parameter being independent of gene expression. We then use negative control data without biological variability to estimate the technical overdispersion of UMI counts, and find that across several different experimental protocols, the data are close to Poisson and suggest very moderate overdispersion. Finally, we perform a benchmark to compare the performance of Pearson residuals, variance-stabilizing transformations, and GLM-PCA on scRNA-seq datasets with known ground truth. CONCLUSIONS: We demonstrate that analytic Pearson residuals strongly outperform other methods for identifying biologically variable genes, and capture more of the biologically meaningful variation when used for dimensionality reduction.;,citation_author=Jan Lause;,citation_author=Philipp Berens;,citation_author=Dmitry Kobak;,citation_publication_date=2021-09;,citation_cover_date=2021-09;,citation_year=2021;,citation_issue=1;,citation_doi=10.1186/s13059-021-02451-7;,citation_issn=1474-760X 1474-7596;,citation_pmid=34488842;,citation_volume=22;,citation_language=en-US;,citation_journal_title=Genome biology;">
+<meta name="citation_reference" content="citation_title=EmptyDrops: Distinguishing cells from empty droplets in droplet-based single-cell RNA sequencing data.;,citation_abstract=Droplet-based single-cell RNA sequencing protocols have dramatically increased the throughput of single-cell transcriptomics studies. A key computational challenge when processing these data is to distinguish libraries for real cells from empty droplets. Here, we describe a new statistical method for calling cells from droplet-based data, based on detecting significant deviations from the expression profile of the ambient solution. Using simulations, we demonstrate that EmptyDrops has greater power than existing approaches while controlling the false discovery rate among detected cells. Our method also retains distinct cell types that would have been discarded by existing methods in several real data sets.;,citation_author=Aaron T. L. Lun;,citation_author=Samantha Riesenfeld;,citation_author=Tallulah Andrews;,citation_author=The Phuong Dao;,citation_author=Tomas Gomes;,citation_author=John C. Marioni;,citation_publication_date=2019-03;,citation_cover_date=2019-03;,citation_year=2019;,citation_issue=1;,citation_doi=10.1186/s13059-019-1662-y;,citation_issn=1474-760X 1474-7596;,citation_pmid=30902100;,citation_volume=20;,citation_language=en-US;,citation_journal_title=Genome biology;">
+<meta name="citation_reference" content="citation_title=Developmental diversification of cortical inhibitory interneurons.;,citation_abstract=Diverse subsets of cortical interneurons have vital roles in higher-order brain functions. To investigate how this diversity is generated, here we used single-cell RNA sequencing to profile the transcriptomes of mouse cells collected along a developmental time course. Heterogeneity within mitotic progenitors in the ganglionic eminences is driven by a highly conserved maturation trajectory, alongside eminence-specific transcription factor expression that seeds the emergence of later diversity. Upon becoming postmitotic, progenitors diverge and differentiate into transcriptionally distinct states, including an interneuron precursor state. By integrating datasets across developmental time points, we identified shared sources of transcriptomic heterogeneity between adult interneurons and their precursors, and uncovered the embryonic emergence of cardinal interneuron subtypes. Our analysis revealed that the transcription factor Mef2c, which is linked to various neuropsychiatric and neurodevelopmental disorders, delineates early precursors of parvalbumin-expressing neurons, and is essential for their development. These findings shed new light on the molecular diversification of early inhibitory precursors, and identify gene modules that may influence the specification of human interneuron subtypes.;,citation_author=Christian Mayer;,citation_author=Christoph Hafemeister;,citation_author=Rachel C. Bandler;,citation_author=Robert Machold;,citation_author=Renata Batista Brito;,citation_author=Xavier Jaglin;,citation_author=Kathryn Allaway;,citation_author=Andrew Butler;,citation_author=Gord Fishell;,citation_author=Rahul Satija;,citation_publication_date=2018-03;,citation_cover_date=2018-03;,citation_year=2018;,citation_issue=7697;,citation_doi=10.1038/nature25999;,citation_issn=1476-4687 0028-0836;,citation_pmid=29513653;,citation_volume=555;,citation_language=en-US;,citation_journal_title=Nature;">
+<meta name="citation_reference" content="citation_title=Preparation of Separate Astroglial and Oligodendroglial Cell Cultures From Rat Cerebral Tissue.;,citation_author=Ken D. McCarthy;,citation_author=Jean Vellis;,citation_publication_date=1980;,citation_cover_date=1980;,citation_year=1980;,citation_doi=10.1083/jcb.85.3.890;,citation_journal_title=The Journal of Cell Biology;">
+<meta name="citation_reference" content="citation_title=UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction;,citation_author=Leland McInnes;,citation_author=John Healy;,citation_author=James Melville;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_doi=10.48550/arxiv.1802.03426;">
+<meta name="citation_reference" content="citation_title=Cellular taxonomy and spatial organization of the murine ventral posterior hypothalamus;,citation_abstract=The ventral posterior hypothalamus (VPH) is an anatomically complex brain region implicated in arousal, reproduction, energy balance, and memory processing. However, neuronal cell type diversity within the VPH is poorly understood, an impediment to deconstructing the roles of distinct VPH circuits in physiology and behavior. To address this question, we employed a droplet-based single-cell RNA sequencing (scRNA-seq) approach to systematically classify molecularly distinct cell populations in the mouse VPH. Analysis of $&amp;amp;amp;gt;$16,000 single cells revealed 20 neuronal and 18 non-neuronal cell populations, defined by suites of discriminatory markers. We validated differentially expressed genes in selected neuronal populations through fluorescence in situ hybridization (FISH). Focusing on the mammillary bodies (MB), we discovered transcriptionally-distinct clusters that exhibit neuroanatomical parcellation within MB subdivisions and topographic projections to the thalamus. This single-cell transcriptomic atlas of VPH cell types provides a resource for interrogating the circuit-level mechanisms underlying the diverse functions of VPH circuits.;,citation_author=Laura E. Mickelsen;,citation_author=William F. Flynn;,citation_author=Kristen Springer;,citation_author=Lydia Wilson;,citation_author=Eric J. Beltrami;,citation_author=Mohan Bolisetty;,citation_author=Paul Robson;,citation_author=Alexander C. Jackson;,citation_publication_date=2020-10;,citation_cover_date=2020-10;,citation_year=2020;,citation_doi=10/gjtqz2;,citation_issn=2050-084X;,citation_pmid=33119507;,citation_volume=9;,citation_language=en-US;,citation_journal_title=eLife;">
+<meta name="citation_reference" content="citation_title=Single-cell transcriptomic analysis of the lateral hypothalamic area reveals molecularly distinct populations of inhibitory and excitatory neurons;,citation_abstract=The lateral hypothalamic area (LHA) coordinates an array of fundamental behaviors, including sleeping, waking, feeding, stress and motivated behavior. The wide spectrum of functions ascribed to the LHA may be explained by a heterogeneous population of neurons, the full diversity of which is poorly understood. We employed a droplet-based single-cell RNA-sequencing approach to develop a comprehensive census of molecularly distinct cell types in the mouse LHA. Neuronal populations were classified based on fast neurotransmitter phenotype and expression of neuropeptides, transcription factors and synaptic proteins, among other gene categories. We define 15 distinct populations of glutamatergic neurons and 15 of GABAergic neurons, including known and novel cell types. We further characterize a novel population of somatostatin-expressing neurons through anatomical and behavioral approaches, identifying a role for these neurons in specific forms of innate locomotor behavior. This study lays the groundwork for better understanding the circuit-level underpinnings of LHA function.;,citation_author=Laura E. Mickelsen;,citation_author=Mohan Bolisetty;,citation_author=Brock R. Chimileski;,citation_author=Akie Fujita;,citation_author=Eric J. Beltrami;,citation_author=James T. Costanzo;,citation_author=Jacob R. Naparstek;,citation_author=Paul Robson;,citation_author=Alexander C. Jackson;,citation_publication_date=2019-04;,citation_cover_date=2019-04;,citation_year=2019;,citation_issue=4;,citation_doi=10/gfxhtv;,citation_issn=1546-1726;,citation_pmid=30858605;,citation_volume=22;,citation_language=en-US;,citation_journal_title=Nature Neuroscience;">
+<meta name="citation_reference" content="citation_title=Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region;,citation_abstract=The hypothalamus controls essential social behaviors and homeostatic functions. However, the cellular architecture of hypothalamic nuclei-including the molecular identity, spatial organization, and function of distinct cell types-is poorly understood. Here, we developed an imaging-based in situ cell-type identification and mapping method and combined it with single-cell RNA-sequencing to create a molecularly annotated and spatially resolved cell atlas of the mouse hypothalamic preoptic region. We profiled ~1 million cells, identified ~70 neuronal populations characterized by distinct neuromodulatory signatures and spatial organizations, and defined specific neuronal populations activated during social behaviors in male and female mice, providing a high-resolution framework for mechanistic investigation of behavior circuits. The approach described opens a new avenue for the construction of cell atlases in diverse tissues and organisms.;,citation_author=Jeffrey R. Moffitt;,citation_author=Dhananjay Bambah-Mukku;,citation_author=Stephen W. Eichhorn;,citation_author=Eric Vaughn;,citation_author=Karthik Shekhar;,citation_author=Julio D. Perez;,citation_author=Nimrod D. Rubinstein;,citation_author=Junjie Hao;,citation_author=Aviv Regev;,citation_author=Catherine Dulac;,citation_author=Xiaowei Zhuang;,citation_publication_date=2018-11;,citation_cover_date=2018-11;,citation_year=2018;,citation_issue=6416;,citation_doi=10/gf3hwr;,citation_issn=1095-9203;,citation_pmid=30385464;,citation_volume=362;,citation_language=en-US;,citation_journal_title=Science (New York, N.Y.);">
+<meta name="citation_reference" content="citation_title=Sustainable data analysis with Snakemake;,citation_abstract=Data analysis often entails a multitude of heterogeneous steps, from the application of various command line tools to the usage of scripting languages like R or Python for the generation of plots and tables. It is widely recognized that data analyses should ideally be conducted in a reproducible way.&nbsp;Reproducibility enables technical validation and regeneration of results on the original or even new data. However, reproducibility alone is by no means sufficient to deliver an analysis that is of lasting impact (i.e., sustainable) for the field, or even just one research group. We postulate that it is equally important to ensure adaptability and transparency. The former describes the ability to modify the analysis to answer extended or slightly different research questions. The latter describes the ability to understand the analysis in order to judge whether it is not only technically, but methodologically valid. Here, we analyze the properties needed for a data analysis to become reproducible, adaptable, and transparent. We show how the popular workflow management system Snakemake can be used to guarantee this, and how it enables an ergonomic, combined, unified representation of all steps involved in data analysis, ranging from raw data processing, to quality control and fine-grained, interactive exploration and plotting of final results.;,citation_author=Felix Mölder;,citation_author=Kim Philipp Jablonski;,citation_author=Brice Letcher;,citation_author=Michael B. Hall;,citation_author=Christopher H. Tomkins-Tinch;,citation_author=Vanessa Sochat;,citation_author=Jan Forster;,citation_author=Soohyun Lee;,citation_author=Sven O. Twardziok;,citation_author=Alexander Kanitz;,citation_author=Andreas Wilm;,citation_author=Manuel Holtgrewe;,citation_author=Sven Rahmann;,citation_author=Sven Nahnsen;,citation_author=Johannes Köster;,citation_publication_date=2021-01;,citation_cover_date=2021-01;,citation_year=2021;,citation_doi=10/gjjkwv;,citation_issn=2046-1402;,citation_volume=10;,citation_language=en-US;,citation_journal_title=F1000Research;">
+<meta name="citation_reference" content="citation_title=Rapid Colorimetric Assay for Cellular Growth and Survival: Application to Proliferation and Cytotoxicity Assays;,citation_author=Tim R. Mosmann;,citation_publication_date=1983;,citation_cover_date=1983;,citation_year=1983;,citation_doi=10.1016/0022-1759(83)90303-4;,citation_journal_title=Journal of Immunological Methods;">
+<meta name="citation_reference" content="citation_title=Community structure in time-dependent, multiscale, and multiplex networks.;,citation_abstract=Network science is an interdisciplinary endeavor, with methods and applications drawn from across the natural, social, and information sciences. A prominent problem in network science is the algorithmic detection of tightly connected groups of nodes known as communities. We developed a generalized framework of network quality functions that allowed us to study the community structure of arbitrary multislice networks, which are combinations of individual networks coupled through links that connect each node in one network slice to itself in other slices. This framework allows studies of community structure in a general setting encompassing networks that evolve over time, have multiple types of links (multiplexity), and have multiple scales.;,citation_author=Peter J. Mucha;,citation_author=Thomas Richardson;,citation_author=Kevin Macon;,citation_author=Mason A. Porter;,citation_author=Jukka-Pekka Onnela;,citation_publication_date=2010-05;,citation_cover_date=2010-05;,citation_year=2010;,citation_issue=5980;,citation_doi=10.1126/science.1184819;,citation_issn=1095-9203 0036-8075;,citation_pmid=20466926;,citation_volume=328;,citation_language=en-US;,citation_journal_title=Science (New York, N.Y.);">
+<meta name="citation_reference" content="citation_title=Assessing single-cell transcriptomic variability through density-preserving data visualization.;,citation_abstract=Nonlinear data visualization methods, such as t-distributed stochastic neighbor embedding (t-SNE) and uniform manifold approximation and projection (UMAP), summarize the complex transcriptomic landscape of single cells in two dimensions or three dimensions, but they neglect the local density of data points in the original space, often resulting in misleading visualizations where densely populated subsets of cells are given more visual space than warranted by their transcriptional diversity in the dataset. Here we present den-SNE and densMAP, which are density-preserving visualization tools based on t-SNE and UMAP, respectively, and demonstrate their ability to accurately incorporate information about transcriptomic variability into the visual interpretation of single-cell RNA sequencing data. Applied to recently published datasets, our methods reveal significant changes in transcriptomic variability in a range of biological processes, including heterogeneity in transcriptomic variability of immune cells in blood and tumor, human immune cell specialization and the developmental trajectory of Caenorhabditis elegans. Our methods are readily applicable to visualizing high-dimensional data in other scientific domains.;,citation_author=Ashwin Narayan;,citation_author=Bonnie Berger;,citation_author=Hyunghoon Cho;,citation_publication_date=2021-01;,citation_cover_date=2021-01;,citation_year=2021;,citation_doi=10.1038/s41587-020-00801-7;,citation_issn=1546-1696 1087-0156;,citation_pmid=33462509;,citation_language=en-US;,citation_journal_title=Nature biotechnology;">
+<meta name="citation_reference" content="citation_title=Dissection of Intercellular Communication Using the Transcriptome-Based Framework ICELLNET;,citation_author=Floriane Noël;,citation_author=Lucile Massenet-Regad;,citation_author=Irit Carmi-Levy;,citation_author=Antonio Cappuccio;,citation_author=Maximilien Grandclaudon;,citation_author=Coline Trichot;,citation_author=Yann Kieffer;,citation_author=Fatima Mechta-Grigoriou;,citation_author=Vassili Soumelis;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_doi=10.1038/s41467-021-21244-x;,citation_journal_title=Nature Communications;">
+<meta name="citation_reference" content="citation_title=A discriminative learning approach to differential expression analysis for single-cell RNA-seq;,citation_author=Vasilis Ntranos;,citation_author=Lynn Yi;,citation_author=Páll Melsted;,citation_author=Lior Pachter;,citation_publication_date=2019-02;,citation_cover_date=2019-02;,citation_year=2019;,citation_issue=2;,citation_doi=10/gftsnv;,citation_issn=1548-7091, 1548-7105;,citation_pmid=30664774;,citation_volume=16;,citation_language=en-US;,citation_journal_title=Nature Methods;">
+<meta name="citation_reference" content="citation_title=X. On the Criterion That a Given System of Deviations From the Probable in the Case of a Correlated System of Variables Is Such That It Can Be Reasonably Supposed to Have Arisen From Random Sampling;,citation_author=Karl Pearson;,citation_publication_date=1900;,citation_cover_date=1900;,citation_year=1900;,citation_doi=10.1080/14786440009463897;,citation_journal_title=The London Edinburgh and Dublin Philosophical Magazine and Journal of Science;">
+<meta name="citation_reference" content="citation_title=Cell type hierarchy reconstruction via reconciliation of multi-resolution cluster tree.;,citation_abstract=A wealth of clustering algorithms are available for single-cell RNA sequencing (scRNA-seq) data to enable the identification of functionally distinct subpopulations that each possess a different pattern of gene expression activity. Implementation of these methods requires a choice of resolution parameter to determine the number of clusters, and critical judgment from the researchers is required to determine the desired resolution. This supervised process takes significant time and effort. Moreover, it can be difficult to compare and characterize the evolution of cell clusters from results obtained at one single resolution. To overcome these challenges, we built Multi-resolution Reconciled Tree (MRtree), a highly flexible tree-construction algorithm that generates a cluster hierarchy from flat clustering results attained for a range of resolutions. Because MRtree can be coupled with most scRNA-seq clustering algorithms, it inherits the robustness and versatility of a flat clustering approach, while maintaining the hierarchical structure of cells. The constructed trees from multiple scRNA-seq datasets effectively reflect the extent of transcriptional distinctions among cell groups and align well with levels of functional specializations among cells. Importantly, application to fetal brain cells identified subtypes of cells determined mainly by maturation states, spatial location and terminal specification.;,citation_author=Minshi Peng;,citation_author=Brie Wamsley;,citation_author=Andrew G. Elkins;,citation_author=Daniel H. Geschwind;,citation_author=Yuting Wei;,citation_author=Kathryn Roeder;,citation_publication_date=2021-09;,citation_cover_date=2021-09;,citation_year=2021;,citation_issue=16;,citation_doi=10.1093/nar/gkab481;,citation_issn=1362-4962 0305-1048;,citation_pmid=34125905;,citation_volume=49;,citation_language=en-US;,citation_journal_title=Nucleic acids research;">
+<meta name="citation_reference" content="citation_title=Enhanced recovery of single-cell RNA-sequencing reads for missing gene expression data;,citation_abstract=Abstract Droplet-based 3’ single-cell RNA-sequencing (scRNA-seq) methods have proved transformational in characterizing cellular diversity and generating valuable hypotheses throughout biology 1,2 . Here we outline a common problem with 3’ scRNA-seq datasets where genes that have been documented to be expressed with other methods, are either completely missing or are dramatically under-represented thereby compromising the discovery of cell types, states, and genetic mechanisms. We show that this problem stems from three main sources of sequencing read loss: (1) reads mapping immediately 3’ to known gene boundaries due to poor 3’ UTR annotation; (2) intronic reads stemming from unannotated exons or pre-mRNA; (3) discarded reads due to gene overlaps 3 . Each of these issues impacts the detection of thousands of genes even in well-characterized mouse and human genomes rendering downstream analysis either partially or fully blind to their expression. We outline a simple three-step solution to recover the missing gene expression data that entails compiling a hybrid pre-mRNA reference to retrieve intronic reads 4 , resolving gene collision derived read loss through removal of readthrough and premature start transcripts, and redefining 3’ gene boundaries to capture false intergenic reads. We demonstrate with mouse brain and human peripheral blood datasets that this approach dramatically increases the amount of sequencing data included in downstream analysis revealing 20 - 50% more genes per cell and incorporates 15-20% more sequencing reads than with standard solutions 5 . These improvements reveal previously missing biologically relevant cell types, states, and marker genes in the mouse brain and human blood profiling data. Finally, we provide scRNA-seq optimized transcriptomic references for human and mouse data as well as simple algorithmic implementation of these solutions that can be deployed to both thoroughly as well as poorly annotated genomes. Our results demonstrate that optimizing the sequencing read mapping step can significantly improve the analysis resolution as well as biological insight from scRNA-seq. Moreover, this approach warrants a fresh look at preceding analyses of this popular and scalable cellular profiling technology.;,citation_author=Allan-Hermann Pool;,citation_author=Helen Poldsam;,citation_author=Sisi Chen;,citation_author=Matt Thomson;,citation_author=Yuki Oka;,citation_publication_date=2022-04;,citation_cover_date=2022-04;,citation_year=2022;,citation_doi=10.1101/2022.04.26.489449;,citation_language=en-US;,citation_publisher=Genomics;">
+<meta name="citation_reference" content="citation_title=G:Profiler-a web server for functional interpretation of gene lists (2016 update).;,citation_abstract=Functional enrichment analysis is a key step in interpreting gene lists discovered in diverse high-throughput experiments. g:Profiler studies flat and ranked gene lists and finds statistically significant Gene Ontology terms, pathways and other gene function related terms. Translation of hundreds of gene identifiers is another core feature of g:Profiler. Since its first publication in 2007, our web server has become a popular tool of choice among basic and translational researchers. Timeliness is a major advantage of g:Profiler as genome and pathway information is synchronized with the Ensembl database in quarterly updates. g:Profiler supports 213 species including mammals and other vertebrates, plants, insects and fungi. The 2016 update of g:Profiler introduces several novel features. We have added further functional datasets to interpret gene lists, including transcription factor binding site predictions, Mendelian disease annotations, information about protein expression and complexes and gene mappings of human genetic polymorphisms. Besides the interactive web interface, g:Profiler can be accessed in computational pipelines using our R package, Python interface and BioJS component. g:Profiler is freely available at http://biit.cs.ut.ee/gprofiler/.;,citation_author=Jüri Reimand;,citation_author=Tambet Arak;,citation_author=Priit Adler;,citation_author=Liis Kolberg;,citation_author=Sulev Reisberg;,citation_author=Hedi Peterson;,citation_author=Jaak Vilo;,citation_publication_date=2016-07;,citation_cover_date=2016-07;,citation_year=2016;,citation_issue=W1;,citation_doi=10.1093/nar/gkw199;,citation_issn=1362-4962 0305-1048;,citation_pmid=27098042;,citation_volume=44;,citation_language=en-US;,citation_journal_title=Nucleic acids research;">
+<meta name="citation_reference" content="citation_title=The molecular basis, genetic control and pleiotropic effects of local gene co-expression;,citation_abstract=Abstract Nearby genes are often expressed as a group. Yet, the prevalence, molecular mechanisms and genetic control of local gene co-expression are far from being understood. Here, by leveraging gene expression measurements across 49 human tissues and hundreds of individuals, we find that local gene co-expression occurs in 13% to 53% of genes per tissue. By integrating various molecular assays (e.g. ChIP-seq and Hi-C), we estimate the ability of several mechanisms, such as enhancer-gene interactions, in distinguishing gene pairs that are co-expressed from those that are not. Notably, we identify 32,636 expression quantitative trait loci (eQTLs) which associate with co-expressed gene pairs and often overlap enhancer regions. Due to affecting several genes, these eQTLs are more often associated with multiple human traits than other eQTLs. Our study paves the way to comprehend trait pleiotropy and functional interpretation of QTL and GWAS findings. All local gene co-expression identified here is available through a public database ( https://glcoex.unil.ch/ ).;,citation_author=Diogo M. Ribeiro;,citation_author=Simone Rubinacci;,citation_author=Anna Ramisch;,citation_author=Robin J. Hofmeister;,citation_author=Emmanouil T. Dermitzakis;,citation_author=Olivier Delaneau;,citation_publication_date=2021-08;,citation_cover_date=2021-08;,citation_year=2021;,citation_issue=1;,citation_doi=10.1038/s41467-021-25129-x;,citation_issn=2041-1723;,citation_volume=12;,citation_language=en-US;,citation_journal_title=Nature Communications;">
+<meta name="citation_reference" content="citation_title=Molecular design of hypothalamus development;,citation_abstract=A wealth of specialized neuroendocrine command systems intercalated within the hypothalamus control the most fundamental physiological needs in vertebrates1,2. Nevertheless, we lack a developmental blueprint that integrates the molecular determinants of neuronal and glial diversity along temporal and spatial scales of hypothalamus development3. Here we combine single-cell RNA sequencing of 51,199 mouse cells of ectodermal origin, gene regulatory network (GRN) screens in conjunction with genome-wide association study-based disease phenotyping, and genetic lineage reconstruction to show that nine glial and thirty-three neuronal subtypes are generated by mid-gestation under the control of distinct GRNs. Combinatorial molecular codes that arise from neurotransmitters, neuropeptides and transcription factors are minimally required to decode the taxonomical hierarchy of hypothalamic neurons. The differentiation of $\gamma$-aminobutyric acid (GABA) and dopamine neurons, but not glutamate neurons, relies on quasi-stable intermediate states, with a pool of GABA progenitors giving rise to dopamine cells4. We found an unexpected abundance of chemotropic proliferation and guidance cues that are commonly implicated in dorsal (cortical) patterning5 in the hypothalamus. In particular, loss of SLITROBO signalling impaired both the production and positioning of periventricular dopamine neurons. Overall, we identify molecular principles that shape the developmental architecture of the hypothalamus and show how neuronal heterogeneity is transformed into a multimodal neural unit to provide virtually infinite adaptive potential throughout life.;,citation_author=Roman A. Romanov;,citation_author=Evgenii O. Tretiakov;,citation_author=Maria Eleni Kastriti;,citation_author=Maja Zupancic;,citation_author=Martin Häring;,citation_author=Solomiia Korchynska;,citation_author=Konstantin Popadin;,citation_author=Marco Benevento;,citation_author=Patrick Rebernik;,citation_author=Francois Lallemend;,citation_author=Katsuhiko Nishimori;,citation_author=Frédéric Clotman;,citation_author=William D. Andrews;,citation_author=John G. Parnavelas;,citation_author=Matthias Farlik;,citation_author=Christoph Bock;,citation_author=Igor Adameyko;,citation_author=Tomas Hökfelt;,citation_author=Erik Keimpema;,citation_author=Tibor Harkany;,citation_publication_date=2020-06;,citation_cover_date=2020-06;,citation_year=2020;,citation_issue=7811;,citation_doi=10.1038/s41586-020-2266-0;,citation_issn=1476-4687;,citation_volume=582;,citation_language=en-US;,citation_journal_title=Nature;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Spatial reconstruction of single-cell gene expression data.;,citation_abstract=Spatial localization is a key determinant of cellular fate and behavior, but methods for spatially resolved, transcriptome-wide gene expression profiling across complex tissues are lacking. RNA staining methods assay only a small number of transcripts, whereas single-cell RNA-seq, which measures global gene expression, separates cells from their native spatial context. Here we present Seurat, a computational strategy to infer cellular localization by integrating single-cell RNA-seq data with in situ RNA patterns. We applied Seurat to spatially map 851 single cells from dissociated zebrafish (Danio rerio) embryos and generated a transcriptome-wide map of spatial patterning. We confirmed Seurat’s accuracy using several experimental approaches, then used the strategy to identify a set of archetypal expression patterns and spatial markers. Seurat correctly localizes rare subpopulations, accurately mapping both spatially restricted and scattered groups. Seurat will be applicable to mapping cellular localization within complex patterned tissues in diverse systems.;,citation_author=Rahul Satija;,citation_author=Jeffrey A. Farrell;,citation_author=David Gennert;,citation_author=Alexander F. Schier;,citation_author=Aviv Regev;,citation_publication_date=2015-05;,citation_cover_date=2015-05;,citation_year=2015;,citation_issue=5;,citation_doi=10.1038/nbt.3192;,citation_issn=1546-1696 1087-0156;,citation_pmid=25867923;,citation_volume=33;,citation_language=en-US;,citation_journal_title=Nature biotechnology;">
+<meta name="citation_reference" content="citation_title=CellTalkDB: A Manually Curated Database of Ligandreceptor Interactions in Humans and Mice;,citation_author=Xin Shao;,citation_author=Jie Liao;,citation_author=Chengyu Li;,citation_author=Xiaoyan Lu;,citation_author=Jiajing Cheng;,citation_author=Xiaohui Fan;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_doi=10.1093/bib/bbaa269;,citation_journal_title=Briefings in Bioinformatics;">
+<meta name="citation_reference" content="citation_title=Preprocessing choices affect RNA velocity results for droplet scRNA-seq data.;,citation_abstract=Experimental single-cell approaches are becoming widely used for many purposes, including investigation of the dynamic behaviour of developing biological systems. Consequently, a large number of computational methods for extracting dynamic information from such data have been developed. One example is RNA velocity analysis, in which spliced and unspliced RNA abundances are jointly modeled in order to infer a ’direction of change’ and thereby a future state for each cell in the gene expression space. Naturally, the accuracy and interpretability of the inferred RNA velocities depend crucially on the correctness of the estimated abundances. Here, we systematically compare five widely used quantification tools, in total yielding thirteen different quantification approaches, in terms of their estimates of spliced and unspliced RNA abundances in five experimental droplet scRNA-seq data sets. We show that there are substantial differences between the quantifications obtained from different tools, and identify typical genes for which such discrepancies are observed. We further show that these abundance differences propagate to the downstream analysis, and can have a large effect on estimated velocities as well as the biological interpretation. Our results highlight that abundance quantification is a crucial aspect of the RNA velocity analysis workflow, and that both the definition of the genomic features of interest and the quantification algorithm itself require careful consideration.;,citation_author=Charlotte Soneson;,citation_author=Avi Srivastava;,citation_author=Rob Patro;,citation_author=Michael B. Stadler;,citation_publication_date=2021-01;,citation_cover_date=2021-01;,citation_year=2021;,citation_issue=1;,citation_doi=10.1371/journal.pcbi.1008585;,citation_issn=1553-7358 1553-734X;,citation_pmid=33428615;,citation_volume=17;,citation_language=en-US;,citation_journal_title=PLoS computational biology;">
+<meta name="citation_reference" content="citation_title=Integrative single-cell analysis.;,citation_abstract=The recent maturation of single-cell RNA sequencing (scRNA-seq) technologies has coincided with transformative new methods to profile genetic, epigenetic, spatial, proteomic and lineage information in individual cells. This provides unique opportunities, alongside computational challenges, for integrative methods that can jointly learn across multiple types of data. Integrated analysis can discover relationships across cellular modalities, learn a holistic representation of the cell state, and enable the pooling of data sets produced across individuals and technologies. In this Review, we discuss the recent advances in the collection and integration of different data types at single-cell resolution with a focus on the integration of gene expression data with other types of single-cell measurement.;,citation_author=Tim Stuart;,citation_author=Rahul Satija;,citation_publication_date=2019-05;,citation_cover_date=2019-05;,citation_year=2019;,citation_issue=5;,citation_doi=10.1038/s41576-019-0093-7;,citation_issn=1471-0064 1471-0056;,citation_pmid=30696980;,citation_volume=20;,citation_language=en-US;,citation_journal_title=Nature reviews. Genetics;">
+<meta name="citation_reference" content="citation_title=From Louvain to Leiden: Guaranteeing well-connected communities;,citation_author=V. A. Traag;,citation_author=L. Waltman;,citation_author=N. J. Eck;,citation_publication_date=2019-12;,citation_cover_date=2019-12;,citation_year=2019;,citation_issue=1;,citation_doi=10.1038/s41598-019-41695-z;,citation_issn=2045-2322;,citation_pmid=30914743;,citation_volume=9;,citation_language=en-US;,citation_journal_title=Scientific Reports;">
+<meta name="citation_reference" content="citation_title=Astrocytic lipid metabolism determines susceptibility to diet-induced obesity;,citation_abstract=Hypothalamic astrocytes play pivotal roles in both nutrient sensing and the modulation of synaptic plasticity of hypothalamic neuronal circuits in control of feeding and systemic glucose and energy metabolism. Here, we show the relevance of astrocytic fatty acid (FA) homeostasis under the opposing control of angiopoietin-like 4 (ANGPTL-4) and peroxisome proliferatoractivated receptor gamma (PPAR$\gamma$) in the cellular adaptations of hypothalamic astrocytes and neurons to the changing metabolic milieu. We observed that increased availability of FA in astrocytes induced by cell- and time-selective knockdown of Angptl4 protected against diet-induced obesity, while cell- and time-selective knockdown of Angptl4-regulated Ppar$\gamma$ lead to elevated susceptibility to obesity. Overall, our results unravel a previously unidentified role for astrocytic FA metabolism in central control of body weight and glucose homeostasis.;,citation_author=Luis Varela;,citation_author=Jae Geun Kim;,citation_author=Pablo Fernández-Tussy;,citation_author=Binod Aryal;,citation_author=Zhong Wu Liu;,citation_author=Carlos Fernández-Hernando;,citation_author=Tamas L. Horvath;,citation_publication_date=2021-12;,citation_cover_date=2021-12;,citation_year=2021;,citation_issue=50;,citation_doi=10.1126/sciadv.abj2814;,citation_issn=2375-2548;,citation_pmid=34890239;,citation_volume=7;,citation_language=en-US;,citation_journal_title=Science Advances;">
+<meta name="citation_reference" content="citation_title=Endothelial HIF-1$\alpha$ Enables Hypothalamic Glucose Uptake to Drive POMC Neurons.;,citation_abstract=Glucose is the primary driver of hypothalamic proopiomelanocortin (POMC) neurons. We show that endothelial hypoxia-inducible factor 1$\alpha$ (HIF-1$\alpha$) controls glucose uptake in the hypothalamus and that it is upregulated in conditions of undernourishment, during which POMC neuronal activity is decreased. Endothelium-specific knockdown of HIF-1$\alpha$ impairs the ability of POMC neurons to adapt to the changing metabolic environment in vivo, resulting in overeating after food deprivation in mice. The impaired functioning of POMC neurons was reversed ex vivo or by parenchymal glucose administration. These observations indicate an active role for endothelial cells in the central control of metabolism and suggest that central vascular impairments may cause metabolic disorders.;,citation_author=Luis Varela;,citation_author=Shigetomo Suyama;,citation_author=Yan Huang;,citation_author=Marya Shanabrough;,citation_author=Matthias H. Tschöp;,citation_author=Xiao-Bing Gao;,citation_author=Frank J. Giordano;,citation_author=Tamas L. Horvath;,citation_publication_date=2017-06;,citation_cover_date=2017-06;,citation_year=2017;,citation_issue=6;,citation_doi=10.2337/db16-1106;,citation_issn=1939-327X 0012-1797;,citation_pmid=28292966;,citation_volume=66;,citation_language=en-US;,citation_journal_title=Diabetes;">
+<meta name="citation_reference" content="citation_title=Hunger-promoting AgRP neurons trigger an astrocyte-mediated feed-forward autoactivation loop in mice.;,citation_abstract=Hypothalamic feeding circuits have been identified as having innate synaptic plasticity, mediating adaption to the changing metabolic milieu by controlling responses to feeding and obesity. However, less is known about the regulatory principles underlying the dynamic changes in agouti-related protein (AgRP) perikarya, a region crucial for gating of neural excitation and, hence, feeding. Here we show that AgRP neurons activated by food deprivation, ghrelin administration, or chemogenetics decreased their own inhibitory tone while triggering mitochondrial adaptations in neighboring astrocytes. We found that it was the inhibitory neurotransmitter GABA released by AgRP neurons that evoked this astrocytic response; this in turn resulted in increased glial ensheetment of AgRP perikarya by glial processes and increased excitability of AgRP neurons. We also identified astrocyte-derived prostaglandin E2, which directly activated - via EP2 receptors - AgRP neurons. Taken together, these observations unmasked a feed-forward, self-exciting loop in AgRP neuronal control mediated by astrocytes, a mechanism directly relevant for hunger, feeding, and overfeeding.;,citation_author=Luis Varela;,citation_author=Bernardo Stutz;,citation_author=Jae Eun Song;,citation_author=Jae Geun Kim;,citation_author=Zhong-Wu Liu;,citation_author=Xiao-Bing Gao;,citation_author=Tamas L. Horvath;,citation_publication_date=2021-05;,citation_cover_date=2021-05;,citation_year=2021;,citation_issue=10;,citation_doi=10.1172/jci144239;,citation_issn=1558-8238 0021-9738;,citation_pmid=33848272;,citation_volume=131;,citation_language=en-US;,citation_journal_title=The Journal of clinical investigation;">
+<meta name="citation_reference" content="citation_title=Understanding How Dimension Reduction Tools Work: An Empirical Approach to Deciphering t-SNE, UMAP, TriMap, and PaCMAP for Data Visualization;,citation_abstract=Dimension reduction (DR) techniques such as t-SNE, UMAP, and TriMap have demonstrated impressive visualization performance on many real-world datasets. One tension that has always faced these methods is the trade-off between preservation of global structure and preservation of local structure: these methods can either handle one or the other, but not both. In this work, our main goal is to understand what aspects of DR methods are important for preserving both local and global structure: it is difficult to design a better method without a true understanding of the choices we make in our algorithms and their empirical impact on the low-dimensional embeddings they produce. Towards the goal of local structure preservation, we provide several useful design principles for DR loss functions based on our new understanding of the mechanisms behind successful DR methods. Towards the goal of global structure preservation, our analysis illuminates that the choice of which components to preserve is important. We leverage these insights to design a new algorithm for DR, called Pairwise Controlled Manifold Approximation Projection (PaCMAP), which preserves both local and global structure. Our work provides several unexpected insights into what design choices both to make and avoid when constructing DR algorithms.;,citation_author=Yingfan Wang;,citation_author=Haiyang Huang;,citation_author=Cynthia Rudin;,citation_author=Yaron Shaposhnik;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_issue=201;,citation_issn=1533-7928;,citation_volume=22;,citation_journal_title=Journal of Machine Learning Research;">
+<meta name="citation_reference" content="citation_title=Spatiotemporal single-cell analysis of gene expression in the mouse suprachiasmatic nucleus;,citation_abstract=Mammalian circadian behaviors are orchestrated by the suprachiasmatic nucleus (SCN) in the ventral hypothalamus, but the number of SCN cell types and their functional roles remain unclear. We have used single-cell RNA-sequencing to identify the basic cell types in the mouse SCN and to characterize their circadian and light-induced gene expression patterns. We identified eight major cell types, with each type displaying a specific pattern of circadian gene expression. Five SCN neuronal subtypes, each with specific combinations of markers, differ in their spatial distribution, circadian rhythmicity and light responsiveness. Through a complete three-dimensional reconstruction of the mouse SCN at single-cell resolution, we obtained a standardized SCN atlas containing the spatial distribution of these subtypes and gene expression. Furthermore, we observed heterogeneous circadian gene expression between SCN neuron subtypes. Such a spatiotemporal pattern of gene regulation within the SCN may have an important function in the circadian pacemaker.;,citation_author=Shao’ang Wen;,citation_author=Danyi Ma;,citation_author=Meng Zhao;,citation_author=Lucheng Xie;,citation_author=Qingqin Wu;,citation_author=Lingfeng Gou;,citation_author=Chuanzhen Zhu;,citation_author=Yuqi Fan;,citation_author=Haifang Wang;,citation_author=Jun Yan;,citation_publication_date=2020-03;,citation_cover_date=2020-03;,citation_year=2020;,citation_issue=3;,citation_doi=10.1038/s41593-020-0586-x;,citation_issn=1546-1726;,citation_pmid=32066983;,citation_volume=23;,citation_language=en-US;,citation_journal_title=Nature Neuroscience;">
+<meta name="citation_reference" content="citation_title=Welcome to the Tidyverse;,citation_author=Hadley Wickham;,citation_author=Mara Averick;,citation_author=Jenny Bryan;,citation_author=Winston Chang;,citation_author=Lucy D’Agostino McGowan;,citation_author=Romain François;,citation_author=Garrett Grolemund;,citation_author=Alex Hayes;,citation_author=L. Banziiaf Henry;,citation_author=James Hester;,citation_author=Max Kühn;,citation_author=Thomas Lin Pedersen;,citation_author=Evan Miller;,citation_author=Stephan Milton Bache;,citation_author=Kirill Müller;,citation_author=Jeroen Ooms;,citation_author=David M. Robinson;,citation_author=Dana Paige Seidel;,citation_author=Vitalie Spinu;,citation_author=Kohske Takahashi;,citation_author=Davis Vaughan;,citation_author=Claus O. Wilke;,citation_author=Kara Woo;,citation_author=Hiroaki Yutani;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_doi=10.21105/joss.01686;,citation_journal_title=The Journal of Open Source Software;">
+<meta name="citation_reference" content="citation_title=PAGA: Graph abstraction reconciles clustering with trajectory inference through a topology preserving map of single cells.;,citation_abstract=Single-cell RNA-seq quantifies biological heterogeneity across both discrete cell types and continuous cell transitions. Partition-based graph abstraction (PAGA) provides an interpretable graph-like map of the arising data manifold, based on estimating connectivity of manifold partitions ( https://github.com/theislab/paga ). PAGA maps preserve the global topology of data, allow analyzing data at different resolutions, and result in much higher computational efficiency of the typical exploratory data analysis workflow. We demonstrate the method by inferring structure-rich cell maps with consistent topology across four hematopoietic datasets, adult planaria and the zebrafish embryo and benchmark computational performance on one million neurons.;,citation_author=F. Alexander Wolf;,citation_author=Fiona K. Hamey;,citation_author=Mireya Plass;,citation_author=Jordi Solana;,citation_author=Joakim S. Dahlin;,citation_author=Berthold Göttgens;,citation_author=Nikolaus Rajewsky;,citation_author=Lukas Simon;,citation_author=Fabian J. Theis;,citation_publication_date=2019-03;,citation_cover_date=2019-03;,citation_year=2019;,citation_issue=1;,citation_doi=10.1186/s13059-019-1663-x;,citation_issn=1474-760X 1474-7596;,citation_pmid=30890159;,citation_volume=20;,citation_language=en-US;,citation_journal_title=Genome biology;">
+<meta name="citation_reference" content="citation_title=Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data.;,citation_abstract=Single-cell RNA-sequencing has become a widely used, powerful approach for studying cell populations. However, these methods often generate multiplet artifacts, where two or more cells receive the same barcode, resulting in a hybrid transcriptome. In most experiments, multiplets account for several percent of transcriptomes and can confound downstream data analysis. Here, we present Single-Cell Remover of Doublets (Scrublet), a framework for predicting the impact of multiplets in a given analysis and identifying problematic multiplets. Scrublet avoids the need for expert knowledge or cell clustering by simulating multiplets from the data and building a nearest neighbor classifier. To demonstrate the utility of this approach, we test Scrublet on several datasets that include independent knowledge of cell multiplets. Scrublet is freely available for download at github.com/AllonKleinLab/scrublet.;,citation_author=Samuel L. Wolock;,citation_author=Romain Lopez;,citation_author=Allon M. Klein;,citation_publication_date=2019-04;,citation_cover_date=2019-04;,citation_year=2019;,citation_issue=4;,citation_doi=10.1016/j.cels.2018.11.005;,citation_issn=2405-4720 2405-4712;,citation_pmid=30954476;,citation_volume=8;,citation_language=en-US;,citation_journal_title=Cell systems;">
+<meta name="citation_reference" content="citation_title=Knitr: A Comprehensive Tool for Reproducible Research in R;,citation_author=Yihui Xie;,citation_editor=Victoria Stodden;,citation_editor=Friedrich Leisch;,citation_editor=Roger D. Peng;,citation_publication_date=2018-12;,citation_cover_date=2018-12;,citation_year=2018;,citation_doi=10.1201/9781315373461-1;,citation_isbn=978-1-315-37346-1;,citation_language=en-US;,citation_inbook_title=Implementing Reproducible Research;">
+<meta name="citation_reference" content="citation_title=R Markdown: The Definitive Guide;,citation_author=Yihui Xie;,citation_author=J. J. Allaire;,citation_author=Garrett Grolemund;,citation_publication_date=2018-07;,citation_cover_date=2018-07;,citation_year=2018;,citation_doi=10.1201/9781138359444;,citation_isbn=978-1-138-35944-4;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=Clustering trees: A visualization for evaluating clusterings at multiple resolutions;,citation_abstract=Clustering techniques are widely used in the analysis of large datasets to group together samples with similar properties. For example, clustering is often used in the field of single-cell RNA-sequencing in order to identify different cell types present in a tissue sample. There are many algorithms for performing clustering, and the results can vary substantially. In particular, the number of groups present in a dataset is often unknown, and the number of clusters identified by an algorithm can change based on the parameters used. To explore and examine the impact of varying clustering resolution, we present clustering trees. This visualization shows the relationships between clusters at multiple resolutions, allowing researchers to see how samples move as the number of clusters increases. In addition, meta-information can be overlaid on the tree to inform the choice of resolution and guide in identification of clusters. We illustrate the features of clustering trees using a series of simulations as well as two real examples, the classical iris dataset and a complex single-cell RNA-sequencing dataset. Clustering trees can be produced using the clustree R package, available from CRAN and developed on GitHub.;,citation_author=Luke Zappia;,citation_author=Alicia Oshlack;,citation_publication_date=2018-07;,citation_cover_date=2018-07;,citation_year=2018;,citation_issue=7;,citation_doi=10.1093/gigascience/giy083;,citation_issn=2047-217X;,citation_volume=7;,citation_journal_title=GigaScience;">
+<meta name="citation_reference" content="citation_title=Molecular Architecture of the Mouse Nervous System.;,citation_abstract=The mammalian nervous system executes complex behaviors controlled by specialized, precisely positioned, and interacting cell types. Here, we used RNA sequencing of half a million single cells to create a detailed census of cell types in the mouse nervous system. We mapped cell types spatially and derived a hierarchical, data-driven taxonomy. Neurons were the most diverse and were grouped by developmental anatomical units and by the expression of neurotransmitters and neuropeptides. Neuronal diversity was driven by genes encoding cell identity, synaptic connectivity, neurotransmission, and membrane conductance. We discovered seven distinct, regionally restricted astrocyte types that obeyed developmental boundaries and correlated with the spatial distribution of key glutamate and glycine neurotransmitters. In contrast, oligodendrocytes showed a loss of regional identity followed by a secondary diversification. The resource presented here lays a solid foundation for understanding the molecular architecture of the mammalian nervous system and enables genetic manipulation of specific cell types.;,citation_author=Amit Zeisel;,citation_author=Hannah Hochgerner;,citation_author=Peter Lönnerberg;,citation_author=Anna Johnsson;,citation_author=Fatima Memic;,citation_author=Job Zwan;,citation_author=Martin Häring;,citation_author=Emelie Braun;,citation_author=Lars E. Borm;,citation_author=Gioele La Manno;,citation_author=Simone Codeluppi;,citation_author=Alessandro Furlan;,citation_author=Kawai Lee;,citation_author=Nathan Skene;,citation_author=Kenneth D. Harris;,citation_author=Jens Hjerling-Leffler;,citation_author=Ernest Arenas;,citation_author=Patrik Ernfors;,citation_author=Ulrika Marklund;,citation_author=Sten Linnarsson;,citation_publication_date=2018-08;,citation_cover_date=2018-08;,citation_year=2018;,citation_issue=4;,citation_doi=10.1016/j.cell.2018.06.021;,citation_issn=1097-4172 0092-8674;,citation_pmid=30096314;,citation_volume=174;,citation_language=en-US;,citation_journal_title=Cell;">
+<meta name="citation_reference" content="citation_title=Massively parallel digital transcriptional profiling of single cells.;,citation_abstract=Characterizing the transcriptome of individual cells is fundamental to understanding complex biological systems. We describe a droplet-based system that enables 3’ mRNA counting of tens of thousands of single cells per sample. Cell encapsulation, of up to 8 samples at a time, takes place in $\sim$6 min, with $\sim$50% cell capture efficiency. To demonstrate the system’s technical performance, we collected transcriptome data from $\sim$250k single cells across 29 samples. We validated the sensitivity of the system and its ability to detect rare populations using cell lines and synthetic RNAs. We profiled 68k peripheral blood mononuclear cells to demonstrate the system’s ability to characterize large immune populations. Finally, we used sequence variation in the transcriptome data to determine host and donor chimerism at single-cell resolution from bone marrow mononuclear cells isolated from transplant patients.;,citation_author=Grace X. Y. Zheng;,citation_author=Jessica M. Terry;,citation_author=Phillip Belgrader;,citation_author=Paul Ryvkin;,citation_author=Zachary W. Bent;,citation_author=Ryan Wilson;,citation_author=Solongo B. Ziraldo;,citation_author=Tobias D. Wheeler;,citation_author=Geoff P. McDermott;,citation_author=Junjie Zhu;,citation_author=Mark T. Gregory;,citation_author=Joe Shuga;,citation_author=Luz Montesclaros;,citation_author=Jason G. Underwood;,citation_author=Donald A. Masquelier;,citation_author=Stefanie Y. Nishimura;,citation_author=Michael Schnall-Levin;,citation_author=Paul W. Wyatt;,citation_author=Christopher M. Hindson;,citation_author=Rajiv Bharadwaj;,citation_author=Alexander Wong;,citation_author=Kevin D. Ness;,citation_author=Lan W. Beppu;,citation_author=H. Joachim Deeg;,citation_author=Christopher McFarland;,citation_author=Keith R. Loeb;,citation_author=William J. Valente;,citation_author=Nolan G. Ericson;,citation_author=Emily A. Stevens;,citation_author=Jerald P. Radich;,citation_author=Tarjei S. Mikkelsen;,citation_author=Benjamin J. Hindson;,citation_author=Jason H. Bielas;,citation_publication_date=2017-01;,citation_cover_date=2017-01;,citation_year=2017;,citation_doi=10.1038/ncomms14049;,citation_issn=2041-1723;,citation_pmid=28091601;,citation_volume=8;,citation_language=en-US;,citation_journal_title=Nature communications;">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">MicrogliaTRAP</h1>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+            <div class="quarto-title-meta-author">
+          <div class="quarto-title-meta-heading">Author</div>
+          <div class="quarto-title-meta-heading">Affiliation</div>
+          
+                <div class="quarto-title-meta-contents">
+            <p class="author">Evgenii O. Tretiakov, PhD <a href="mailto:evgenii.tretiakov@meduniwien.ac.at" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-5920-2190" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Department of Molecular Neurosciences, Center for Brain Research, Medical University of Vienna, Vienna A-1090, Austria
+                      </p>
+                  </div>
+                    </div>
+        
+        <div class="quarto-title-meta">
+
+                      
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></p></div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></p></div><div class="quarto-title-meta-contents"><p><a href="index-meca.zip" data-meca-link="true"><i class="bi bi-archive"></i>MECA Bundle</a></p></div></div></div>
+    </div>
+
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#trem2-expression-analysis-across-hypothalamic-regions" id="toc-trem2-expression-analysis-across-hypothalamic-regions" class="nav-link active" data-scroll-target="#trem2-expression-analysis-across-hypothalamic-regions">TREM2 Expression Analysis Across Hypothalamic Regions</a>
+  <ul class="collapse">
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical Analysis</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="notebooks/eda-preview.html"><i class="bi bi-journal-code"></i>Comprehensive analysis of hypothalamic microglia across multiple regions and analysis of Trem2</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+  
+
+
+<section id="trem2-expression-analysis-across-hypothalamic-regions" class="level2">
+<h2 class="anchored" data-anchor-id="trem2-expression-analysis-across-hypothalamic-regions">TREM2 Expression Analysis Across Hypothalamic Regions</h2>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>TREM2 expression was analyzed across different hypothalamic regions using single-nucleus RNA sequencing data. Following quality control and normalization, we performed integrated analysis of multiple datasets (<a href="#fig-integrated-analysis" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-integrated-analysis" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: saving figure to file figures/umap_integrated_datasets.pdfWARNING: saving figure to file figures/umap_integrated_clusters.pdfWARNING: saving figure to file figures/umap_integrated_regions.pdf</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-integrated-analysis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integrated-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia."><img src="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-2.png" width="1164" height="431" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrated-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Initial clustering revealed distinct microglial populations across hypothalamic regions, which were further refined through batch correction and integration of multiple datasets.</p>
+</section>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results">Results</h3>
+<section id="regional-expression-patterns" class="level4">
+<h4 class="anchored" data-anchor-id="regional-expression-patterns">Regional Expression Patterns</h4>
+<p>Analysis of TREM2 expression revealed significant heterogeneity across hypothalamic regions (F = 302.35, p = 2.58e-4). <a href="#fig-trem2-region" class="quarto-xref">Figure&nbsp;2</a> shows the distribution of TREM2 expression across different regions.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-region" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-region" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-region-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: TREM2 expression levels across different hypothalamic regions. Box plots show the median, quartiles, and distribution of TREM2 expression in each anatomically distinct region. Whiskers extend to 1.5 times the interquartile range."><img src="index_files/figure-html/notebooks-eda-fig-trem2-region-output-1.png" width="949" height="565" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: TREM2 expression levels across different hypothalamic regions. Box plots show the median, quartiles, and distribution of TREM2 expression in each anatomically distinct region. Whiskers extend to 1.5 times the interquartile range.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The highest TREM2 expression was observed in the SCN (mean = 0.436 ± 0.689), followed by the PVN (0.296 ± 0.799). In contrast, the MBH showed the lowest expression (-1.376 ± 0.604), followed by the MnPO (-1.241 ± 0.057).</p>
+</section>
+<section id="cluster-specific-expression" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-specific-expression">Cluster-Specific Expression</h4>
+<p>TREM2 expression varied significantly across microglial clusters (<a href="#fig-trem2-clusters" class="quarto-xref">Figure&nbsp;3</a>), suggesting functional heterogeneity within the microglial population.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-clusters" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-clusters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-clusters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-clusters-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Distribution of TREM2 expression across identified microglial clusters. Violin plots demonstrate the full distribution of expression levels within each cluster, with embedded box plots showing median and quartile values."><img src="index_files/figure-html/notebooks-eda-fig-trem2-clusters-output-1.png" width="949" height="565" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-clusters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Distribution of TREM2 expression across identified microglial clusters. Violin plots demonstrate the full distribution of expression levels within each cluster, with embedded box plots showing median and quartile values.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="spatial-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="spatial-distribution">Spatial Distribution</h4>
+<p>UMAP visualization of TREM2 expression (<a href="#fig-trem2-umap" class="quarto-xref">Figure&nbsp;4</a>) revealed distinct spatial patterns, indicating regional specialization of TREM2-expressing microglia.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-umap" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-umap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space."><img src="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" width="555" height="427" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gene-co-expression-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="gene-co-expression-analysis">Gene Co-expression Analysis</h4>
+<p>To understand the regulatory network associated with TREM2, we analyzed its correlation with other microglial markers (<a href="#fig-trem2-correlations" class="quarto-xref">Figure&nbsp;5</a>).</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-correlations" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-correlations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-correlations-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: Correlation analysis between TREM2 and other microglial marker genes. Bar plot shows Pearson correlation coefficients, ordered by strength of correlation. Positive values indicate positive correlation, while negative values indicate inverse relationships."><img src="index_files/figure-html/notebooks-eda-fig-trem2-correlations-output-1.png" width="949" height="756" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-correlations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Correlation analysis between TREM2 and other microglial marker genes. Bar plot shows Pearson correlation coefficients, ordered by strength of correlation. Positive values indicate positive correlation, while negative values indicate inverse relationships.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="regional-and-cluster-specific-patterns" class="level4">
+<h4 class="anchored" data-anchor-id="regional-and-cluster-specific-patterns">Regional and Cluster-Specific Patterns</h4>
+<p>The heatmap analysis (<a href="#fig-trem2-cluster-enrichment-heatmap" class="quarto-xref">Figure&nbsp;6</a>) revealed distinct patterns of TREM2 expression across both regions and clusters.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-cluster-enrichment-heatmap" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-cluster-enrichment-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-cluster-enrichment-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-cluster-enrichment-heatmap-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: Regional and cluster-specific TREM2 expression patterns. Heatmap shows mean TREM2 expression levels across different microglial clusters (rows) and hypothalamic regions (columns). Color intensity represents expression level, with darker colors indicating higher expression."><img src="index_files/figure-html/notebooks-eda-fig-trem2-cluster-enrichment-heatmap-output-2.png" width="1072" height="756" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-cluster-enrichment-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Regional and cluster-specific TREM2 expression patterns. Heatmap shows mean TREM2 expression levels across different microglial clusters (rows) and hypothalamic regions (columns). Color intensity represents expression level, with darker colors indicating higher expression.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="molecular-interactions" class="level4">
+<h4 class="anchored" data-anchor-id="molecular-interactions">Molecular Interactions</h4>
+<p>The co-expression network analysis (<a href="#fig-trem2-coexpression-network" class="quarto-xref">Figure&nbsp;7</a>) identified key molecular interactions of TREM2 with other genes.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-coexpression-network" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-coexpression-network" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-coexpression-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown."><img src="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-2.png" width="1158" height="1159" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-coexpression-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Network Statistics:
+Number of co-expressed genes: 23
+Number of connections: 23
+
+Network Metrics:
+Network density: 0.083
+Average clustering coefficient: 0.000</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-analysis">Statistical Analysis</h3>
+<p>Statistical comparison across regions (<a href="#fig-trem2-regional-stats" class="quarto-xref">Figure&nbsp;8</a>) revealed three distinct TREM2 expression domains:</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-trem2-regional-stats" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display">
+<div id="fig-trem2-regional-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trem2-regional-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen’s d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions."><img src="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" width="1141" height="755" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-regional-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen’s d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>High expression domain: SCN, PVN, VMHvl (means &gt; 0.1)</li>
+<li>Intermediate expression domain: POA, VPH, Arc (means between -0.3 and 0.1)</li>
+<li>Low expression domain: MBH, MnPO, VMH (means &lt; -0.9)</li>
+</ol>
+<p>The most significant differences were observed between: - MBH and SCN (Cohen’s d = -2.67, p-adj &lt; 1e-300) - SCN and VMH (Cohen’s d = 1.94, p-adj &lt; 1e-300) - MBH and PVN (Cohen’s d = -2.31, p-adj = 7.73e-158)</p>
+</section>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
+<p>The observed regional heterogeneity in TREM2 expression suggests region-specific roles for microglial TREM2 signaling. The high expression in SCN and PVN, regions crucial for circadian rhythm and neuroendocrine function, indicates potential involvement of TREM2 in these processes. The co-expression analysis reveals potential molecular mechanisms through which TREM2 might influence microglial function in different hypothalamic regions.</p>
+<p>These findings provide a comprehensive map of TREM2 expression across hypothalamic regions and suggest potential region-specific functions of TREM2-expressing microglia in the hypothalamus.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

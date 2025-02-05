@@ -1,0 +1,29 @@
+project:
+  type: manuscript
+
+manuscript:
+  article: index.qmd
+  notebooks:
+    - notebook: notebooks/eda.qmd
+      title: Comprehensive analysis of hypothalamic microglia across multiple regions and analysis of Trem2
+
+format:
+  html:
+    code-fold: true
+    comments:
+      hypothesis: true
+    citations-hover: true
+    crossrefs-hover: true
+    title-block-style: manuscript
+  docx: default
+  jats: default
+  pdf:
+    keep-tex: true
+    fig-dpi: 300
+    colorlinks: true
+
+execute:
+  freeze: auto
+
+
+
