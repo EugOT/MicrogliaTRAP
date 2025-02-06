@@ -169,15 +169,11 @@ using single-nucleus RNA sequencing data. Following quality control and
 normalization, we performed integrated analysis of multiple datasets
 (Figure~\ref{fig-integrated-analysis}).
 
-\begin{verbatim}
-WARNING: saving figure to file figures/umap_integrated_datasets.pdfWARNING: saving figure to file figures/umap_integrated_clusters.pdfWARNING: saving figure to file figures/umap_integrated_regions.pdf
-\end{verbatim}
-
 \begin{figure}[H]
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-eda-fig-integrated-analysis-output-2.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-eda-fig-integrated-analysis-output-1.png}}
 
 }
 
@@ -194,8 +190,70 @@ hypothalamic region demonstrates regional heterogeneity of microglia.}
 analysis of hypothalamic microglia across multiple}}
 
 Initial clustering revealed distinct microglial populations across
-hypothalamic regions, which were further refined through batch
-correction and integration of multiple datasets.
+hypothalamic regions, further refined through batch correction and
+integration of 20 independent datasets.
+
+\textbf{Dataset Summary:}\\
+The combined dataset comprised \textbf{271,739 cells} drawn from
+\textbf{12 independent datasets} (for now; we have 20 in total). After
+exclusion of sex-specific genes (using the list provided below) and
+applying a super conservative filtering strategy, \textbf{3,108
+high-confidence microglia} were retained for downstream analysis.
+
+\textbf{Filtering Details and Gene Lists:}\\
+To ensure the highest specificity in microglia selection, we computed a
+composite positivity score for each cell. This score integrates:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Expression of Primary (Highly Specific) Markers:}\\
+  These genes must be robustly expressed:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Primary Markers:}\\
+    \texttt{P2ry12,\ Tmem119,\ Siglech,\ Fcrls,\ Gpr34,\ Hexb}
+  \end{itemize}
+\item
+  \textbf{Expression of Secondary (Supportive) Markers:}\\
+  These genes serve as supplemental evidence of microglial identity:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Secondary Markers:}\\
+    \texttt{Trem2,\ Aif1,\ Sall1}
+  \end{itemize}
+\item
+  \textbf{Absence of Negative (Exclusion) Markers:}\\
+  Any detectable expression of these genes indicates contamination from
+  other cell types, so such cells are excluded:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Negative Markers:}\\
+    \texttt{Snap25,\ Rbfox3,\ Dlx5,\ Elavl4,\ Stmn2,\ Th,\ Slc17a6,\ Gad1,\ Gad2,\ Npy,\ Agrp,\ Crh,\ Trh,\ Avp,\ Pomc,\ Hcrt,\ Oxt,\ Vim,\ Nes,\ Enkur,\ Foxj1,\ Kif6,\ Kif9,\ Hydin,\ Mog,\ Mbp,\ Plp1,\ Cnp,\ Mag,\ Opalin,\ Sox10,\ Olig1,\ Olig2,\ Pdgfra,\ Pdgfrb,\ Gpr17,\ Ugt8a,\ Sema3c,\ Sema4d,\ Sema4f,\ Gpr37,\ Cspg4,\ Lingo1,\ Rgs5,\ Des,\ Acta2,\ Pecam1,\ Cldn5,\ Cd248,\ Myh11,\ Cdh5,\ Fgf10,\ Rax,\ Gfap,\ Aldh1l1,\ Aqp4,\ Agt,\ Gja1,\ Hepacam,\ Htra1,\ Ndrg2,\ Ntsr2,\ Ntrk2,\ Slc1a3,\ Slc6a11,\ Slc1a2,\ Apoe,\ Adcyap1r1}
+  \end{itemize}
+\item
+  \textbf{Exclusion of Sex-Specific Genes:}\\
+  These genes are filtered out to remove sex-related differences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Sex-Specific Genes:}\\
+    \texttt{Ehd2,\ Espl1,\ Jarid1d,\ Pnpla4,\ Rps4y1,\ Xist,\ Tsix,\ Eif2s3y,\ Ddx3y,\ Uty,\ Kdm5d}
+  \end{itemize}
+\end{itemize}
+
+In this super conservative filtering, only cells with a composite score
+exceeding a defined threshold---and exhibiting no detectable expression
+of any negative markers---were selected as microglia. This approach may
+be further adapted (i.e.~by relaxing or tightening thresholds) depending
+on future experimental needs.
 
 \subsubsection{Results}\label{results}
 
@@ -274,7 +332,7 @@ of TREM2-expressing microglia.
 \caption{\label{fig-trem2-umap}UMAP visualization of TREM2 expression
 across all microglia. Color intensity represents TREM2 expression level,
 showing the spatial distribution of TREM2-expressing cells in the
-reduced dimensional space.}
+UMAP-reduced 2-dimensional space.}
 
 \end{figure}%
 
@@ -346,7 +404,7 @@ interactions of TREM2 with other genes.
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-eda-fig-trem2-coexpression-network-output-2.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-latex/notebooks-eda-fig-trem2-coexpression-network-output-1.png}}
 
 }
 
@@ -360,11 +418,11 @@ coefficient between gene pairs. Only correlations above 0.3 are shown.}
 \begin{verbatim}
 
 Network Statistics:
-Number of co-expressed genes: 23
-Number of connections: 23
+Number of co-expressed genes: 10
+Number of connections: 10
 
 Network Metrics:
-Network density: 0.083
+Network density: 0.182
 Average clustering coefficient: 0.000
 \end{verbatim}
 
@@ -403,28 +461,35 @@ analysis of hypothalamic microglia across multiple}}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  High expression domain: SCN, PVN, VMHvl (means \textgreater{} 0.1)
+  \textbf{High expression domain:} SCN, PVN, VMHvl (means \textgreater{}
+  0.1)\\
 \item
-  Intermediate expression domain: POA, VPH, Arc (means between -0.3 and
-  0.1)
+  \textbf{Intermediate expression domain:} POA, VPH, Arc (means between
+  -0.3 and 0.1)\\
 \item
-  Low expression domain: MBH, MnPO, VMH (means \textless{} -0.9)
+  \textbf{Low expression domain:} MBH, MnPO, VMH (means \textless{}
+  -0.9)
 \end{enumerate}
 
-The most significant differences were observed between: - MBH and SCN
-(Cohen's d = -2.67, p-adj \textless{} 1e-300) - SCN and VMH (Cohen's d =
-1.94, p-adj \textless{} 1e-300) - MBH and PVN (Cohen's d = -2.31, p-adj
-= 7.73e-158)
+The most significant differences were observed between:\\
+- \textbf{MBH and SCN:} Cohen's d = -2.67, p-adj \textless{} 1e-300\\
+- \textbf{SCN and VMH:} Cohen's d = 1.94, p-adj \textless{} 1e-300\\
+- \textbf{MBH and PVN:} Cohen's d = -2.31, p-adj = 7.73e-158
 
 \subsubsection{Interpretation}\label{interpretation}
 
 The observed regional heterogeneity in TREM2 expression suggests
 region-specific roles for microglial TREM2 signaling. The high
-expression in SCN and PVN, regions crucial for circadian rhythm and
-neuroendocrine function, indicates potential involvement of TREM2 in
-these processes. The co-expression analysis reveals potential molecular
-mechanisms through which TREM2 might influence microglial function in
-different hypothalamic regions.
+expression in the SCN and PVN---regions crucial for circadian rhythm and
+neuroendocrine function---indicates potential involvement of TREM2 in
+these processes. In contrast, the notably low expression in the MBH and
+VMH (except ventro-lateral part) implies different functional states in
+these subregions. Moreover, our super conservative filtering approach
+(reducing 271,739 cells to 3,108 high-confidence microglia) and the
+comprehensive use of well-defined gene lists ensure that only the most
+robustly determined microglia are analyzed. The co-expression analysis
+further implies potential molecular mechanisms by which TREM2 may
+influence microglial function in distinct hypothalamic regions.
 
 These findings provide a comprehensive map of TREM2 expression across
 hypothalamic regions and suggest potential region-specific functions of

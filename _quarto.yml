@@ -23,6 +23,7 @@ format:
     colorlinks: true
 
 execute:
+  cache: true
   freeze: auto
 
 

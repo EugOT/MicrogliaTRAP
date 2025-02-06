@@ -1,7 +1,22 @@
 ---
 title: "Comprehensive analysis of hypothalamic microglia across multiple datasets"
 author: "Evgenii O. Tretiakov"
-date: "`r Sys.Date()`"
+date: "2025-02-06"
+format:
+  html:
+    code-fold: true
+    comments:
+      hypothesis: true
+    citations-hover: true
+    crossrefs-hover: true
+    title-block-style: manuscript
+    self-contained: true
+  docx: default
+  jats: default
+  pdf:
+    keep-tex: true
+    fig-dpi: 300
+    colorlinks: true
 jupyter: python3
 ---
 
@@ -33,10 +48,10 @@ import statsmodels.stats.multitest as mt
 #| label: load-data
 # Microglia markers based on literature
 microglia_markers = [
-    "Aif1", "Itgam", "Cx3cr1", "P2ry12", "Tmem119",
-    "Hexb", "Csf1r", "Trem2", "C1qa", "C1qb", "C1qc",
+    "Trem2", "Aif1", "Itgam", "Cx3cr1", "P2ry12",
+    "Tmem119", "Hexb", "Csf1r", "C1qa", "C1qb", "C1qc",
     "Cd68", "Ptprc", "Fcrls", "Cd14", "Tgfbr1", "Sall1",
-    "Olfml3", "Siglech", "Gpr34", "Mafb", "Cd33", "Trem2"
+    "Olfml3", "Siglech", "Gpr34", "Mafb", "Cd33"
 ]
 
 # Create dataset mapping
@@ -95,34 +110,141 @@ adata_combined = datasets[0].concatenate(
 print(f"Combined dataset shape: {adata_combined.shape}")
 ```
 
+```{python}
+#| label: exclude-sex-genes
+# Exclude sex-specific genes from the combined dataset
+
+sex_specific_genes = [
+    "Ehd2", "Espl1", "Jarid1d", "Pnpla4",
+    "Rps4y1", "Xist", "Tsix", "Eif2s3y",
+    "Ddx3y", "Uty", "Kdm5d"
+]
+
+# Identify which sex-specific genes are present in the dataset
+present_sex_genes = [gene for gene in sex_specific_genes if gene in adata_combined.var_names]
+
+if present_sex_genes:
+    print(f"Excluding sex-specific genes: {present_sex_genes}")
+    # Remove these genes from the dataset
+    adata_combined = adata_combined[:, ~adata_combined.var_names.isin(present_sex_genes)]
+else:
+    print("No sex-specific genes found to exclude.")
+
+print(f"Updated dataset shape after exclusion: {adata_combined.shape}")
+```
+
 
 ```{python}
 #| label: filter-microglia
-def identify_microglia(adata):
-    """Identify microglia based on marker expression and annotation"""
-    # Filter markers present in the dataset
-    available_markers = [m for m in microglia_markers if m in adata.var_names]
+
+# Define positive marker lists based on recommendations.
+
+# Primary markers with high microglia specificity.
+primary_markers = ["P2ry12", "Tmem119", "Siglech", "Fcrls", "Gpr34", "Hexb"]
+
+# Secondary (supportive) markers.
+secondary_markers = ["Trem2", "Aif1", "Sall1"]
+
+# Define a list of negative markers (any detected expression is disallowed).
+negative_markers = [
+    "Snap25", "Rbfox3", "Dlx5", "Elavl4", "Stmn2", "Snap25", "Th", "Slc17a6",
+    "Gad1", "Gad2", "Npy", "Agrp", "Crh", "Trh", "Avp", "Pomc",
+    "Hcrt", "Oxt", "Vim", "Nes", "Enkur", "Foxj1", "Kif6", "Kif9",
+    "Hydin", "Mog", "Mbp", "Plp1", "Cnp", "Mag", "Opalin", "Sox10", "Olig1",
+    "Olig2", "Pdgfra", "Pdgfrb", "Gpr17", "Ugt8a", "Sema3c", "Sema4d",
+    "Sema4f", "Gpr37", "Cspg4", "Lingo1", "Rgs5", "Des", "Acta2", "Pecam1",
+    "Cldn5", "Cd248", "Myh11", "Cdh5", "Fgf10", "Rax", "Gfap", "Aldh1l1",
+    "Aqp4", "Agt", "Gja1", "Hepacam", "Htra1", "Ndrg2", "Ntsr2", "Ntrk2", 
+    "Slc1a3", "Slc6a11", "Slc1a2", "Apoe", "Adcyap1r1"
+]
+
+def identify_microglia(adata, pos_thresh=1, score_cutoff=0.6):
+    """
+    Identify hypothalamic microglia based on a composite positive marker score 
+    and strict negative marker filtering.
+
+    The composite score is computed as:
     
-    # Calculate marker score
-    marker_expr = adata[:, available_markers].X.toarray()
-    marker_score = np.sum(marker_expr > 0, axis=1) / len(available_markers)
+      composite_score = 0.6*(primary score) + 0.4*(secondary score) +
+                        0.3*(annotation indicator) - 0.3*(negative indicator)
     
-    # Identify cells with high marker expression
-    high_marker_expr = marker_score >= 0.3  # At least 30% of markers expressed
+    A cell is retained as microglia only if:
+     1. composite_score >= score_cutoff, AND 
+     2. It expresses no negative markers (i.e. negative indicator == 0).
+
+    Parameters:
+    -----------
+    adata : AnnData
+        The combined dataset.
+    pos_thresh : float, default 1
+        Threshold to consider a positive-marker gene as "expressed".
+    score_cutoff : float, default 0.6
+        Minimum composite score to call a cell microglia.
+
+    Returns:
+    --------
+    microglia_flag : np.ndarray (bool)
+        Boolean vector indicating which cells qualify as microglia.
+    """
+    n_cells = adata.n_obs
     
-    # Combined with existing annotation if available
-    is_microglia = (
-        high_marker_expr |
-        adata.obs['ora_celltype'].isin(['Microglia'])
+    # Calculate primary positive score.
+    pos_markers_use = [m for m in primary_markers if m in adata.var_names]
+    if pos_markers_use:
+        pos_expr = adata[:, pos_markers_use].X.toarray()
+        pos_detect = pos_expr > pos_thresh
+        pos_score = np.mean(pos_detect, axis=1)
+    else:
+        pos_score = np.zeros(n_cells)
+    
+    # Calculate secondary positive score.
+    sec_markers_use = [m for m in secondary_markers if m in adata.var_names]
+    if sec_markers_use:
+        sec_expr = adata[:, sec_markers_use].X.toarray()
+        sec_detect = sec_expr > pos_thresh
+        sec_score = np.mean(sec_detect, axis=1)
+    else:
+        sec_score = np.zeros(n_cells)
+    
+    # Add the annotation indicator based on existing cell-type annotation.
+    # This gives a bonus if a cell is annotated as 'Microglia'.
+    if 'ora_celltype' in adata.obs.columns:
+        annotation_indicator = adata.obs['ora_celltype'].isin(['Microglia']).astype(int).to_numpy()
+    else:
+        annotation_indicator = np.zeros(n_cells, dtype=int)
+    
+    # Compute the negative indicator based on the negative marker list.
+    # If any negative marker is expressed (expression > 0), mark the cell as negative.
+    neg_markers_use = [m for m in negative_markers if m in adata.var_names]
+    if neg_markers_use:
+        neg_expr = adata[:, neg_markers_use].X.toarray()
+        negative_indicator = (np.sum(neg_expr > 1, axis=1) > 0).astype(int)
+    else:
+        negative_indicator = np.zeros(n_cells, dtype=int)
+    
+    # Compute the composite score.
+    composite_score = (
+        0.6 * pos_score +
+        0.4 * sec_score +
+        0.3 * annotation_indicator -
+        0.3 * negative_indicator
     )
     
-    return is_microglia
+    # Final decision: allow cells that meet the composite score cutoff AND
+    # have no detectable negative markers.
+    microglia_flag = (composite_score >= score_cutoff) & (negative_indicator == 0)
+    
+    return microglia_flag
 
-# Filter for microglia
-is_microglia = identify_microglia(adata_combined)
+# Apply microglia identification to subset the combined dataset.
+is_microglia = identify_microglia(adata_combined, pos_thresh=1, score_cutoff=0.3)
 adata_microglia = adata_combined[is_microglia].copy()
 
+# Optionally filter genes expressed in fewer than 3 cells.
+sc.pp.filter_genes(adata_microglia, min_cells=3)
+
 print(f"Number of identified microglia: {adata_microglia.n_obs}")
+adata_microglia
 ```
 
 
@@ -130,18 +252,47 @@ print(f"Number of identified microglia: {adata_microglia.n_obs}")
 #| label: preprocess-microglia
 #| code-summary: "Normalize and process microglial expression data"
 
+adata_microglia.layers["counts"] = adata_microglia.X.copy()
 # Normalize and process
+
+# Normalizing to median total counts
 sc.pp.normalize_total(adata_microglia)
+# Logarithmize the data
 sc.pp.log1p(adata_microglia)
 sc.pp.highly_variable_genes(
     adata_microglia,
     n_top_genes=2000,
-    batch_key='dataset'
+    batch_key='bioproject'
 )
 
 # Run PCA
 sc.pp.scale(adata_microglia)
+adata_microglia.layers["scaled"] = adata_microglia.X.copy()
 sc.tl.pca(adata_microglia)
+```
+
+```{python}
+#| label: fig-pca-bioproject
+sc.pl.pca(
+    adata_microglia,
+    color=["bioproject", "bioproject", "percent_mito_ribo", "percent_mito_ribo"],
+    dimensions=[(0, 1), (2, 3), (0, 1), (2, 3)],
+    ncols=2,
+    size=2,
+    wspace=0.8,
+);
+```
+
+```{python}
+#| label: fig-pca-region
+sc.pl.pca(
+    adata_microglia,
+    color=["region", "region", "percent_mito_ribo", "percent_mito_ribo"],
+    dimensions=[(0, 1), (2, 3), (0, 1), (2, 3)],
+    ncols=2,
+    size=2,
+    wspace=0.8,
+);
 ```
 
 ```{python}
@@ -154,10 +305,11 @@ sc.tl.umap(adata_microglia)
 sc.tl.leiden(adata_microglia)
 
 # Plot results
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-sc.pl.umap(adata_microglia, color='dataset', ax=ax1, show=False, title='Dataset Distribution')
-sc.pl.umap(adata_microglia, color='leiden', ax=ax2, show=False, title='Initial Clustering')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 10))
+sc.pl.umap(adata_microglia, color='bioproject', legend_loc="best", ax=ax1, show=False, title='Dataset Distribution')
+sc.pl.umap(adata_microglia, color='leiden', legend_loc="on data", ax=ax2, show=False, title='Initial Clustering')
 plt.tight_layout()
+plt.show()
 ```
 
 ```{python}
@@ -169,6 +321,7 @@ sc.pl.umap(
     adata_microglia,
     color=microglia_markers,
     frameon=False,
+    show=True,
     save='_init_markers.pdf'
 )
 ```
@@ -182,7 +335,7 @@ import harmonypy
 
 sc.external.pp.harmony_integrate(
     adata_microglia,
-    'dataset',
+    'bioproject',
     max_iter_harmony=20
 )
 
@@ -190,58 +343,58 @@ sc.external.pp.harmony_integrate(
 sc.pp.neighbors(adata_microglia, use_rep='X_pca_harmony')
 sc.tl.umap(adata_microglia)
 sc.tl.leiden(adata_microglia, key_added='leiden_integrated')
+sc.tl.embedding_density(adata_microglia, basis='umap', groupby='leiden_integrated')
+sc.tl.embedding_density(adata_microglia, basis='umap', groupby='region')
 ```
 
 ```{python}
 #| label: fig-integrated-analysis
 #| fig-cap: "Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia."
 
-# Create three-panel plot
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
+sc.pl.umap(adata_microglia, color=['bioproject', 'region', 'leiden_integrated'], title=['Integrated Datasets', 'Regional Distribution', 'Integrated Clusters'], legend_loc="right margin", wspace=.8, hspace=.8, size=5, ncols = 2);
+```
 
+```{python}
+#| label: save-integrated-analysis
 # Dataset distribution after integration
 sc.pl.umap(
     adata_microglia,
-    color='dataset',
-    ax=ax1,
-    show=True,
+    color='bioproject',
+    show=False,
     title='Integrated Datasets',
     save='_integrated_datasets.pdf'
-)
+);
 
 # Integrated clustering
 sc.pl.umap(
     adata_microglia,
     color='leiden_integrated',
-    ax=ax2,
-    show=True,
+    show=False,
+    legend_loc="on data",
     title='Integrated Clusters',
     save='_integrated_clusters.pdf'
-)
+);
 
 # Regional distribution
 sc.pl.umap(
     adata_microglia,
     color='region',
-    ax=ax3,
-    show=True,
+    show=False,
     title='Regional Distribution',
     save='_integrated_regions.pdf'
-)
-
-plt.tight_layout()
-plt.show()
+);
 ```
 
 
 ```{python}
 #| label: fig-cluster-markers
 #| fig-cap: "Differential expression analysis of integrated clusters. Plot shows the top 25 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene."
+#| warning: false
 # Find markers for each cluster
 sc.tl.rank_genes_groups(
     adata_microglia,
     'leiden_integrated',
-    method='wilcoxon',
+    method='logreg',
     use_raw=False
 )
 
@@ -256,7 +409,7 @@ sc.pl.rank_genes_groups(
 
 ```{python}
 #| label: fig-heatmap-cluster-markers
-#| fig-cap: "Differential expression analysis of integrated clusters. Heatmap shows the top 25 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene."
+#| fig-cap: "Differential expression analysis of integrated clusters. Heatmap shows the top 7 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene."
 
 # Calculate dendrogram first
 sc.tl.dendrogram(adata_microglia, groupby='leiden_integrated')
@@ -265,9 +418,34 @@ sc.tl.dendrogram(adata_microglia, groupby='leiden_integrated')
 # Plot top markers
 sc.pl.rank_genes_groups_heatmap(
     adata_microglia,
-    n_genes=25,
+    n_genes=7,
+    use_raw=False,
+    swap_axes=True,
     show_gene_labels=True,
-    figsize=(28, 12)
+    vmin=-3,
+    vmax=3,
+    cmap="bwr",
+    layer="scaled",
+    figsize=(21, 21),
+    show=False,
+);
+plt.show()
+```
+
+```{python}
+#| label: fig-dotplot-cluster-markers
+#| fig-cap: "Differential expression analysis of integrated clusters. Dotplot shows the top 10 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, , which are presented here."
+
+# Plot top DEG
+sc.pl.rank_genes_groups_dotplot(
+    adata_microglia,
+    n_genes=2,
+    values_to_plot="scores",
+    min_logfoldchange=2,
+    vmax=1,
+    vmin=0,
+    cmap="gnuplot2_r",
+    figsize=(24, 9),
 )
 ```
 
@@ -281,6 +459,7 @@ sc.pl.umap(
     adata_microglia,
     color=microglia_markers,
     frameon=False,
+    show=True,
     save='_integrated_markers.pdf'
 )
 ```
@@ -306,39 +485,43 @@ pd.DataFrame(adata_microglia.obs).to_csv(
 
 ```{python}
 #| label: fig-trem2-analysis
+#| fig-cap: "Figure: Trem2 expression analysis across regions and microglial clusters. Panel (a) shows Trem2 expression by region (boxplot); panel (b) depicts Trem2 expression across clusters (violin plot); panel (c) displays a UMAP of Trem2 expression; panel (d) shows the correlation of Trem2 with other microglial markers."
 #| fig-width: 12
 #| fig-height: 8
+import numpy as np
+import pandas as pd
+import scanpy as sc
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Analysis of Trem2 expression across regions
 def analyze_trem2(adata):
-    # Get Trem2 expression
+    # Get Trem2 expression data
     trem2_expr = pd.DataFrame({
         'Trem2': adata[:, 'Trem2'].X.toarray().flatten(),
         'Region': adata.obs['region'],
-        'Dataset': adata.obs['dataset'],
+        'Dataset': adata.obs['bioproject'],
         'Cluster': adata.obs['leiden_integrated']
     })
     
-    # Create figure with multiple panels
+    # Create a figure with multiple panels
     fig = plt.figure(figsize=(15, 10))
     
-    # 1. Boxplot of Trem2 expression by region
+    # 1. Boxplot of Trem2 expression by Region
     plt.subplot(2, 2, 1)
     sns.boxplot(data=trem2_expr, x='Region', y='Trem2')
     plt.xticks(rotation=45, ha='right')
     plt.title('Trem2 Expression by Region')
     
-    # 2. Violin plot of Trem2 expression by cluster
+    # 2. Violin plot of Trem2 expression by Cluster
     plt.subplot(2, 2, 2)
     sns.violinplot(data=trem2_expr, x='Cluster', y='Trem2')
     plt.xticks(rotation=45)
     plt.title('Trem2 Expression by Microglial Cluster')
     
     # 3. UMAP colored by Trem2 expression
-    plt.subplot(2, 2, 3)
-    sc.pl.umap(adata, color='Trem2', show=True)
+    ax = plt.subplot(2, 2, 3)
+    sc.pl.umap(adata, color='Trem2', ax=ax, show=False)
     plt.title('UMAP: Trem2 Expression')
     
     # 4. Correlation with other microglial markers
@@ -349,7 +532,7 @@ def analyze_trem2(adata):
             correlation = np.corrcoef(
                 adata[:, 'Trem2'].X.toarray().flatten(),
                 adata[:, marker].X.toarray().flatten()
-            )[0,1]
+            )[0, 1]
             marker_correlations.append((marker, correlation))
     
     marker_correlations = pd.DataFrame(marker_correlations, columns=['Marker', 'Correlation'])
@@ -359,6 +542,7 @@ def analyze_trem2(adata):
     plt.title('Correlation of Trem2 with Other Markers')
     
     plt.tight_layout()
+    plt.show()
     plt.savefig(output_dir / 'trem2_analysis.pdf')
     plt.close()
     
@@ -378,6 +562,7 @@ plt.xlabel('Hypothalamic Region')
 plt.ylabel('TREM2 Expression Level')
 plt.title('Regional Distribution of TREM2 Expression')
 plt.tight_layout()
+plt.show()
 ```
 
 ```{python}
@@ -391,16 +576,62 @@ plt.xlabel('Microglial Cluster')
 plt.ylabel('TREM2 Expression Level')
 plt.title('TREM2 Expression in Microglial Subpopulations')
 plt.tight_layout()
+plt.show()
 ```
 
 ```{python}
 #| label: fig-trem2-umap
-#| fig-cap: "UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space."
+#| fig-cap: "UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the UMAP-reduced 2-dimensional space."
 
 plt.figure(figsize=(8, 8))
 sc.pl.umap(adata_microglia, color='Trem2', show=True, title='TREM2 Expression in UMAP Space')
 plt.tight_layout()
 ```
+
+```{python}
+#| label: fig-density-umap-scn
+#| fig-cap: "Scatter plot visualization of SCN across all hypothalamic microglia. Color intensity represents density of microglia of SCN, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space."
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='SCN'
+)
+```
+
+```{python}
+#| label: fig-density-umap-pvn
+#| fig-cap: "Scatter plot visualization of PVN across all hypothalamic microglia. Color intensity represents density of microglia of PVN, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space."
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='PVN'
+)
+```
+
+```{python}
+#| label: fig-density-umap-poa
+#| fig-cap: "Scatter plot visualization of POA across all hypothalamic microglia. Color intensity represents density of microglia of POA, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space."
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='POA'
+)
+```
+
+```{python}
+#| label: fig-dotplot-regions-markers
+#| fig-cap: "Differential expression analysis across regions. Dotplot shows the top 10 differentially expressed genes per region identified using Logistic Regression. Genes are ordered by average log fold change, which are presented here."
+
+sc.tl.rank_genes_groups(adata_microglia, groupby="region", method="logreg")
+
+# Plot top DEG
+sc.pl.rank_genes_groups_dotplot(
+    adata_microglia,
+    groupby="region",
+    n_genes=10,
+    values_to_plot="scores",
+    min_logfoldchange=5,
+    vmax=1,
+    vmin=0,
+    cmap="gnuplot2_r",
+    figsize=(24, 9),
+)
+```
+
 
 ```{python}
 #| label: fig-trem2-correlations
@@ -412,6 +643,7 @@ plt.title('TREM2 Correlation with Microglial Markers')
 plt.xlabel('Pearson Correlation Coefficient')
 plt.ylabel('Marker Gene')
 plt.tight_layout()
+plt.show()
 ```
 
 

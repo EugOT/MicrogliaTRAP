@@ -195,15 +195,12 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
 <p>TREM2 expression was analyzed across different hypothalamic regions using single-nucleus RNA sequencing data. Following quality control and normalization, we performed integrated analysis of multiple datasets (<a href="#fig-integrated-analysis" class="quarto-xref">Figure&nbsp;1</a>).</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-integrated-analysis" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-stdout">
-<pre><code>WARNING: saving figure to file figures/umap_integrated_datasets.pdfWARNING: saving figure to file figures/umap_integrated_clusters.pdfWARNING: saving figure to file figures/umap_integrated_regions.pdf</code></pre>
-</div>
+<div id="cell-fig-integrated-analysis" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div id="fig-integrated-analysis" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-integrated-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia."><img src="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-2.png" width="1164" height="431" class="figure-img"></a>
+<a href="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia."><img src="index_files/figure-html/notebooks-eda-fig-integrated-analysis-output-1.png" width="1996" height="845" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrated-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia.
@@ -213,7 +210,38 @@ Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualizati
 </div>
 </div>
 </div>
-<p>Initial clustering revealed distinct microglial populations across hypothalamic regions, which were further refined through batch correction and integration of multiple datasets.</p>
+<p>Initial clustering revealed distinct microglial populations across hypothalamic regions, further refined through batch correction and integration of 20 independent datasets.</p>
+<p><strong>Dataset Summary:</strong><br>
+The combined dataset comprised <strong>271,739 cells</strong> drawn from <strong>12 independent datasets</strong> (for now; we have 20 in total). After exclusion of sex-specific genes (using the list provided below) and applying a super conservative filtering strategy, <strong>3,108 high-confidence microglia</strong> were retained for downstream analysis.</p>
+<p><strong>Filtering Details and Gene Lists:</strong><br>
+To ensure the highest specificity in microglia selection, we computed a composite positivity score for each cell. This score integrates:</p>
+<ul>
+<li><strong>Expression of Primary (Highly Specific) Markers:</strong><br>
+These genes must be robustly expressed:
+<ul>
+<li><em>Primary Markers:</em><br>
+<code>P2ry12, Tmem119, Siglech, Fcrls, Gpr34, Hexb</code></li>
+</ul></li>
+<li><strong>Expression of Secondary (Supportive) Markers:</strong><br>
+These genes serve as supplemental evidence of microglial identity:
+<ul>
+<li><em>Secondary Markers:</em><br>
+<code>Trem2, Aif1, Sall1</code></li>
+</ul></li>
+<li><strong>Absence of Negative (Exclusion) Markers:</strong><br>
+Any detectable expression of these genes indicates contamination from other cell types, so such cells are excluded:
+<ul>
+<li><em>Negative Markers:</em><br>
+<code>Snap25, Rbfox3, Dlx5, Elavl4, Stmn2, Th, Slc17a6, Gad1, Gad2, Npy, Agrp, Crh, Trh, Avp, Pomc, Hcrt, Oxt, Vim, Nes, Enkur, Foxj1, Kif6, Kif9, Hydin, Mog, Mbp, Plp1, Cnp, Mag, Opalin, Sox10, Olig1, Olig2, Pdgfra, Pdgfrb, Gpr17, Ugt8a, Sema3c, Sema4d, Sema4f, Gpr37, Cspg4, Lingo1, Rgs5, Des, Acta2, Pecam1, Cldn5, Cd248, Myh11, Cdh5, Fgf10, Rax, Gfap, Aldh1l1, Aqp4, Agt, Gja1, Hepacam, Htra1, Ndrg2, Ntsr2, Ntrk2, Slc1a3, Slc6a11, Slc1a2, Apoe, Adcyap1r1</code></li>
+</ul></li>
+<li><strong>Exclusion of Sex-Specific Genes:</strong><br>
+These genes are filtered out to remove sex-related differences:
+<ul>
+<li><em>Sex-Specific Genes:</em><br>
+<code>Ehd2, Espl1, Jarid1d, Pnpla4, Rps4y1, Xist, Tsix, Eif2s3y, Ddx3y, Uty, Kdm5d</code></li>
+</ul></li>
+</ul>
+<p>In this super conservative filtering, only cells with a composite score exceeding a defined threshold—and exhibiting no detectable expression of any negative markers—were selected as microglia. This approach may be further adapted (i.e.&nbsp;by relaxing or tightening thresholds) depending on future experimental needs.</p>
 </section>
 <section id="results" class="level3">
 <h3 class="anchored" data-anchor-id="results">Results</h3>
@@ -221,7 +249,7 @@ Figure&nbsp;1: Analysis of batch-corrected microglial data. (A) UMAP visualizati
 <h4 class="anchored" data-anchor-id="regional-expression-patterns">Regional Expression Patterns</h4>
 <p>Analysis of TREM2 expression revealed significant heterogeneity across hypothalamic regions (F = 302.35, p = 2.58e-4). <a href="#fig-trem2-region" class="quarto-xref">Figure&nbsp;2</a> shows the distribution of TREM2 expression across different regions.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-region" class="cell" data-execution_count="14">
+<div id="cell-fig-trem2-region" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-region" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -242,7 +270,7 @@ Figure&nbsp;2: TREM2 expression levels across different hypothalamic regions. Bo
 <h4 class="anchored" data-anchor-id="cluster-specific-expression">Cluster-Specific Expression</h4>
 <p>TREM2 expression varied significantly across microglial clusters (<a href="#fig-trem2-clusters" class="quarto-xref">Figure&nbsp;3</a>), suggesting functional heterogeneity within the microglial population.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-clusters" class="cell" data-execution_count="15">
+<div id="cell-fig-trem2-clusters" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-clusters" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -262,15 +290,15 @@ Figure&nbsp;3: Distribution of TREM2 expression across identified microglial clu
 <h4 class="anchored" data-anchor-id="spatial-distribution">Spatial Distribution</h4>
 <p>UMAP visualization of TREM2 expression (<a href="#fig-trem2-umap" class="quarto-xref">Figure&nbsp;4</a>) revealed distinct spatial patterns, indicating regional specialization of TREM2-expressing microglia.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-umap" class="cell" data-execution_count="16">
+<div id="cell-fig-trem2-umap" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-umap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-trem2-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space."><img src="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" width="555" height="427" class="figure-img"></a>
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the UMAP-reduced 2-dimensional space."><img src="index_files/figure-html/notebooks-eda-fig-trem2-umap-output-1.png" width="555" height="427" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-umap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the reduced dimensional space.
+Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the UMAP-reduced 2-dimensional space.
 </figcaption>
 </figure>
 </div>
@@ -282,7 +310,7 @@ Figure&nbsp;4: UMAP visualization of TREM2 expression across all microglia. Colo
 <h4 class="anchored" data-anchor-id="gene-co-expression-analysis">Gene Co-expression Analysis</h4>
 <p>To understand the regulatory network associated with TREM2, we analyzed its correlation with other microglial markers (<a href="#fig-trem2-correlations" class="quarto-xref">Figure&nbsp;5</a>).</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-correlations" class="cell" data-execution_count="17">
+<div id="cell-fig-trem2-correlations" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-correlations" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -302,7 +330,7 @@ Figure&nbsp;5: Correlation analysis between TREM2 and other microglial marker ge
 <h4 class="anchored" data-anchor-id="regional-and-cluster-specific-patterns">Regional and Cluster-Specific Patterns</h4>
 <p>The heatmap analysis (<a href="#fig-trem2-cluster-enrichment-heatmap" class="quarto-xref">Figure&nbsp;6</a>) revealed distinct patterns of TREM2 expression across both regions and clusters.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-cluster-enrichment-heatmap" class="cell" data-execution_count="20">
+<div id="cell-fig-trem2-cluster-enrichment-heatmap" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-cluster-enrichment-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -322,12 +350,12 @@ Figure&nbsp;6: Regional and cluster-specific TREM2 expression patterns. Heatmap 
 <h4 class="anchored" data-anchor-id="molecular-interactions">Molecular Interactions</h4>
 <p>The co-expression network analysis (<a href="#fig-trem2-coexpression-network" class="quarto-xref">Figure&nbsp;7</a>) identified key molecular interactions of TREM2 with other genes.</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-coexpression-network" class="cell" data-execution_count="21">
+<div id="cell-fig-trem2-coexpression-network" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-coexpression-network" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-trem2-coexpression-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown."><img src="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-2.png" width="1158" height="1159" class="figure-img"></a>
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown."><img src="index_files/figure-html/notebooks-eda-fig-trem2-coexpression-network-output-1.png" width="1158" height="1159" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-coexpression-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown.
@@ -338,11 +366,11 @@ Figure&nbsp;7: TREM2 co-expression network in hypothalamic microglia. Nodes repr
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Network Statistics:
-Number of co-expressed genes: 23
-Number of connections: 23
+Number of co-expressed genes: 10
+Number of connections: 10
 
 Network Metrics:
-Network density: 0.083
+Network density: 0.182
 Average clustering coefficient: 0.000</code></pre>
 </div>
 </div>
@@ -353,12 +381,12 @@ Average clustering coefficient: 0.000</code></pre>
 <h3 class="anchored" data-anchor-id="statistical-analysis">Statistical Analysis</h3>
 <p>Statistical comparison across regions (<a href="#fig-trem2-regional-stats" class="quarto-xref">Figure&nbsp;8</a>) revealed three distinct TREM2 expression domains:</p>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-trem2-regional-stats" class="cell" data-execution_count="19">
+<div id="cell-fig-trem2-regional-stats" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-display">
 <div id="fig-trem2-regional-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-trem2-regional-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen’s d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions."><img src="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" width="1141" height="755" class="figure-img"></a>
+<a href="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen’s d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions."><img src="index_files/figure-html/notebooks-eda-fig-trem2-regional-stats-output-1.png" width="1141" height="756" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trem2-regional-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen’s d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions.
@@ -369,15 +397,20 @@ Figure&nbsp;8: Statistical comparison of TREM2 expression across hypothalamic re
 </div>
 </div>
 <ol type="1">
-<li>High expression domain: SCN, PVN, VMHvl (means &gt; 0.1)</li>
-<li>Intermediate expression domain: POA, VPH, Arc (means between -0.3 and 0.1)</li>
-<li>Low expression domain: MBH, MnPO, VMH (means &lt; -0.9)</li>
+<li><strong>High expression domain:</strong> SCN, PVN, VMHvl (means &gt; 0.1)<br>
+</li>
+<li><strong>Intermediate expression domain:</strong> POA, VPH, Arc (means between -0.3 and 0.1)<br>
+</li>
+<li><strong>Low expression domain:</strong> MBH, MnPO, VMH (means &lt; -0.9)</li>
 </ol>
-<p>The most significant differences were observed between: - MBH and SCN (Cohen’s d = -2.67, p-adj &lt; 1e-300) - SCN and VMH (Cohen’s d = 1.94, p-adj &lt; 1e-300) - MBH and PVN (Cohen’s d = -2.31, p-adj = 7.73e-158)</p>
+<p>The most significant differences were observed between:<br>
+- <strong>MBH and SCN:</strong> Cohen’s d = -2.67, p-adj &lt; 1e-300<br>
+- <strong>SCN and VMH:</strong> Cohen’s d = 1.94, p-adj &lt; 1e-300<br>
+- <strong>MBH and PVN:</strong> Cohen’s d = -2.31, p-adj = 7.73e-158</p>
 </section>
 <section id="interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
-<p>The observed regional heterogeneity in TREM2 expression suggests region-specific roles for microglial TREM2 signaling. The high expression in SCN and PVN, regions crucial for circadian rhythm and neuroendocrine function, indicates potential involvement of TREM2 in these processes. The co-expression analysis reveals potential molecular mechanisms through which TREM2 might influence microglial function in different hypothalamic regions.</p>
+<p>The observed regional heterogeneity in TREM2 expression suggests region-specific roles for microglial TREM2 signaling. The high expression in the SCN and PVN—regions crucial for circadian rhythm and neuroendocrine function—indicates potential involvement of TREM2 in these processes. In contrast, the notably low expression in the MBH and VMH (except ventro-lateral part) implies different functional states in these subregions. Moreover, our super conservative filtering approach (reducing 271,739 cells to 3,108 high-confidence microglia) and the comprehensive use of well-defined gene lists ensure that only the most robustly determined microglia are analyzed. The co-expression analysis further implies potential molecular mechanisms by which TREM2 may influence microglial function in distinct hypothalamic regions.</p>
 <p>These findings provide a comprehensive map of TREM2 expression across hypothalamic regions and suggest potential region-specific functions of TREM2-expressing microglia in the hypothalamus.</p>
 </section>
 </section>
