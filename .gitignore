@@ -1,0 +1,9 @@
+/.quarto/
+/_site/
+.Rproj.user
+.Rhistory
+*.RData
+.Ruserdata
+.Rapp.history
+notebooks/.jupyter_cache
+notebooks/.Rhistory

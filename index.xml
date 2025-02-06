@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+  <front>
+    <article-meta>
+      <title-group>
+        <article-title>MicrogliaTRAP</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">0000-0001-5920-2190</contrib-id>
+          <name>
+            <surname>Evgenii O. Tretiakov</surname>
+            <given-names>PhD</given-names>
+          </name>
+          <string-name>Evgenii O. Tretiakov, PhD</string-name>
+          <email>evgenii.tretiakov@meduniwien.ac.at</email>
+          <xref ref-type="aff" rid="aff-1">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1">
+        <institution-wrap>
+          <institution>Department of Molecular Neurosciences, Center for Brain
+Research, Medical University of Vienna, Vienna A-1090,
+Austria</institution>
+        </institution-wrap>
+      </aff>
+      <history/>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="trem2-expression-analysis-across-hypothalamic-regions">
+      <title>TREM2 Expression Analysis Across Hypothalamic Regions</title>
+      <sec id="methods">
+        <title>Methods</title>
+        <p>TREM2 expression was analyzed across different hypothalamic
+    regions using single-nucleus RNA sequencing data. Following quality
+    control and normalization, we performed integrated analysis of
+    multiple datasets
+    (<xref alt="Figure 1" rid="fig-integrated-analysis">Figure 1</xref>).</p>
+        <fig id="fig-integrated-analysis">
+          <caption>
+            <p>Figure 1: Analysis of batch-corrected microglial data.
+      (A) UMAP visualization after integration shows reduced batch
+      effects. (B) Refined clustering based on integrated data reveals
+      distinct microglial subpopulations. (C) Distribution of cells by
+      hypothalamic region demonstrates regional heterogeneity of
+      microglia.</p>
+          </caption>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-integrated-analysis-output-1.png"/>
+        </fig>
+        <p>Initial clustering revealed distinct microglial populations
+    across hypothalamic regions, further refined through batch
+    correction and integration of 20 independent datasets.</p>
+        <p><bold>Dataset Summary:</bold>
+    The combined dataset comprised <bold>271,739 cells</bold> drawn from
+    <bold>12 independent datasets</bold> (for now; we have 20 in total).
+    After exclusion of sex-specific genes (using the list provided
+    below) and applying a super conservative filtering strategy,
+    <bold>3,108 high-confidence microglia</bold> were retained for
+    downstream analysis.</p>
+        <p><bold>Filtering Details and Gene Lists:</bold>
+    To ensure the highest specificity in microglia selection, we
+    computed a composite positivity score for each cell. This score
+    integrates:</p>
+        <list list-type="bullet">
+          <list-item>
+            <p><bold>Expression of Primary (Highly Specific) Markers:</bold>
+        These genes must be robustly expressed:</p>
+            <list list-type="bullet">
+              <list-item>
+                <p>
+                  <italic>Primary Markers:</italic>
+                  <monospace>P2ry12, Tmem119, Siglech, Fcrls, Gpr34, Hexb</monospace>
+                </p>
+              </list-item>
+            </list>
+          </list-item>
+          <list-item>
+            <p><bold>Expression of Secondary (Supportive) Markers:</bold>
+        These genes serve as supplemental evidence of microglial
+        identity:</p>
+            <list list-type="bullet">
+              <list-item>
+                <p>
+                  <italic>Secondary Markers:</italic>
+                  <monospace>Trem2, Aif1, Sall1</monospace>
+                </p>
+              </list-item>
+            </list>
+          </list-item>
+          <list-item>
+            <p><bold>Absence of Negative (Exclusion) Markers:</bold>
+        Any detectable expression of these genes indicates contamination
+        from other cell types, so such cells are excluded:</p>
+            <list list-type="bullet">
+              <list-item>
+                <p>
+                  <italic>Negative Markers:</italic>
+                  <monospace>Snap25, Rbfox3, Dlx5, Elavl4, Stmn2, Th, Slc17a6, Gad1, Gad2, Npy, Agrp, Crh, Trh, Avp, Pomc, Hcrt, Oxt, Vim, Nes, Enkur, Foxj1, Kif6, Kif9, Hydin, Mog, Mbp, Plp1, Cnp, Mag, Opalin, Sox10, Olig1, Olig2, Pdgfra, Pdgfrb, Gpr17, Ugt8a, Sema3c, Sema4d, Sema4f, Gpr37, Cspg4, Lingo1, Rgs5, Des, Acta2, Pecam1, Cldn5, Cd248, Myh11, Cdh5, Fgf10, Rax, Gfap, Aldh1l1, Aqp4, Agt, Gja1, Hepacam, Htra1, Ndrg2, Ntsr2, Ntrk2, Slc1a3, Slc6a11, Slc1a2, Apoe, Adcyap1r1</monospace>
+                </p>
+              </list-item>
+            </list>
+          </list-item>
+          <list-item>
+            <p><bold>Exclusion of Sex-Specific Genes:</bold>
+        These genes are filtered out to remove sex-related
+        differences:</p>
+            <list list-type="bullet">
+              <list-item>
+                <p>
+                  <italic>Sex-Specific Genes:</italic>
+                  <monospace>Ehd2, Espl1, Jarid1d, Pnpla4, Rps4y1, Xist, Tsix, Eif2s3y, Ddx3y, Uty, Kdm5d</monospace>
+                </p>
+              </list-item>
+            </list>
+          </list-item>
+        </list>
+        <p>In this super conservative filtering, only cells with a composite
+    score exceeding a defined threshold—and exhibiting no detectable
+    expression of any negative markers—were selected as microglia. This
+    approach may be further adapted (i.e. by relaxing or tightening
+    thresholds) depending on future experimental needs.</p>
+      </sec>
+      <sec id="results">
+        <title>Results</title>
+        <sec id="regional-expression-patterns">
+          <title>Regional Expression Patterns</title>
+          <p>Analysis of TREM2 expression revealed significant heterogeneity
+      across hypothalamic regions (F = 302.35, p = 2.58e-4).
+      <xref alt="Figure 2" rid="fig-trem2-region">Figure 2</xref> shows
+      the distribution of TREM2 expression across different regions.</p>
+          <fig id="fig-trem2-region">
+            <caption>
+              <p>Figure 2: TREM2 expression levels across different
+        hypothalamic regions. Box plots show the median, quartiles, and
+        distribution of TREM2 expression in each anatomically distinct
+        region. Whiskers extend to 1.5 times the interquartile
+        range.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-region-output-1.png"/>
+          </fig>
+          <p>The highest TREM2 expression was observed in the SCN (mean =
+      0.436 ± 0.689), followed by the PVN (0.296 ± 0.799). In contrast,
+      the MBH showed the lowest expression (-1.376 ± 0.604), followed by
+      the MnPO (-1.241 ± 0.057).</p>
+        </sec>
+        <sec id="cluster-specific-expression">
+          <title>Cluster-Specific Expression</title>
+          <p>TREM2 expression varied significantly across microglial
+      clusters
+      (<xref alt="Figure 3" rid="fig-trem2-clusters">Figure 3</xref>),
+      suggesting functional heterogeneity within the microglial
+      population.</p>
+          <fig id="fig-trem2-clusters">
+            <caption>
+              <p>Figure 3: Distribution of TREM2 expression across
+        identified microglial clusters. Violin plots demonstrate the
+        full distribution of expression levels within each cluster, with
+        embedded box plots showing median and quartile
+        values.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-clusters-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="spatial-distribution">
+          <title>Spatial Distribution</title>
+          <p>UMAP visualization of TREM2 expression
+      (<xref alt="Figure 4" rid="fig-trem2-umap">Figure 4</xref>)
+      revealed distinct spatial patterns, indicating regional
+      specialization of TREM2-expressing microglia.</p>
+          <fig id="fig-trem2-umap">
+            <caption>
+              <p>Figure 4: UMAP visualization of TREM2 expression
+        across all microglia. Color intensity represents TREM2
+        expression level, showing the spatial distribution of
+        TREM2-expressing cells in the UMAP-reduced 2-dimensional
+        space.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-umap-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="gene-co-expression-analysis">
+          <title>Gene Co-expression Analysis</title>
+          <p>To understand the regulatory network associated with TREM2, we
+      analyzed its correlation with other microglial markers
+      (<xref alt="Figure 5" rid="fig-trem2-correlations">Figure 5</xref>).</p>
+          <fig id="fig-trem2-correlations">
+            <caption>
+              <p>Figure 5: Correlation analysis between TREM2 and
+        other microglial marker genes. Bar plot shows Pearson
+        correlation coefficients, ordered by strength of correlation.
+        Positive values indicate positive correlation, while negative
+        values indicate inverse relationships.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-correlations-output-1.png"/>
+          </fig>
+        </sec>
+        <sec id="regional-and-cluster-specific-patterns">
+          <title>Regional and Cluster-Specific Patterns</title>
+          <p>The heatmap analysis
+      (<xref alt="Figure 6" rid="fig-trem2-cluster-enrichment-heatmap">Figure 6</xref>)
+      revealed distinct patterns of TREM2 expression across both regions
+      and clusters.</p>
+          <fig id="fig-trem2-cluster-enrichment-heatmap">
+            <caption>
+              <p>Figure 6: Regional and cluster-specific TREM2
+        expression patterns. Heatmap shows mean TREM2 expression levels
+        across different microglial clusters (rows) and hypothalamic
+        regions (columns). Color intensity represents expression level,
+        with darker colors indicating higher expression.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-cluster-enrichment-heatmap-output-2.png"/>
+          </fig>
+        </sec>
+        <sec id="molecular-interactions">
+          <title>Molecular Interactions</title>
+          <p>The co-expression network analysis
+      (<xref alt="Figure 7" rid="fig-trem2-coexpression-network">Figure 7</xref>)
+      identified key molecular interactions of TREM2 with other
+      genes.</p>
+          <fig id="fig-trem2-coexpression-network">
+            <caption>
+              <p>Figure 7: TREM2 co-expression network in
+        hypothalamic microglia. Nodes represent genes, with TREM2 as the
+        central hub. Edge weights represent the absolute Pearson
+        correlation coefficient between gene pairs. Only correlations
+        above 0.3 are shown.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-coexpression-network-output-1.png"/>
+          </fig>
+          <preformat>
+Network Statistics:
+Number of co-expressed genes: 10
+Number of connections: 10
+
+Network Metrics:
+Network density: 0.182
+Average clustering coefficient: 0.000</preformat>
+        </sec>
+      </sec>
+      <sec id="statistical-analysis">
+        <title>Statistical Analysis</title>
+        <p>Statistical comparison across regions
+    (<xref alt="Figure 8" rid="fig-trem2-regional-stats">Figure 8</xref>)
+    revealed three distinct TREM2 expression domains:</p>
+        <fig id="fig-trem2-regional-stats">
+          <caption>
+            <p>Figure 8: Statistical comparison of TREM2 expression
+      across hypothalamic regions. Box plots show the distribution of
+      TREM2 expression levels in each region. Significance bars indicate
+      the top 5 most significant pairwise comparisons (FDR-corrected
+      p-values). Cohen’s d effect sizes are shown for each comparison,
+      quantifying the magnitude of expression differences between
+      regions.</p>
+          </caption>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-eda-fig-trem2-regional-stats-output-1.png"/>
+        </fig>
+        <list list-type="order">
+          <list-item>
+            <p><bold>High expression domain:</bold> SCN, PVN, VMHvl (means
+        &gt; 0.1)
+        </p>
+          </list-item>
+          <list-item>
+            <p><bold>Intermediate expression domain:</bold> POA, VPH, Arc
+        (means between -0.3 and 0.1)
+        </p>
+          </list-item>
+          <list-item>
+            <p><bold>Low expression domain:</bold> MBH, MnPO, VMH (means
+        &lt; -0.9)</p>
+          </list-item>
+        </list>
+        <p>The most significant differences were observed between:
+    - <bold>MBH and SCN:</bold> Cohen’s d = -2.67, p-adj &lt; 1e-300
+    - <bold>SCN and VMH:</bold> Cohen’s d = 1.94, p-adj &lt; 1e-300
+    - <bold>MBH and PVN:</bold> Cohen’s d = -2.31, p-adj = 7.73e-158</p>
+      </sec>
+      <sec id="interpretation">
+        <title>Interpretation</title>
+        <p>The observed regional heterogeneity in TREM2 expression suggests
+    region-specific roles for microglial TREM2 signaling. The high
+    expression in the SCN and PVN—regions crucial for circadian rhythm
+    and neuroendocrine function—indicates potential involvement of TREM2
+    in these processes. In contrast, the notably low expression in the
+    MBH and VMH (except ventro-lateral part) implies different
+    functional states in these subregions. Moreover, our super
+    conservative filtering approach (reducing 271,739 cells to 3,108
+    high-confidence microglia) and the comprehensive use of well-defined
+    gene lists ensure that only the most robustly determined microglia
+    are analyzed. The co-expression analysis further implies potential
+    molecular mechanisms by which TREM2 may influence microglial
+    function in distinct hypothalamic regions.</p>
+        <p>These findings provide a comprehensive map of TREM2 expression
+    across hypothalamic regions and suggest potential region-specific
+    functions of TREM2-expressing microglia in the hypothalamus.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+</back>
+  <sub-article article-type="notebook" id="nb-4-nb-1">
+    <front-stub>
+      <title-group>
+        <article-title>Comprehensive analysis of hypothalamic microglia across
+multiple datasets</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Tretiakov</surname>
+            <given-names>Evgenii O.</given-names>
+          </name>
+          <string-name>Evgenii O. Tretiakov</string-name>
+        </contrib>
+      </contrib-group>
+    </front-stub>
+    <body>
+      <sec id="setup-nb-1" specific-use="notebook-content">
+        <preformat>#| label: setup
+#| include: false
+# Set random seeds for reproducibility
+import random
+import numpy as np
+import scanpy as sc
+
+random.seed(42)
+np.random.seed(42)
+sc.settings.seed = 42
+
+# Other imports
+import os
+import pandas as pd
+from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+import statsmodels.stats.multitest as mt</preformat>
+      </sec>
+      <sec id="load-data-nb-1" specific-use="notebook-content">
+        <preformat>#| label: load-data
+# Microglia markers based on literature
+microglia_markers = [
+    "Trem2", "Aif1", "Itgam", "Cx3cr1", "P2ry12",
+    "Tmem119", "Hexb", "Csf1r", "C1qa", "C1qb", "C1qc",
+    "Cd68", "Ptprc", "Fcrls", "Cd14", "Tgfbr1", "Sall1",
+    "Olfml3", "Siglech", "Gpr34", "Mafb", "Cd33"
+]
+
+# Create dataset mapping
+dataset_info = {
+    'PRJNA1018579': {'name': 'Guo2024_POA', 'region': 'POA'},
+    'PRJNA971261': {'name': 'Jovanovic2022_DMH', 'region': 'DMH'},
+    'PRJNA872019': {'name': 'Tang2023_DMH_SCN', 'region': 'DMH_SCN'},  # Taking first region
+    'PRJNA847050': {'name': 'lutomska2022_Arc', 'region': 'Arc'},
+    'PRJNA815819': {'name': 'pool2022_MnPO', 'region': 'MnPO'},
+    'PRJNA798401': {'name': 'liu2022_VMHvl', 'region': 'VMHvl'},
+    'PRJNA779749': {'name': 'hajdarovic2022_Hypoth', 'region': 'Hypoth'},
+    'PRJNA723345': {'name': 'rupp2021_MBH', 'region': 'MBH'},
+    'PRJNA722418': {'name': 'affinati2021_VMH', 'region': 'VMH'},
+    'PRJNA705596': {'name': 'morris2021_SCN', 'region': 'SCN'},
+    'PRJNA679294': {'name': 'lopez2021_PVN', 'region': 'PVN'},
+    'PRJNA626601': {'name': 'Bentsen2020_MBH', 'region': 'MBH'},  # Taking first region
+    'PRJNA611624': {'name': 'mickelsen2020_VPH', 'region': 'VPH'},
+    'PRJNA604055': {'name': 'deng2020_Arc', 'region': 'Arc'},
+    'PRJNA548917': {'name': 'romanov2020_Hypoth', 'region': 'Hypoth-dev'},
+    'PRJNA548532': {'name': 'wen2020_SCN', 'region': 'SCN'},
+    'PRJNA547712': {'name': 'kim2020_Hypoth', 'region': 'Hypoth-dev'},
+    'PRJNA515063': {'name': 'mickelsen2019_LHA', 'region': 'LHA'},
+    'PRJNA453138': {'name': 'moffitt2018_POA', 'region': 'POA'},
+    'PRJNA438862': {'name': 'zeisel2018_Hypoth', 'region': 'Hypoth-brain'}
+}
+
+# Function to load and preprocess dataset
+def load_dataset(file_path):
+    adata = sc.read_h5ad(file_path)
+    project = Path(file_path).stem.split('-')[0]
+    
+    # Add dataset name and region information
+    if project in dataset_info:
+        adata.obs['dataset'] = dataset_info[project]['name']
+        adata.obs['region'] = dataset_info[project]['region']
+    else:
+        adata.obs['dataset'] = project
+        adata.obs['region'] = 'Unknown'
+    
+    return adata
+
+# Load all datasets
+data_dir = Path("/home/etretiakov/src/MicrogliaTRAP/data/")
+datasets = []
+for file in data_dir.glob("*-whole.h5ad"):
+    print(f"Loading {file.name}")
+    datasets.append(load_dataset(file))
+
+# Concatenate all datasets
+adata_combined = datasets[0].concatenate(
+    datasets[1:],
+    join='outer',
+    batch_key='dataset'
+)
+
+print(f"Combined dataset shape: {adata_combined.shape}")</preformat>
+        <boxed-text>
+          <preformat>Loading PRJNA847050-whole.h5ad
+Loading PRJNA815819-whole.h5ad
+Loading PRJNA798401-whole.h5ad
+Loading PRJNA723345-whole.h5ad
+Loading PRJNA722418-whole.h5ad
+Loading PRJNA705596-whole.h5ad
+Loading PRJNA679294-whole.h5ad
+Loading PRJNA611624-whole.h5ad
+Loading PRJNA604055-whole.h5ad
+Loading PRJNA548532-whole.h5ad
+Loading PRJNA515063-whole.h5ad
+Loading PRJNA453138-whole.h5ad</preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_27977/1715800184.py:56: FutureWarning:
+
+Use anndata.concat instead of AnnData.concatenate, AnnData.concatenate is deprecated and will be removed in the future. See the tutorial for concat at: https://anndata.readthedocs.io/en/latest/concatenation.html
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>Combined dataset shape: (271739, 27597)</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="exclude-sex-genes-nb-1" specific-use="notebook-content">
+        <preformat>#| label: exclude-sex-genes
+# Exclude sex-specific genes from the combined dataset
+
+sex_specific_genes = [
+    "Ehd2", "Espl1", "Jarid1d", "Pnpla4",
+    "Rps4y1", "Xist", "Tsix", "Eif2s3y",
+    "Ddx3y", "Uty", "Kdm5d"
+]
+
+# Identify which sex-specific genes are present in the dataset
+present_sex_genes = [gene for gene in sex_specific_genes if gene in adata_combined.var_names]
+
+if present_sex_genes:
+    print(f"Excluding sex-specific genes: {present_sex_genes}")
+    # Remove these genes from the dataset
+    adata_combined = adata_combined[:, ~adata_combined.var_names.isin(present_sex_genes)]
+else:
+    print("No sex-specific genes found to exclude.")
+
+print(f"Updated dataset shape after exclusion: {adata_combined.shape}")</preformat>
+        <boxed-text>
+          <preformat>Excluding sex-specific genes: ['Ehd2', 'Espl1', 'Xist', 'Tsix', 'Eif2s3y', 'Ddx3y', 'Uty', 'Kdm5d']
+Updated dataset shape after exclusion: (271739, 27589)</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="cell-filter-microglia-nb-1" specific-use="notebook-content">
+        <preformat>#| label: filter-microglia
+# Define positive marker lists based on recommendations.
+
+# Primary markers with high microglia specificity.
+primary_markers = ["P2ry12", "Tmem119", "Siglech", "Fcrls", "Gpr34", "Hexb"]
+
+# Secondary (supportive) markers.
+secondary_markers = ["Trem2", "Aif1", "Sall1"]
+
+# Define a list of negative markers (any detected expression is disallowed).
+negative_markers = [
+    "Snap25", "Rbfox3", "Dlx5", "Elavl4", "Stmn2", "Snap25", "Th", "Slc17a6",
+    "Gad1", "Gad2", "Npy", "Agrp", "Crh", "Trh", "Avp", "Pomc",
+    "Hcrt", "Oxt", "Vim", "Nes", "Enkur", "Foxj1", "Kif6", "Kif9",
+    "Hydin", "Mog", "Mbp", "Plp1", "Cnp", "Mag", "Opalin", "Sox10", "Olig1",
+    "Olig2", "Pdgfra", "Pdgfrb", "Gpr17", "Ugt8a", "Sema3c", "Sema4d",
+    "Sema4f", "Gpr37", "Cspg4", "Lingo1", "Rgs5", "Des", "Acta2", "Pecam1",
+    "Cldn5", "Cd248", "Myh11", "Cdh5", "Fgf10", "Rax", "Gfap", "Aldh1l1",
+    "Aqp4", "Agt", "Gja1", "Hepacam", "Htra1", "Ndrg2", "Ntsr2", "Ntrk2", 
+    "Slc1a3", "Slc6a11", "Slc1a2", "Apoe", "Adcyap1r1"
+]
+
+def identify_microglia(adata, pos_thresh=1, score_cutoff=0.6):
+    """
+    Identify hypothalamic microglia based on a composite positive marker score 
+    and strict negative marker filtering.
+
+    The composite score is computed as:
+    
+      composite_score = 0.6*(primary score) + 0.4*(secondary score) +
+                        0.3*(annotation indicator) - 0.3*(negative indicator)
+    
+    A cell is retained as microglia only if:
+     1. composite_score &gt;= score_cutoff, AND 
+     2. It expresses no negative markers (i.e. negative indicator == 0).
+
+    Parameters:
+    -----------
+    adata : AnnData
+        The combined dataset.
+    pos_thresh : float, default 1
+        Threshold to consider a positive-marker gene as "expressed".
+    score_cutoff : float, default 0.6
+        Minimum composite score to call a cell microglia.
+
+    Returns:
+    --------
+    microglia_flag : np.ndarray (bool)
+        Boolean vector indicating which cells qualify as microglia.
+    """
+    n_cells = adata.n_obs
+    
+    # Calculate primary positive score.
+    pos_markers_use = [m for m in primary_markers if m in adata.var_names]
+    if pos_markers_use:
+        pos_expr = adata[:, pos_markers_use].X.toarray()
+        pos_detect = pos_expr &gt; pos_thresh
+        pos_score = np.mean(pos_detect, axis=1)
+    else:
+        pos_score = np.zeros(n_cells)
+    
+    # Calculate secondary positive score.
+    sec_markers_use = [m for m in secondary_markers if m in adata.var_names]
+    if sec_markers_use:
+        sec_expr = adata[:, sec_markers_use].X.toarray()
+        sec_detect = sec_expr &gt; pos_thresh
+        sec_score = np.mean(sec_detect, axis=1)
+    else:
+        sec_score = np.zeros(n_cells)
+    
+    # Add the annotation indicator based on existing cell-type annotation.
+    # This gives a bonus if a cell is annotated as 'Microglia'.
+    if 'ora_celltype' in adata.obs.columns:
+        annotation_indicator = adata.obs['ora_celltype'].isin(['Microglia']).astype(int).to_numpy()
+    else:
+        annotation_indicator = np.zeros(n_cells, dtype=int)
+    
+    # Compute the negative indicator based on the negative marker list.
+    # If any negative marker is expressed (expression &gt; 0), mark the cell as negative.
+    neg_markers_use = [m for m in negative_markers if m in adata.var_names]
+    if neg_markers_use:
+        neg_expr = adata[:, neg_markers_use].X.toarray()
+        negative_indicator = (np.sum(neg_expr &gt; 1, axis=1) &gt; 0).astype(int)
+    else:
+        negative_indicator = np.zeros(n_cells, dtype=int)
+    
+    # Compute the composite score.
+    composite_score = (
+        0.6 * pos_score +
+        0.4 * sec_score +
+        0.3 * annotation_indicator -
+        0.3 * negative_indicator
+    )
+    
+    # Final decision: allow cells that meet the composite score cutoff AND
+    # have no detectable negative markers.
+    microglia_flag = (composite_score &gt;= score_cutoff) &amp; (negative_indicator == 0)
+    
+    return microglia_flag
+
+# Apply microglia identification to subset the combined dataset.
+is_microglia = identify_microglia(adata_combined, pos_thresh=1, score_cutoff=0.3)
+adata_microglia = adata_combined[is_microglia].copy()
+
+# Optionally filter genes expressed in fewer than 3 cells.
+sc.pp.filter_genes(adata_microglia, min_cells=3)
+
+print(f"Number of identified microglia: {adata_microglia.n_obs}")
+adata_microglia</preformat>
+        <boxed-text>
+          <preformat>Number of identified microglia: 3108</preformat>
+        </boxed-text>
+        <boxed-text id="filter-microglia-nb-1">
+          <preformat>AnnData object with n_obs × n_vars = 3108 × 16934
+    obs: 'nCount_RAW', 'nFeature_RAW', 'nCount_RNA', 'nFeature_RNA', 'orig.ident', 'nFeature_Diff', 'nCount_Diff', 'percent_mito', 'percent_ribo', 'percent_mito_ribo', 'percent_hb', 'log10GenesPerUMI', 'cell_name', 'barcode', 'latent_RT_efficiency', 'latent_cell_probability', 'latent_scale', 'doublet_score', 'predicted_doublets', 'QC', 'var_regex', 'RNA_snn_res.0.5', 'RNA_snn_res.0.71728703859461', 'RNA_snn_res.1.18939286532015', 'RNA_snn_res.3.00000100000001', 'seurat_clusters', 'k_tree', 'comb_clstr1', 'S.Score', 'G2M.Score', 'Phase', 'nCount_SCT', 'nFeature_SCT', 'SCT_snn_res.1', 'SCT_snn_res.1.10031502002514', 'SCT_snn_res.1.2198400795032', 'SCT_snn_res.1.36467746508232', 'SCT_snn_res.1.54382016547197', 'SCT_snn_res.1.77109349840298', 'SCT_snn_res.2.0689045782524', 'SCT_snn_res.2.47612417203789', 'SCT_snn_res.3.06661007679595', 'SCT_snn_res.4.00000100000002', 'bioproject', 'project', 'model', 'tech', 'region', 'sex', 'stage', 'libname', 'expbtch', 'condit', 'ora_celltype', 'dataset', 'RNA_snn_res.0.7833532337729', 'RNA_snn_res.1.34581556090209', 'RNA_snn_res.3.00000099999999', 'SCT_snn_res.1.1195017969378', 'SCT_snn_res.1.25982585876617', 'SCT_snn_res.1.42693374118546', 'SCT_snn_res.1.62930288316738', 'SCT_snn_res.1.87941033125915', 'SCT_snn_res.2.19640689228103', 'SCT_snn_res.2.61126801427803', 'SCT_snn_res.3.17758609834753', 'SCT_snn_res.4.00000099999999', 'RNA_snn_res.0.698827671570266', 'RNA_snn_res.1.14210811409567', 'RNA_snn_res.3.000001', 'SCT_snn_res.0.999999999999997', 'SCT_snn_res.1.09319962188338', 'SCT_snn_res.1.20484562360462', 'SCT_snn_res.1.34101594133873', 'SCT_snn_res.1.51078813819985', 'SCT_snn_res.1.72835035395428', 'SCT_snn_res.2.01718692442895', 'SCT_snn_res.2.41918351048971', 'SCT_snn_res.3.0170408266799', 'SCT_snn_res.4.00000099999996', 'RNA_snn_res.0.707029299856434', 'RNA_snn_res.1.1633242093704', 'SCT_snn_res.1.09624280410035', 'SCT_snn_res.1.21126934615096', 'SCT_snn_res.1.35117332239486', 'SCT_snn_res.1.52500385828604', 'SCT_snn_res.1.74680444979064', 'SCT_snn_res.2.03961008405947', 'SCT_snn_res.2.44401470896301', 'SCT_snn_res.3.03884118600469', 'SCT_snn_res.4.00000100000001', 'RNA_snn_res.0.708696581250639', 'RNA_snn_res.1.16759631065218', 'SCT_snn_res.1.09433786568445', 'SCT_snn_res.1.20725017884265', 'SCT_snn_res.1.34482172774405', 'SCT_snn_res.1.51612084028104', 'SCT_snn_res.1.73528349845721', 'SCT_snn_res.2.02562815606513', 'SCT_snn_res.2.42855725849532', 'SCT_snn_res.3.0253042516118', 'SCT_snn_res.4.00000099999998', 'RNA_snn_res.0.705441838230003', 'RNA_snn_res.1.15924388679526', 'SCT_snn_res.1.09500080295337', 'SCT_snn_res.1.20864960390776', 'SCT_snn_res.1.3470346521921', 'SCT_snn_res.1.51921811960968', 'SCT_snn_res.1.73930452831673', 'SCT_snn_res.2.03051449026752', 'SCT_snn_res.2.43396901815984', 'SCT_snn_res.3.03005626315964', 'RNA_snn_res.0.741576329532297', 'RNA_snn_res.1.24913691074005', 'SCT_snn_res.1.1014548330962', 'SCT_snn_res.1.22223389211258', 'SCT_snn_res.1.36843938820807', 'SCT_snn_res.1.54904506877152', 'SCT_snn_res.1.7778105049838', 'SCT_snn_res.2.07696233957953', 'SCT_snn_res.2.48489124123347', 'SCT_snn_res.3.07411084005006', 'RNA_snn_res.0.711555907125606', 'RNA_snn_res.1.17489106681439', 'RNA_snn_res.3.00000100000003', 'SCT_snn_res.1.0985609300296', 'SCT_snn_res.1.21615179101811', 'SCT_snn_res.1.35887288645706', 'SCT_snn_res.1.53574384326226', 'SCT_snn_res.1.76068724753414', 'SCT_snn_res.2.0563840713167', 'SCT_snn_res.2.46244607013394', 'SCT_snn_res.3.0548384262319', 'SCT_snn_res.4.000001', 'RNA_snn_res.0.500000000000001', 'RNA_snn_res.0.714537899864968', 'RNA_snn_res.1.18245636371332', 'SCT_snn_res.1.09970413655729', 'SCT_snn_res.1.21855619110534', 'SCT_snn_res.1.36265805049213', 'SCT_snn_res.1.54101239385786', 'SCT_snn_res.1.76747896076642', 'SCT_snn_res.2.0645607899466', 'SCT_snn_res.2.47138643622271', 'SCT_snn_res.3.06254226682124', 'RNA_snn_res.0.714828088225169', 'RNA_snn_res.1.18319027145631', 'SCT_snn_res.1.10041167834265', 'SCT_snn_res.1.22004316637797', 'SCT_snn_res.1.36499678574129', 'SCT_snn_res.1.54426395182734', 'SCT_snn_res.1.77166448326459', 'SCT_snn_res.2.06959026449618', 'SCT_snn_res.2.47687130268825', 'SCT_snn_res.3.06725063816584', 'RNA_snn_res.0.74082856775745', 'RNA_snn_res.1.24733796060143', 'SCT_snn_res.1.10569909553377', 'SCT_snn_res.1.23112793047964', 'SCT_snn_res.1.38237925427927', 'SCT_snn_res.1.5683423560766', 'SCT_snn_res.1.80251553997986', 'SCT_snn_res.2.10643815972253', 'SCT_snn_res.2.51672603000175', 'SCT_snn_res.3.10106021549219', 'RNA_snn_res.0.499999999999999', 'RNA_snn_res.0.703209964322742', 'RNA_snn_res.1.15348606507044', 'SCT_snn_res.1.0936256603853', 'SCT_snn_res.1.20574589974601', 'SCT_snn_res.1.3424413542897', 'SCT_snn_res.1.51278632954032', 'SCT_snn_res.1.73094972121659', 'SCT_snn_res.2.02035409535935', 'SCT_snn_res.2.42270425865078', 'SCT_snn_res.3.02014937772602'
+    var: 'vst.mean-0', 'vst.variance-0', 'vst.variance.expected-0', 'vst.variance.standardized-0', 'vst.variable-0', 'vst.mean-1', 'vst.variance-1', 'vst.variance.expected-1', 'vst.variance.standardized-1', 'vst.variable-1', 'vst.mean-10', 'vst.variance-10', 'vst.variance.expected-10', 'vst.variance.standardized-10', 'vst.variable-10', 'vst.mean-11', 'vst.variance-11', 'vst.variance.expected-11', 'vst.variance.standardized-11', 'vst.variable-11', 'vst.mean-2', 'vst.variance-2', 'vst.variance.expected-2', 'vst.variance.standardized-2', 'vst.variable-2', 'vst.mean-3', 'vst.variance-3', 'vst.variance.expected-3', 'vst.variance.standardized-3', 'vst.variable-3', 'vst.mean-4', 'vst.variance-4', 'vst.variance.expected-4', 'vst.variance.standardized-4', 'vst.variable-4', 'vst.mean-5', 'vst.variance-5', 'vst.variance.expected-5', 'vst.variance.standardized-5', 'vst.variable-5', 'vst.mean-6', 'vst.variance-6', 'vst.variance.expected-6', 'vst.variance.standardized-6', 'vst.variable-6', 'vst.mean-7', 'vst.variance-7', 'vst.variance.expected-7', 'vst.variance.standardized-7', 'vst.variable-7', 'vst.mean-8', 'vst.variance-8', 'vst.variance.expected-8', 'vst.variance.standardized-8', 'vst.variable-8', 'vst.mean-9', 'vst.variance-9', 'vst.variance.expected-9', 'vst.variance.standardized-9', 'vst.variable-9', 'n_cells'
+    obsm: 'X_pacmap', 'X_pca', 'X_umap', 'ora_estimate', 'ora_pvals'</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="preprocess-microglia-nb-1" specific-use="notebook-content">
+        <preformat>#| label: preprocess-microglia
+#| code-summary: Normalize and process microglial expression data
+adata_microglia.layers["counts"] = adata_microglia.X.copy()
+# Normalize and process
+
+# Normalizing to median total counts
+sc.pp.normalize_total(adata_microglia)
+# Logarithmize the data
+sc.pp.log1p(adata_microglia)
+sc.pp.highly_variable_genes(
+    adata_microglia,
+    n_top_genes=2000,
+    batch_key='bioproject'
+)
+
+# Run PCA
+sc.pp.scale(adata_microglia)
+adata_microglia.layers["scaled"] = adata_microglia.X.copy()
+sc.tl.pca(adata_microglia)</preformat>
+      </sec>
+      <sec id="cell-fig-pca-bioproject-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-pca-bioproject
+sc.pl.pca(
+    adata_microglia,
+    color=["bioproject", "bioproject", "percent_mito_ribo", "percent_mito_ribo"],
+    dimensions=[(0, 1), (2, 3), (0, 1), (2, 3)],
+    ncols=2,
+    size=2,
+    wspace=0.8,
+);</preformat>
+        <boxed-text>
+          <fig id="fig-pca-bioproject-nb-1">
+            <graphic id="fig-pca-bioproject-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-pca-bioproject-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-pca-region-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-pca-region
+sc.pl.pca(
+    adata_microglia,
+    color=["region", "region", "percent_mito_ribo", "percent_mito_ribo"],
+    dimensions=[(0, 1), (2, 3), (0, 1), (2, 3)],
+    ncols=2,
+    size=2,
+    wspace=0.8,
+);</preformat>
+        <boxed-text>
+          <fig id="fig-pca-region-nb-1">
+            <graphic id="fig-pca-region-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-pca-region-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-initial-clustering-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-initial-clustering
+#| fig-cap: Initial clustering analysis of hypothalamic microglia. (A) UMAP visualization colored by dataset origin shows batch effects before integration. (B) Initial Leiden clustering reveals potential microglial subpopulations. Colors represent distinct clusters identified by the algorithm.
+# Run UMAP and clustering
+sc.pp.neighbors(adata_microglia)
+sc.tl.umap(adata_microglia)
+sc.tl.leiden(adata_microglia)
+
+# Plot results
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 10))
+sc.pl.umap(adata_microglia, color='bioproject', legend_loc="best", ax=ax1, show=False, title='Dataset Distribution')
+sc.pl.umap(adata_microglia, color='leiden', legend_loc="on data", ax=ax2, show=False, title='Initial Clustering')
+plt.tight_layout()
+plt.show()</preformat>
+        <boxed-text>
+          <fig id="fig-initial-clustering-nb-1">
+            <caption>
+              <p>Initial clustering analysis of hypothalamic microglia.
+    (A) UMAP visualization colored by dataset origin shows batch effects
+    before integration. (B) Initial Leiden clustering reveals potential
+    microglial subpopulations. Colors represent distinct clusters
+    identified by the algorithm.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-initial-clustering-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-marker-expression-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-marker-expression
+#| fig-cap: Expression patterns of canonical microglial markers across identified clusters. UMAP visualizations showing the distribution of key microglial marker genes, revealing heterogeneous expression patterns across the population before integration.
+# Plot marker genes
+sc.pl.umap(
+    adata_microglia,
+    color=microglia_markers,
+    frameon=False,
+    show=True,
+    save='_init_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_init_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-marker-expression-nb-1">
+            <caption>
+              <p>Expression patterns of canonical microglial markers
+    across identified clusters. UMAP visualizations showing the
+    distribution of key microglial marker genes, revealing heterogeneous
+    expression patterns across the population before
+    integration.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-marker-expression-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="integrate-datasets-nb-1" specific-use="notebook-content">
+        <preformat>#| label: integrate-datasets
+#| code-summary: Perform integration
+# Harmony integration
+import harmonypy
+
+sc.external.pp.harmony_integrate(
+    adata_microglia,
+    'bioproject',
+    max_iter_harmony=20
+)
+
+# Recompute UMAP on integrated data
+sc.pp.neighbors(adata_microglia, use_rep='X_pca_harmony')
+sc.tl.umap(adata_microglia)
+sc.tl.leiden(adata_microglia, key_added='leiden_integrated')
+sc.tl.embedding_density(adata_microglia, basis='umap', groupby='leiden_integrated')
+sc.tl.embedding_density(adata_microglia, basis='umap', groupby='region')</preformat>
+        <boxed-text>
+          <preformat>2025-02-06 11:40:05,738 - harmonypy - INFO - Computing initial centroids with sklearn.KMeans...
+2025-02-06 11:40:16,288 - harmonypy - INFO - sklearn.KMeans initialization complete.
+2025-02-06 11:40:16,387 - harmonypy - INFO - Iteration 1 of 20
+2025-02-06 11:40:31,788 - harmonypy - INFO - Iteration 2 of 20
+2025-02-06 11:40:48,387 - harmonypy - INFO - Converged after 2 iterations</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-integrated-analysis-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-integrated-analysis
+#| fig-cap: Analysis of batch-corrected microglial data. (A) UMAP visualization after integration shows reduced batch effects. (B) Refined clustering based on integrated data reveals distinct microglial subpopulations. (C) Distribution of cells by hypothalamic region demonstrates regional heterogeneity of microglia.
+sc.pl.umap(adata_microglia, color=['bioproject', 'region', 'leiden_integrated'], title=['Integrated Datasets', 'Regional Distribution', 'Integrated Clusters'], legend_loc="right margin", wspace=.8, hspace=.8, size=5, ncols = 2);</preformat>
+        <boxed-text>
+          <fig id="fig-integrated-analysis-nb-1">
+            <caption>
+              <p>Analysis of batch-corrected microglial data. (A) UMAP
+    visualization after integration shows reduced batch effects. (B)
+    Refined clustering based on integrated data reveals distinct
+    microglial subpopulations. (C) Distribution of cells by hypothalamic
+    region demonstrates regional heterogeneity of
+    microglia.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-integrated-analysis-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="save-integrated-analysis-nb-1" specific-use="notebook-content">
+        <preformat>#| label: save-integrated-analysis
+# Dataset distribution after integration
+sc.pl.umap(
+    adata_microglia,
+    color='bioproject',
+    show=False,
+    title='Integrated Datasets',
+    save='_integrated_datasets.pdf'
+);
+
+# Integrated clustering
+sc.pl.umap(
+    adata_microglia,
+    color='leiden_integrated',
+    show=False,
+    legend_loc="on data",
+    title='Integrated Clusters',
+    save='_integrated_clusters.pdf'
+);
+
+# Regional distribution
+sc.pl.umap(
+    adata_microglia,
+    color='region',
+    show=False,
+    title='Regional Distribution',
+    save='_integrated_regions.pdf'
+);</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_datasets.pdf
+WARNING: saving figure to file figures/umap_integrated_clusters.pdf
+WARNING: saving figure to file figures/umap_integrated_regions.pdf</preformat>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-cluster-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-cluster-markers
+#| fig-cap: Differential expression analysis of integrated clusters. Plot shows the top 25 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene.
+#| warning: false
+# Find markers for each cluster
+sc.tl.rank_genes_groups(
+    adata_microglia,
+    'leiden_integrated',
+    method='logreg',
+    use_raw=False
+)
+
+# Plot top markers
+sc.pl.rank_genes_groups(
+    adata_microglia,
+    n_genes=25,
+    sharey=False,
+    save='_quant_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/rank_genes_groups_leiden_integrated_quant_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-cluster-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis of integrated clusters.
+    Plot shows the top 25 differentially expressed genes per cluster
+    identified using Wilcoxon rank-sum test. Genes are ordered by
+    average log fold change, and expression values are z-scored per
+    gene.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-cluster-markers-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-heatmap-cluster-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-heatmap-cluster-markers
+#| fig-cap: Differential expression analysis of integrated clusters. Heatmap shows the top 7 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, and expression values are z-scored per gene.
+# Calculate dendrogram first
+sc.tl.dendrogram(adata_microglia, groupby='leiden_integrated')
+
+
+# Plot top markers
+sc.pl.rank_genes_groups_heatmap(
+    adata_microglia,
+    n_genes=7,
+    use_raw=False,
+    swap_axes=True,
+    show_gene_labels=True,
+    vmin=-3,
+    vmax=3,
+    cmap="bwr",
+    layer="scaled",
+    figsize=(21, 21),
+    show=False,
+);
+plt.show()</preformat>
+        <boxed-text>
+          <fig id="fig-heatmap-cluster-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis of integrated clusters.
+    Heatmap shows the top 7 differentially expressed genes per cluster
+    identified using Wilcoxon rank-sum test. Genes are ordered by
+    average log fold change, and expression values are z-scored per
+    gene.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-heatmap-cluster-markers-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-dotplot-cluster-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-dotplot-cluster-markers
+#| fig-cap: Differential expression analysis of integrated clusters. Dotplot shows the top 10 differentially expressed genes per cluster identified using Wilcoxon rank-sum test. Genes are ordered by average log fold change, , which are presented here.
+# Plot top DEG
+sc.pl.rank_genes_groups_dotplot(
+    adata_microglia,
+    n_genes=2,
+    values_to_plot="scores",
+    min_logfoldchange=2,
+    vmax=1,
+    vmin=0,
+    cmap="gnuplot2_r",
+    figsize=(24, 9),
+)</preformat>
+        <boxed-text>
+          <fig id="fig-dotplot-cluster-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis of integrated clusters.
+    Dotplot shows the top 10 differentially expressed genes per cluster
+    identified using Wilcoxon rank-sum test. Genes are ordered by
+    average log fold change, , which are presented here.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-dotplot-cluster-markers-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-refined-marker-expression-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-refined-marker-expression
+#| fig-cap: Expression patterns of canonical microglial markers across refined clusters. UMAP visualizations showing the distribution of key microglial marker genes, revealing heterogeneous expression patterns across hypothalamic regions
+# Plot marker genes
+sc.pl.umap(
+    adata_microglia,
+    color=microglia_markers,
+    frameon=False,
+    show=True,
+    save='_integrated_markers.pdf'
+)</preformat>
+        <boxed-text>
+          <preformat>WARNING: saving figure to file figures/umap_integrated_markers.pdf</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-refined-marker-expression-nb-1">
+            <caption>
+              <p>Expression patterns of canonical microglial markers
+    across refined clusters. UMAP visualizations showing the
+    distribution of key microglial marker genes, revealing heterogeneous
+    expression patterns across hypothalamic regions</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-refined-marker-expression-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="save-results-nb-1" specific-use="notebook-content">
+        <preformat>#| label: save-results
+# Create output directories
+output_dir = Path("output")
+output_dir.mkdir(exist_ok=True)
+
+# Save processed data
+adata_microglia.write(
+    output_dir / "microglia_integrated.h5ad",
+    compression="gzip"
+)
+
+# Save cluster annotations
+pd.DataFrame(adata_microglia.obs).to_csv(
+    output_dir / "microglia_metadata.csv"
+)</preformat>
+      </sec>
+      <sec id="cell-fig-trem2-analysis-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-analysis
+#| fig-cap: 'Figure: Trem2 expression analysis across regions and microglial clusters. Panel (a) shows Trem2 expression by region (boxplot); panel (b) depicts Trem2 expression across clusters (violin plot); panel (c) displays a UMAP of Trem2 expression; panel (d) shows the correlation of Trem2 with other microglial markers.'
+import numpy as np
+import pandas as pd
+import scanpy as sc
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Analysis of Trem2 expression across regions
+def analyze_trem2(adata):
+    # Get Trem2 expression data
+    trem2_expr = pd.DataFrame({
+        'Trem2': adata[:, 'Trem2'].X.toarray().flatten(),
+        'Region': adata.obs['region'],
+        'Dataset': adata.obs['bioproject'],
+        'Cluster': adata.obs['leiden_integrated']
+    })
+    
+    # Create a figure with multiple panels
+    fig = plt.figure(figsize=(15, 10))
+    
+    # 1. Boxplot of Trem2 expression by Region
+    plt.subplot(2, 2, 1)
+    sns.boxplot(data=trem2_expr, x='Region', y='Trem2')
+    plt.xticks(rotation=45, ha='right')
+    plt.title('Trem2 Expression by Region')
+    
+    # 2. Violin plot of Trem2 expression by Cluster
+    plt.subplot(2, 2, 2)
+    sns.violinplot(data=trem2_expr, x='Cluster', y='Trem2')
+    plt.xticks(rotation=45)
+    plt.title('Trem2 Expression by Microglial Cluster')
+    
+    # 3. UMAP colored by Trem2 expression
+    ax = plt.subplot(2, 2, 3)
+    sc.pl.umap(adata, color='Trem2', ax=ax, show=False)
+    plt.title('UMAP: Trem2 Expression')
+    
+    # 4. Correlation with other microglial markers
+    plt.subplot(2, 2, 4)
+    marker_correlations = []
+    for marker in microglia_markers:
+        if marker != 'Trem2' and marker in adata.var_names:
+            correlation = np.corrcoef(
+                adata[:, 'Trem2'].X.toarray().flatten(),
+                adata[:, marker].X.toarray().flatten()
+            )[0, 1]
+            marker_correlations.append((marker, correlation))
+    
+    marker_correlations = pd.DataFrame(marker_correlations, columns=['Marker', 'Correlation'])
+    marker_correlations = marker_correlations.sort_values('Correlation', ascending=True)
+    
+    sns.barplot(data=marker_correlations, x='Correlation', y='Marker')
+    plt.title('Correlation of Trem2 with Other Markers')
+    
+    plt.tight_layout()
+    plt.show()
+    plt.savefig(output_dir / 'trem2_analysis.pdf')
+    plt.close()
+    
+    return trem2_expr, marker_correlations
+
+trem2_data, trem2_correlations = analyze_trem2(adata_microglia)</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-analysis-nb-1">
+            <caption>
+              <p>Figure: Trem2 expression analysis across regions and
+    microglial clusters. Panel (a) shows Trem2 expression by region
+    (boxplot); panel (b) depicts Trem2 expression across clusters
+    (violin plot); panel (c) displays a UMAP of Trem2 expression; panel
+    (d) shows the correlation of Trem2 with other microglial
+    markers.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-analysis-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-region-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-region
+#| fig-cap: TREM2 expression levels across different hypothalamic regions. Box plots show the median, quartiles, and distribution of TREM2 expression in each anatomically distinct region. Whiskers extend to 1.5 times the interquartile range.
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=trem2_data, x='Region', y='Trem2')
+plt.xticks(rotation=45, ha='right')
+plt.xlabel('Hypothalamic Region')
+plt.ylabel('TREM2 Expression Level')
+plt.title('Regional Distribution of TREM2 Expression')
+plt.tight_layout()
+plt.show()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-region-nb-1">
+            <caption>
+              <p>TREM2 expression levels across different hypothalamic
+    regions. Box plots show the median, quartiles, and distribution of
+    TREM2 expression in each anatomically distinct region. Whiskers
+    extend to 1.5 times the interquartile range.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-region-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-clusters-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-clusters
+#| fig-cap: Distribution of TREM2 expression across identified microglial clusters. Violin plots demonstrate the full distribution of expression levels within each cluster, with embedded box plots showing median and quartile values.
+plt.figure(figsize=(10, 6))
+sns.violinplot(data=trem2_data, x='Cluster', y='Trem2')
+plt.xticks(rotation=45)
+plt.xlabel('Microglial Cluster')
+plt.ylabel('TREM2 Expression Level')
+plt.title('TREM2 Expression in Microglial Subpopulations')
+plt.tight_layout()
+plt.show()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-clusters-nb-1">
+            <caption>
+              <p>Distribution of TREM2 expression across identified
+    microglial clusters. Violin plots demonstrate the full distribution
+    of expression levels within each cluster, with embedded box plots
+    showing median and quartile values.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-clusters-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-umap
+#| fig-cap: UMAP visualization of TREM2 expression across all microglia. Color intensity represents TREM2 expression level, showing the spatial distribution of TREM2-expressing cells in the UMAP-reduced 2-dimensional space.
+plt.figure(figsize=(8, 8))
+sc.pl.umap(adata_microglia, color='Trem2', show=True, title='TREM2 Expression in UMAP Space')
+plt.tight_layout()</preformat>
+        <fig id="fig-trem2-umap-nb-1">
+          <fig id="fig-trem2-umap-1-nb-1">
+            <caption>
+              <p>UMAP visualization of TREM2 expression across all
+    microglia. Color intensity represents TREM2 expression level,
+    showing the spatial distribution of TREM2-expressing cells in the
+    UMAP-reduced 2-dimensional space.</p>
+            </caption>
+            <preformat>&lt;Figure size 768x768 with 0 Axes&gt;</preformat>
+          </fig>
+          <boxed-text>
+            <fig id="fig-trem2-umap-2-nb-1">
+              <graphic id="fig-trem2-umap-2-nb-1" mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-umap-output-2.png"/>
+            </fig>
+          </boxed-text>
+          <fig id="fig-trem2-umap-3-nb-1">
+            <preformat>&lt;Figure size 672x480 with 0 Axes&gt;</preformat>
+          </fig>
+        </fig>
+      </sec>
+      <sec id="cell-fig-density-umap-scn-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-density-umap-scn
+#| fig-cap: Scatter plot visualization of SCN across all hypothalamic microglia. Color intensity represents density of microglia of SCN, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space.
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='SCN'
+)</preformat>
+        <boxed-text>
+          <fig id="fig-density-umap-scn-nb-1">
+            <caption>
+              <p>Scatter plot visualization of SCN across all
+    hypothalamic microglia. Color intensity represents density of
+    microglia of SCN, showing the spatial distribution of Microglia in
+    the UMAP-reduced 2-dimensional space.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-density-umap-scn-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-density-umap-pvn-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-density-umap-pvn
+#| fig-cap: Scatter plot visualization of PVN across all hypothalamic microglia. Color intensity represents density of microglia of PVN, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space.
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='PVN'
+)</preformat>
+        <boxed-text>
+          <fig id="fig-density-umap-pvn-nb-1">
+            <caption>
+              <p>Scatter plot visualization of PVN across all
+    hypothalamic microglia. Color intensity represents density of
+    microglia of PVN, showing the spatial distribution of Microglia in
+    the UMAP-reduced 2-dimensional space.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-density-umap-pvn-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-density-umap-poa-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-density-umap-poa
+#| fig-cap: Scatter plot visualization of POA across all hypothalamic microglia. Color intensity represents density of microglia of POA, showing the spatial distribution of Microglia in the UMAP-reduced 2-dimensional space.
+sc.pl.embedding_density(
+    adata_microglia, basis='umap', key='umap_density_region', group='POA'
+)</preformat>
+        <boxed-text>
+          <fig id="fig-density-umap-poa-nb-1">
+            <caption>
+              <p>Scatter plot visualization of POA across all
+    hypothalamic microglia. Color intensity represents density of
+    microglia of POA, showing the spatial distribution of Microglia in
+    the UMAP-reduced 2-dimensional space.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-density-umap-poa-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-dotplot-regions-markers-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-dotplot-regions-markers
+#| fig-cap: Differential expression analysis across regions. Dotplot shows the top 10 differentially expressed genes per region identified using Logistic Regression. Genes are ordered by average log fold change, which are presented here.
+sc.tl.rank_genes_groups(adata_microglia, groupby="region", method="logreg")
+
+# Plot top DEG
+sc.pl.rank_genes_groups_dotplot(
+    adata_microglia,
+    groupby="region",
+    n_genes=10,
+    values_to_plot="scores",
+    min_logfoldchange=5,
+    vmax=1,
+    vmin=0,
+    cmap="gnuplot2_r",
+    figsize=(24, 9),
+)</preformat>
+        <boxed-text>
+          <preformat>/opt/conda/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <preformat>WARNING: dendrogram data not found (using key=dendrogram_region). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.</preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-dotplot-regions-markers-nb-1">
+            <caption>
+              <p>Differential expression analysis across regions. Dotplot
+    shows the top 10 differentially expressed genes per region
+    identified using Logistic Regression. Genes are ordered by average
+    log fold change, which are presented here.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-dotplot-regions-markers-output-3.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-correlations-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-correlations
+#| fig-cap: Correlation analysis between TREM2 and other microglial marker genes. Bar plot shows Pearson correlation coefficients, ordered by strength of correlation. Positive values indicate positive correlation, while negative values indicate inverse relationships.
+plt.figure(figsize=(10, 8))
+sns.barplot(data=trem2_correlations, x='Correlation', y='Marker')
+plt.title('TREM2 Correlation with Microglial Markers')
+plt.xlabel('Pearson Correlation Coefficient')
+plt.ylabel('Marker Gene')
+plt.tight_layout()
+plt.show()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-correlations-nb-1">
+            <caption>
+              <p>Correlation analysis between TREM2 and other microglial
+    marker genes. Bar plot shows Pearson correlation coefficients,
+    ordered by strength of correlation. Positive values indicate
+    positive correlation, while negative values indicate inverse
+    relationships.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-correlations-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="trem2-statistics-nb-1" specific-use="notebook-content">
+        <preformat>#| label: trem2-statistics
+#| output: false
+from scipy import stats
+import statsmodels.stats.multitest as mt
+
+def trem2_statistics(trem2_data):
+    # 1. One-way ANOVA for regional differences
+    regions_list = [group['Trem2'].values for name, group in trem2_data.groupby('Region')]
+    
+    # Check if we have enough groups for ANOVA
+    if len(regions_list) &lt; 2:
+        print("Warning: Not enough regions for ANOVA")
+        f_stat, p_val = np.nan, np.nan
+    else:
+        f_stat, p_val = stats.f_oneway(*regions_list)
+    
+    # 2. Pairwise t-tests between regions
+    unique_regions = sorted(trem2_data['Region'].unique())
+    pairwise_tests = []
+    
+    for i in range(len(unique_regions)):
+        for j in range(i+1, len(unique_regions)):
+            reg1 = unique_regions[i]
+            reg2 = unique_regions[j]
+            
+            data1 = trem2_data[trem2_data['Region'] == reg1]['Trem2']
+            data2 = trem2_data[trem2_data['Region'] == reg2]['Trem2']
+            
+            # Only perform test if both groups have data
+            if len(data1) &gt; 0 and len(data2) &gt; 0:
+                t_stat, p_val = stats.ttest_ind(data1, data2)
+                
+                # Calculate effect size (Cohen's d)
+                pooled_std = np.sqrt(
+                    ((len(data1) - 1) * data1.std()**2 + 
+                     (len(data2) - 1) * data2.std()**2) / 
+                    (len(data1) + len(data2) - 2)
+                )
+                cohens_d = (data1.mean() - data2.mean()) / pooled_std
+                
+                pairwise_tests.append({
+                    'Region1': reg1,
+                    'Region2': reg2,
+                    'Mean1': data1.mean(),
+                    'Mean2': data2.mean(),
+                    'N1': len(data1),
+                    'N2': len(data2),
+                    't_statistic': t_stat,
+                    'p_value': p_val,
+                    'cohens_d': cohens_d
+                })
+    
+    # Apply Benjamini-Hochberg correction to p-values
+    if pairwise_tests:
+        pairwise_df = pd.DataFrame(pairwise_tests)
+        _, p_adjusted, _, _ = mt.multipletests(
+            pairwise_df['p_value'].values,
+            method='fdr_bh'
+        )
+        pairwise_df['p_value_adj'] = p_adjusted
+        
+        # Sort by adjusted p-value
+        pairwise_df = pairwise_df.sort_values('p_value_adj')
+    else:
+        pairwise_df = pd.DataFrame()
+    
+    # Create results dictionary
+    stats_results = {
+        'anova': {'f_statistic': f_stat, 'p_value': p_val},
+        'pairwise_tests': pairwise_df
+    }
+    
+    # Save results with more detailed formatting
+    with open(output_dir / 'trem2_statistics.txt', 'w') as f:
+        f.write('TREM2 Expression Analysis Across Hypothalamic Regions\n')
+        f.write('='*50 + '\n\n')
+        
+        f.write('1. One-way ANOVA results:\n')
+        f.write('-'*30 + '\n')
+        f.write(f'F-statistic: {f_stat:.4f}\n')
+        f.write(f'p-value: {p_val:.4e}\n\n')
+        
+        f.write('2. Regional Expression Summary:\n')
+        f.write('-'*30 + '\n')
+        summary_stats = trem2_data.groupby('Region')['Trem2'].agg(['count', 'mean', 'std'])
+        f.write(summary_stats.to_string() + '\n\n')
+        
+        f.write('3. Pairwise Comparisons:\n')
+        f.write('-'*30 + '\n')
+        if not pairwise_df.empty:
+            # Format floating point numbers
+            formatted_df = pairwise_df.copy()
+            float_cols = ['Mean1', 'Mean2', 't_statistic', 'p_value', 'p_value_adj', 'cohens_d']
+            for col in float_cols:
+                formatted_df[col] = formatted_df[col].map('{:.4e}'.format)
+            f.write(formatted_df.to_string())
+    
+    return stats_results
+
+# Run the analysis
+trem2_stats = trem2_statistics(trem2_data)</preformat>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_27977/3657118994.py:6: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+
+/tmp/ipykernel_27977/3657118994.py:83: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  </preformat>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-regional-stats-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-regional-stats
+#| fig-cap: Statistical comparison of TREM2 expression across hypothalamic regions. Box plots show the distribution of TREM2 expression levels in each region. Significance bars indicate the top 5 most significant pairwise comparisons (FDR-corrected p-values). Cohen's d effect sizes are shown for each comparison, quantifying the magnitude of expression differences between regions.
+# Create visualization of the statistical results
+plt.figure(figsize=(12, 8))
+sns.boxplot(data=trem2_data, x='Region', y='Trem2')
+plt.xticks(rotation=45, ha='right')
+plt.xlabel('Hypothalamic Region')
+plt.ylabel('TREM2 Expression Level')
+plt.title('Regional TREM2 Expression with Statistical Comparisons')
+
+# Add significance annotations for top significant comparisons
+if not trem2_stats['pairwise_tests'].empty:
+    max_y = trem2_data['Trem2'].max()
+    y_pos = max_y * 1.1
+    
+    # Get top 5 most significant comparisons
+    top_comparisons = trem2_stats['pairwise_tests'].head(5)
+    
+    # Get ordered list of regions for proper indexing
+    region_order = pd.Categorical(trem2_data['Region']).categories
+    
+    for idx, row in top_comparisons.iterrows():
+        try:
+            # Find indices in the ordered region list
+            x1 = np.where([r == row['Region1'] for r in region_order])[0][0]
+            x2 = np.where([r == row['Region2'] for r in region_order])[0][0]
+            
+            plt.plot([x1, x2], [y_pos, y_pos], 'k-', linewidth=1)
+            plt.text((x1 + x2) / 2, y_pos * 1.05,
+                    f"p={row['p_value_adj']:.1e}\nd={row['cohens_d']:.2f}",
+                    ha='center', va='bottom')
+            y_pos += max_y * 0.1
+        except IndexError:
+            continue
+
+plt.tight_layout()</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-regional-stats-nb-1">
+            <caption>
+              <p>Statistical comparison of TREM2 expression across
+    hypothalamic regions. Box plots show the distribution of TREM2
+    expression levels in each region. Significance bars indicate the top
+    5 most significant pairwise comparisons (FDR-corrected p-values).
+    Cohen’s d effect sizes are shown for each comparison, quantifying
+    the magnitude of expression differences between
+    regions.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-regional-stats-output-1.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-cluster-enrichment-heatmap-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-cluster-enrichment-heatmap
+#| fig-cap: Regional and cluster-specific TREM2 expression patterns. Heatmap shows mean TREM2 expression levels across different microglial clusters (rows) and hypothalamic regions (columns). Color intensity represents expression level, with darker colors indicating higher expression.
+def analyze_trem2_clusters(adata):
+    cluster_means = pd.DataFrame({
+        'Trem2_mean': adata[:, 'Trem2'].X.toarray().flatten(),
+        'Cluster': adata.obs['leiden_integrated'],
+        'Region': adata.obs['region']
+    }).groupby(['Cluster', 'Region'])['Trem2_mean'].mean().reset_index()
+    
+    pivot_table = cluster_means.pivot(
+        index='Cluster',
+        columns='Region',
+        values='Trem2_mean'
+    )
+    
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(pivot_table, cmap='viridis', annot=True, fmt='.2f', 
+                cbar_kws={'label': 'Mean TREM2 Expression'})
+    plt.title('TREM2 Expression Across Microglial Clusters and Regions')
+    plt.xlabel('Hypothalamic Region')
+    plt.ylabel('Microglial Cluster')
+    plt.tight_layout()
+    
+    return cluster_means
+
+trem2_cluster_data = analyze_trem2_clusters(adata_microglia)</preformat>
+        <boxed-text>
+          <preformat>/tmp/ipykernel_27977/1971043812.py:6: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  </preformat>
+        </boxed-text>
+        <boxed-text>
+          <fig id="fig-trem2-cluster-enrichment-heatmap-nb-1">
+            <caption>
+              <p>Regional and cluster-specific TREM2 expression patterns.
+    Heatmap shows mean TREM2 expression levels across different
+    microglial clusters (rows) and hypothalamic regions (columns). Color
+    intensity represents expression level, with darker colors indicating
+    higher expression.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-cluster-enrichment-heatmap-output-2.png"/>
+          </fig>
+        </boxed-text>
+      </sec>
+      <sec id="cell-fig-trem2-coexpression-network-nb-1" specific-use="notebook-content">
+        <preformat>#| label: fig-trem2-coexpression-network
+#| fig-cap: TREM2 co-expression network in hypothalamic microglia. Nodes represent genes, with TREM2 as the central hub. Edge weights represent the absolute Pearson correlation coefficient between gene pairs. Only correlations above 0.3 are shown.
+import networkx as nx
+import matplotlib.pyplot as plt
+import scipy.sparse
+import numpy as np
+import pandas as pd
+
+def create_trem2_network(adata, correlation_threshold=0.5):
+    """
+    Create and visualize a TREM2-centered gene co-expression network.
+    
+    Parameters:
+    -----------
+    adata : AnnData
+        Annotated data matrix containing gene expression data
+    correlation_threshold : float
+        Minimum absolute correlation coefficient to include in the network
+        
+    Returns:
+    --------
+    G : networkx.Graph
+        Network graph object containing the co-expression relationships
+    """
+    # Verify Trem2 is in the dataset
+    if 'Trem2' not in adata.var_names:
+        raise ValueError("Trem2 gene not found in the dataset")
+    
+    try:
+        # Get expression matrix - handle both sparse and dense formats
+        if scipy.sparse.issparse(adata.X):
+            expr_matrix = adata.X.toarray()
+        else:
+            expr_matrix = np.array(adata.X)
+        
+        # Verify matrix is not empty and contains valid values
+        if expr_matrix.size == 0 or np.all(np.isnan(expr_matrix)):
+            raise ValueError("Expression matrix is empty or contains invalid values")
+        
+        # Calculate correlation matrix for genes
+        correlation_matrix = pd.DataFrame(
+            np.corrcoef(expr_matrix.T),
+            index=adata.var_names,
+            columns=adata.var_names
+        )
+        
+        # Create network
+        G = nx.Graph()
+        
+        # Add edges for genes correlated with Trem2
+        trem2_correlations = correlation_matrix['Trem2'].abs()
+        
+        # Filter and add edges
+        for gene in trem2_correlations.index:
+            if gene != 'Trem2' and trem2_correlations[gene] &gt; correlation_threshold:
+                G.add_edge('Trem2', gene, weight=float(trem2_correlations[gene]))
+        
+        # Check if network is empty
+        if len(G.nodes()) &lt; 2:
+            print("Warning: No genes pass correlation threshold")
+            return G
+        
+        # Calculate node sizes based on degree centrality
+        degree_centrality = nx.degree_centrality(G)
+        node_sizes = [3000 * (degree_centrality[node] + 0.1) for node in G.nodes()]
+        
+        # Calculate edge weights for visualization
+        edge_weights = [G[u][v]['weight'] * 2 for u, v in G.edges()]
+        
+        # Create color map based on correlation with TREM2
+        node_colors = ['#ff7f0e' if node == 'Trem2' else '#1f77b4' for node in G.nodes()]
+        
+        # Create new figure
+        plt.figure(figsize=(12, 12))
+        
+        # Calculate layout
+        pos = nx.spring_layout(G, k=1, iterations=50, seed=42)
+        
+        # Draw network components
+        nx.draw_networkx_edges(
+            G, pos,
+            width=edge_weights,
+            alpha=0.5,
+            edge_color='gray'
+        )
+        
+        nx.draw_networkx_nodes(
+            G, pos,
+            node_size=node_sizes,
+            node_color=node_colors,
+            alpha=0.7
+        )
+        
+        nx.draw_networkx_labels(
+            G, pos,
+            font_size=10,
+            font_weight='bold',
+            font_color='black'
+        )
+        
+        plt.title('TREM2 Co-expression Network', 
+                 pad=20, size=14, weight='bold')
+        
+        # Add legend with explicit handles
+        legend_elements = [
+            plt.Line2D([0], [0], marker='o', color='w', 
+                      markerfacecolor='#ff7f0e', label='TREM2', markersize=10),
+            plt.Line2D([0], [0], marker='o', color='w', 
+                      markerfacecolor='#1f77b4', label='Co-expressed genes', markersize=10)
+        ]
+        plt.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 1.15))
+        
+        plt.axis('off')
+        plt.tight_layout()
+        plt.show()
+        
+        # Save figure
+        plt.savefig(output_dir / 'trem2_network.pdf', bbox_inches='tight', dpi=300)
+        plt.close()
+        
+        return G
+        
+    except Exception as e:
+        print(f"Error in network creation: {str(e)}")
+        return None
+
+# Create network with improved error handling
+try:
+    trem2_network = create_trem2_network(adata_microglia)
+    
+    if trem2_network is not None:
+        print("\nNetwork Statistics:")
+        print(f"Number of co-expressed genes: {len(trem2_network.nodes()) - 1}")
+        print(f"Number of connections: {len(trem2_network.edges())}")
+        
+        # Calculate and print additional network metrics
+        print("\nNetwork Metrics:")
+        print(f"Network density: {nx.density(trem2_network):.3f}")
+        print(f"Average clustering coefficient: {nx.average_clustering(trem2_network):.3f}")
+        
+except Exception as e:
+    print(f"Failed to create network: {str(e)}")</preformat>
+        <boxed-text>
+          <fig id="fig-trem2-coexpression-network-nb-1">
+            <caption>
+              <p>TREM2 co-expression network in hypothalamic microglia.
+    Nodes represent genes, with TREM2 as the central hub. Edge weights
+    represent the absolute Pearson correlation coefficient between gene
+    pairs. Only correlations above 0.3 are shown.</p>
+            </caption>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="eda_files/figure-jats/fig-trem2-coexpression-network-output-1.png"/>
+          </fig>
+        </boxed-text>
+        <boxed-text>
+          <preformat>
+Network Statistics:
+Number of co-expressed genes: 10
+Number of connections: 10
+
+Network Metrics:
+Network density: 0.182
+Average clustering coefficient: 0.000</preformat>
+        </boxed-text>
+      </sec>
+    </body>
+    <back>
+</back>
+  </sub-article>
+</article>
